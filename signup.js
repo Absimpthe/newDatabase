@@ -1,5 +1,19 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Get the form element
+    // Get the button and the sign-up section elements
+    const signUpButton = document.getElementById('showSignUp');
+    const signUpSection = document.querySelector('.sign-up');
+
+    // Add a click event listener to the button
+    signUpButton.addEventListener("click", function() {
+        // Check the current display style of the sign-up section and toggle it
+        if (signUpSection.style.display === 'none' || signUpSection.style.display === '') {
+        signUpSection.style.display = 'block'; // Show the sign-up section
+        signUpButton.style.display = 'none'; // Hide the sign-up button
+        } else {
+        signUpSection.style.display = 'none'; // Hide the sign-up section
+        }
+    });
     var signUpForm = document.querySelector(".sign-up-form");
 
     // Listen for form submission

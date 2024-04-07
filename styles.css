@@ -31,16 +31,38 @@ main {
 }
 
 .sign-up {
+  display: none;
   width: 100%;
+  flex-direction: column;
 }
 
-.sign-up-para {
-  padding: 1rem 5rem;
-  margin-bottom: 1.75rem;
-  border-radius: 0.8rem;
-  box-shadow: 0 8px 0px rgba(0 0 0/0.15);
-  background-color: #7138cc;
-  text-align: center;
+.homepage-buttons {
+  flex-direction: column;
+}
+
+#showSignUp {
+  font-size: 1.75rem;
+  width: 200px;
+  display: block;
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  padding: 10px 20px; /* Top and Bottom padding 10px, Left and Right padding 20px */
+  border: none; /* No border */
+  cursor: pointer; /* Cursor changes to pointer when hovering over the button */
+  border-radius: 5px; /* Rounded corners */
+}
+
+#showLogin {
+  font-size: 1.75rem;
+  width: 200px;
+  display: block;
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  padding: 10px 20px; /* Top and Bottom padding 10px, Left and Right padding 20px */
+  border: none; /* No border */
+  cursor: pointer; /* Cursor changes to pointer when hovering over the button */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 20px;
 }
 
 .sign-up-form {
