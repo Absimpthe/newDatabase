@@ -15,26 +15,32 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function validateForm() {
-        var firstName = document.getElementById("first-name").value;
-        var lastName = document.getElementById("last-name").value;
+        var username = document.getElementById("username").value;
+        var phoneNo = document.getElementById("phone-no").value;
         var email = document.getElementById("email").value;
-        var password = document.getElementById("Password").value;
+        var address = document.getElementById("address").value;
+        var password = document.getElementById("password").value;
 
         var valid = true;
 
         // Simple validation checks
-        if (firstName.length === 0) {
-            alert("First name cannot be empty");
+        if (username.length === 0) {
+            alert("Username cannot be empty");
             valid = false;
         }
 
-        if (lastName.length === 0) {
-            alert("Last name cannot be empty");
+        if (phoneNo.length === 0) {
+            alert("Phone number cannot be empty");
             valid = false;
         }
 
         if (!validateEmail(email)) {
             alert("Invalid email format");
+            valid = false;
+        }
+
+        if (address.length === 0) {
+            alert("Address cannot be empty");
             valid = false;
         }
 
