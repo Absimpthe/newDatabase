@@ -67,5 +67,5 @@ INSERT INTO customers (CustUsername, CustPassword, Address, EmailAddress, PhoneN
 ('marksim_Skobun', 'iHateCornSoup', '123 UNM, Semenyih', 'alamak@gmail.com', '010-0100100', FALSE);
 
 INSERT INTO drivers (DriverID, CarPlateNo, DriverRating) VALUES
-(33310120234, 'MARIO69', 0),
-(30123456789, 'ABC420', 5);
+(333101, 'MARIO69', 0),
+(301234, 'ABC420', 5);

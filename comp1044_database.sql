@@ -20,14 +20,13 @@ SET time_zone = "+00:00";
 --
 -- Database: `comp1044_database`
 --
-
+CREATE DATABASE IF NOT EXISTS COMP1044_database;
+USE COMP1044_database;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `carts`
 --
-CREATE DATABASE IF NOT EXISTS COMP1044_database;
-USE COMP1044_database;
 DROP TABLE IF EXISTS carts;
 CREATE TABLE carts (
   `OrderID` int(20) UNSIGNED NOT NULL,
@@ -116,7 +115,6 @@ CREATE TABLE `orders` (
   `OrderStatus` enum('Pending','Confirmed','Cancelled','Completed') NOT NULL,
   `PaymentStatus` enum('Pending','Completed') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Indexes for dumped tables
 --
