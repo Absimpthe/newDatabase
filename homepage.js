@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function() {
     signupInsteadLink.addEventListener("click", function(e) {
         e.preventDefault(); // Prevent the default anchor action
 
-        // Hide the sign-up section and show the login section
         signUpSection.style.display = 'block';
         loginSection.style.display = 'none';
     });
@@ -105,7 +104,6 @@ document.addEventListener("DOMContentLoaded", function() {
     function sendData() {
         var formData = new FormData(signUpForm);
 
-        // Example of sending form data to a server using fetch
         fetch("your-server-endpoint", {
             method: "POST",
             body: formData
