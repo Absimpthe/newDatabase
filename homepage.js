@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const loginButton = document.getElementById('showLogin');
     const signUpSection = document.querySelector('.sign-up');
     const loginSection = document.querySelector('.login');
+    const loginInsteadLink = document.getElementById('loginInsteadLink');
+    const signupInsteadLink = document.getElementById('signupInsteadLink');
 
     loginButton.addEventListener("click", function() {
         if (loginSection.style.display === 'none' || loginSection.style.display === '') {
@@ -28,6 +30,22 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
     var signUpForm = document.querySelector(".sign-up-form");
+
+    loginInsteadLink.addEventListener("click", function(e) {
+        e.preventDefault(); // Prevent the default anchor action
+
+        // Hide the sign-up section and show the login section
+        signUpSection.style.display = 'none';
+        loginSection.style.display = 'block';
+    });
+
+    signupInsteadLink.addEventListener("click", function(e) {
+        e.preventDefault(); // Prevent the default anchor action
+
+        // Hide the sign-up section and show the login section
+        signUpSection.style.display = 'block';
+        loginSection.style.display = 'none';
+    });
 
     // Listen for form submission
     signUpForm.addEventListener("submit", function(e) {
