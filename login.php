@@ -1,3 +1,42 @@
 <?php
-    echo "This is test";
+
+    session_start();
+
+    $username = $_POST['login-username'];
+    $password = $_POST['login-password'];
+    
+    $con = new mysqli("localhost","root","","comp1044_database");
+    if($con->connect_error) {
+        die("Failed to connect: ".$con->connect_error);
+    }
+    else {
+        $stmt = $con->prepare("select * from customers where CustUsername = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $stmt_result = $stmt->get_result();
+
+        header('Content-Type: application/json');
+
+        if ($stmt_result->num_rows > 0) {
+            $data = $stmt_result->fetch_assoc();
+            if ($data['CustPassword'] === $password) {
+                echo json_encode(['status' => 'success']);
+                exit();
+                // fetch user data
+                // redirect user to menu page
+            }
+            else {
+                // inform user of wrong login details 
+                echo json_encode(['status' => 'error', 'message' => 'Invalid username or password']);
+                exit();
+                //echo "<h2>Invalid username or password</h2>";
+                
+            }
+        }
+        else {
+            echo json_encode(['status' => 'error', 'message' => 'Invalid username or password']);
+            exit();
+            //echo "<h2>Invalid username or password</h2>";
+        }
+    }
 ?>

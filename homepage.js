@@ -58,6 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    loginForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        sendData();
+    });
+
     function validateForm() {
         var username = document.getElementById("signup-username").value;
         var phoneNo = document.getElementById("phone-no").value;
@@ -104,17 +109,29 @@ document.addEventListener("DOMContentLoaded", function() {
     function sendData() {
         var formData = new FormData(signUpForm);
 
-        fetch("your-server-endpoint", {
+        fetch("login.php", {
             method: "POST",
             body: formData
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log("Received response", response);
+            return response.json();
+        })
         .then(data => {
             console.log(data);
+            if (data.status === "success") {
+                window.location.href="test.php"
+            }
+            else {
+                document.getElementById('loginError').innerText = data.message;
+                loginSection.style.display = 'block';
+                signUpSection.style.display = 'none';  
+            }
             // Handle success, such as displaying a success message or redirecting the user
         })
         .catch((error) => {
             console.error('Error:', error);
+            document.getElementById('loginError').innerText = "An unexpected error occurred. Please try again.";
             // Handle errors, such as displaying an error message to the user
         });
     }
