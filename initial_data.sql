@@ -1,9 +1,10 @@
+USE COMP1044_database;
 -- Inserting into the 'categories' table
 INSERT INTO categories (CategoryID, CtgName) VALUES
 (1, 'Appetizers'),
 (2, 'Main Courses'),
 (3, 'Desserts'),
-(4, 'Beverages')
+(4, 'Beverages');
 
 INSERT INTO items (ItemCode, ItemName, Price, Availability, CategoryID) VALUES
 ('A001', 'Onion Rings', 5.00, 1, 1), -- codes starting with A0 are fried snacks
@@ -47,24 +48,24 @@ INSERT INTO items (ItemCode, ItemName, Price, Availability, CategoryID) VALUES
 ('D008', 'Matcha Mille Crepe', 10.50, 1, 3),
 ('D009', 'Durian Mille Crepe', 12.50, 1, 3),
 ('B001', 'Peppermint Tea', 3.00, 1, 4), -- codes starting with B0 are hot drinks
-('B001', 'Chamomile Tea', 3.00, 1, 4),
-('B001', 'Hot Chocolate', 4.00, 1, 4),
-('B001', 'Americano', 4.00, 1, 4),
-('B001', 'Matcha Latte', 6.50, 1, 4),
+('B002', 'Chamomile Tea', 3.00, 1, 4),
+('B003', 'Hot Chocolate', 4.00, 1, 4),
+('B004', 'Americano', 4.00, 1, 4),
+('B005', 'Matcha Latte', 6.50, 1, 4),
 ('B101', 'Iced Lemon Tea', 3.00, 1, 4), -- codes starting with B1 are cold drinks
-('B101', 'Yuzu Soda', 5.00, 1, 4),
-('B101', 'Melon Soda', 5.00, 1, 4),
-('B101', 'Root Beer Float', 4.50, 1, 4),
-('B101', 'Virgin Mojito', 7.00, 1, 4),
-('B101', 'Shirley Temple', 7.00, 1, 4)
+('B102', 'Yuzu Soda', 5.00, 1, 4),
+('B103', 'Melon Soda', 5.00, 1, 4),
+('B104', 'Root Beer Float', 4.50, 1, 4),
+('B105', 'Virgin Mojito', 7.00, 1, 4),
+('B106', 'Shirley Temple', 7.00, 1, 4);
 
 INSERT INTO customers (CustUsername, CustPassword, Address, EmailAddress, PhoneNumber, isAdmin) VALUES
 ('CEOsidneySoh', 'PGR1Mario0', '123 UNM, Semenyih', 'explodingCat@gmail.com', '011-1001111', TRUE),
-('hueyTeng', 'teamMaruCoffee', '456 UNM, Semenyih', 'Bidetblast@gmail.com', '012-1212221'),
-('shu', 'teamZusCoffee', '789 UNM, Semenyih', 'NekoAtsume@gmail.com', '013-3133133'),
-('NawfalNazzeeeeeem', 'gigaChad123', '101 UNM, Semenyih', 'weddingWitch@gmail.com', '014-5678999'),
-('marksim_Skobun', 'iHateCornSoup', '123 UNM, Semenyih', 'alamak@gmail.com', '010-0100100')
+('hueyTeng', 'teamMaruCoffee', '456 UNM, Semenyih', 'Bidetblast@gmail.com', '012-1212221', FALSE),
+('shu', 'teamZusCoffee', '789 UNM, Semenyih', 'NekoAtsume@gmail.com', '013-3133133', FALSE),
+('NawfalNazzeeeeeem', 'gigaChad123', '101 UNM, Semenyih', 'weddingWitch@gmail.com', '014-5678999', FALSE),
+('marksim_Skobun', 'iHateCornSoup', '123 UNM, Semenyih', 'alamak@gmail.com', '010-0100100', FALSE);
 
 INSERT INTO drivers (DriverID, CarPlateNo, DriverRating) VALUES
 (33310120234, 'MARIO69', 0),
-(30123456789, 'ABC420', 5)
+(30123456789, 'ABC420', 5);
