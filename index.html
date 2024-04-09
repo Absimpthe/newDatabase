@@ -22,7 +22,7 @@
         <button id="showSignUp">Sign Up</button>
       </homepage-buttons>
       <section class="sign-up">
-        <form class="sign-up-form">
+        <form action="signup.php" method="post" class="sign-up-form">
           <div class="form-input">
               <input type="text" name="signup-username" id="signup-username" placeholder="Username" required>
             </div>
@@ -44,6 +44,9 @@
             </div>
     
             <input class="submit-btn" type="submit" value="Create Account">
+
+            <div class="login-error" id="login-error"></div>
+            
             <p class="form-term">Already have an account? <a href="#login" id="loginInsteadLink">Login instead</a></p>
         </form>
       </section>

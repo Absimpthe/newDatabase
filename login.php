@@ -29,7 +29,6 @@
                 // inform user of wrong login details 
                 echo json_encode(['status' => 'error', 'message' => 'Invalid username or password']);
                 exit();
-                //echo "<h2>Invalid username or password</h2>";
                 
             }
         }
@@ -39,4 +38,6 @@
             //echo "<h2>Invalid username or password</h2>";
         }
     }
+
+    mysqli_close($con);
 ?>

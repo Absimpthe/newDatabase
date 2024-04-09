@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Validate the form
         if (validateForm()) {
             // If validation passes, send the data to the server
-            sendData(signUpForm);
+            sendData(signUpForm, "signup.php", "new_user.html");
         }
     });
 
     loginForm.addEventListener("submit", function(e) {
         e.preventDefault();
-        sendData(loginForm);
+        sendData(loginForm, "login.php", "test.php");
 
     });
 
@@ -107,10 +107,10 @@ document.addEventListener("DOMContentLoaded", function() {
         return re.test(email);
     }
 
-    function sendData(form) {
+    function sendData(form, file, redirect) {
         var formData = new FormData(form);
-
-        fetch("login.php", {
+        
+        fetch(file, {
             method: "POST",
             body: formData
         })
@@ -121,19 +121,21 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             console.log(data);
             if (data.status === "success") {
-                window.location.href="test.php";
+                window.location.href=redirect;
+                // user logins and can use the menu
             }
             else {
                 document.getElementById('login-error').innerText = data.message;
                 loginSection.style.display = 'block';
                 signUpSection.style.display = 'none';  
+                // if login details are incorrect
             }
-            // Handle success, such as displaying a success message or redirecting the user
+    
         })
         .catch((error) => {
             console.error('Error:', error);
             document.getElementById('login-error').innerText = "An unexpected error occurred. Please try again.";
-            // Handle errors, such as displaying an error message to the user
+            // Handle errors
         });
     }
 });
