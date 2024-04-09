@@ -201,4 +201,8 @@ main {
   .login-form {
     padding: 1.5rem;
   }
+
+  .login-error {
+    font-size: 0.8rem;
+  }
 }

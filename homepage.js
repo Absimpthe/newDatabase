@@ -54,13 +54,14 @@ document.addEventListener("DOMContentLoaded", function() {
         // Validate the form
         if (validateForm()) {
             // If validation passes, send the data to the server
-            sendData();
+            sendData(signUpForm);
         }
     });
 
     loginForm.addEventListener("submit", function(e) {
         e.preventDefault();
-        sendData();
+        sendData(loginForm);
+
     });
 
     function validateForm() {
@@ -106,8 +107,8 @@ document.addEventListener("DOMContentLoaded", function() {
         return re.test(email);
     }
 
-    function sendData() {
-        var formData = new FormData(signUpForm);
+    function sendData(form) {
+        var formData = new FormData(form);
 
         fetch("login.php", {
             method: "POST",
@@ -120,10 +121,10 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             console.log(data);
             if (data.status === "success") {
-                window.location.href="test.php"
+                window.location.href="test.php";
             }
             else {
-                document.getElementById('loginError').innerText = data.message;
+                document.getElementById('login-error').innerText = data.message;
                 loginSection.style.display = 'block';
                 signUpSection.style.display = 'none';  
             }
@@ -131,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch((error) => {
             console.error('Error:', error);
-            document.getElementById('loginError').innerText = "An unexpected error occurred. Please try again.";
+            document.getElementById('login-error').innerText = "An unexpected error occurred. Please try again.";
             // Handle errors, such as displaying an error message to the user
         });
     }
