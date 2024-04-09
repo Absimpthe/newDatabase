@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="menustyle.css">
+</head>
+<body>
+
+    <header>
+        <h1>Delicious Eats</h1>
+        <p>Welcome to our online menu!</p>
+    </header>
+
+    <section id="appetizers" class="menu-section">
+        <h2>Appetizers</h2>
+        <div class="menu-container">   
+
+        </div>
+    </section>
+
+    <!-- Repeat for other sections like Main Courses and Desserts -->
+
+    <footer>
+        <p>Thank you for visiting! We hope to serve you soon.</p>
+    </footer>
+    <script>
+        fetch('menuphp.php')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.querySelector('.menu-container');
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'menu-item';
+                    div.innerHTML = `<img src="${item.ItemImage}" alt="${item.ItemName}">
+                                     <h3>${item.ItemName}</h3>
+                                     <p>Price: $${item.Price}</p>
+                                     <p>Code: ${item.ItemCode}</p>`; 
+                    container.appendChild(div);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>    
+</body>
+</html>

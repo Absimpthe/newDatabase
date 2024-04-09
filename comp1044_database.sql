@@ -98,7 +98,8 @@ CREATE TABLE items (
   `ItemName` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Price` decimal(5,2) UNSIGNED NOT NULL,
   `Availability` tinyint(1) NOT NULL,
-  `CategoryID` int(2) UNSIGNED NOT NULL
+  `CategoryID` int(2) UNSIGNED NOT NULL,
+  `ItemImage` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
