@@ -16,12 +16,12 @@
         $stmt1 = $con->prepare("select * from customers where CustUsername = ?");
         $stmt1->bind_param("s", $username);
         $stmt1->execute();
-        $stmt1_result = $stmt->get_result();
+        $stmt1_result = $stmt1->get_result();
 
         $stmt2 = $con->prepare("select * from customers where EmailAddress = ?");
         $stmt2->bind_param("s", $email);
         $stmt2->execute();
-        $stmt2_result = $stmt->get_result();
+        $stmt2_result = $stmt2->get_result();
 
         header('Content-Type: application/json');
 
@@ -47,7 +47,7 @@
         echo json_encode(['status' => 'success']);
         exit();
             //echo "<h2>Invalid username or password</h2>";
-        }
+        
     }
 
     mysqli_close($con);

@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Validate the form
         if (validateForm()) {
             // If validation passes, send the data to the server
-            sendData(signUpForm, "signup.php", "new_user.html");
+            sendData(signUpForm, "signup.php", "new_user.html", signUpSection, loginSection);
         }
     });
 
     loginForm.addEventListener("submit", function(e) {
         e.preventDefault();
-        sendData(loginForm, "login.php", "test.php");
+        sendData(loginForm, "login.php", "test.php", loginSection, signUpSection);
 
     });
 
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return re.test(email);
     }
 
-    function sendData(form, file, redirect) {
+    function sendData(form, file, redirect, sectionShow, sectionHide) {
         var formData = new FormData(form);
         
         fetch(file, {
@@ -126,8 +126,8 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             else {
                 document.getElementById('login-error').innerText = data.message;
-                loginSection.style.display = 'block';
-                signUpSection.style.display = 'none';  
+                sectionShow.style.display = 'block';
+                sectionHide.style.display = 'none';  
                 // if login details are incorrect
             }
     
