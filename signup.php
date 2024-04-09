@@ -36,13 +36,20 @@
             exit();
         }
 
-        $sql = 'INSERT INTO comp1044_database(CustUsername,CustPassword,Address,EmailAddress,PhoneNumber,isAdmin) VALUES ($username,$password,$address,$email,$phone_no, 0)';  
-        if(mysqli_query($con, $sql)){  
-            echo "Record inserted successfully";  
+        $stmt = $con->prepare("INSERT INTO customers (CustUsername, CustPassword, Address, EmailAddress, PhoneNumber, isAdmin) VALUES (?, ?, ?, ?, ?, 0)");
+
+        // Bind parameters
+        $stmt->bind_param("sssss", $username, $password, $address, $email, $phone_no);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $stmt->error;
         }
-        else {  
-           echo "Could not insert record: ". mysqli_error($con);  
-        }  
+
+        // Close statement
+        $stmt->close();
 
         echo json_encode(['status' => 'success']);
         exit();
