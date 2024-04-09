@@ -19,4 +19,34 @@
     border-radius: 5px;
 }
 
+.topnav {
+    background-color: #936b97;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    font-family: Georgia, serif;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    width: 10%;
+  }
+  
+  .topnav a:hover {
+    background-color: #eee4ef;
+    color: #715274;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: #a884ac;
+    color: white;
+  }
+  
 /* Add your other styles here */
