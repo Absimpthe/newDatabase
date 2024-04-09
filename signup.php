@@ -28,33 +28,31 @@
         if ($stmt1_result->num_rows > 0) {
             $data = $stmt1_result->fetch_assoc();
             echo json_encode(['status' => 'error', 'message' => 'This username is already in use.']);
-            exit();
+            $stmt1->close();
         }
-        if ($stmt2_result->num_rows > 0) {
+        else if ($stmt2_result->num_rows > 0) {
             $data = $stmt2_result->fetch_assoc();
             echo json_encode(['status' => 'error', 'message' => 'This email is already in use.']);
-            exit();
+            $stmt2->close();
         }
+        else {
+            $stmt = $con->prepare("INSERT INTO customers (CustUsername, CustPassword, Address, EmailAddress, PhoneNumber, isAdmin) VALUES (?, ?, ?, ?, ?, 0)");
 
-        $stmt = $con->prepare("INSERT INTO customers (CustUsername, CustPassword, Address, EmailAddress, PhoneNumber, isAdmin) VALUES (?, ?, ?, ?, ?, 0)");
+            // Bind parameters
+            $stmt->bind_param("sssss", $username, $password, $address, $email, $phone_no);
 
-        // Bind parameters
-        $stmt->bind_param("sssss", $username, $password, $address, $email, $phone_no);
+            // Execute the statement
+            if ($stmt->execute()) {
+                echo json_encode(['status' => 'success']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => "Error: " . $stmt->error]);
+            }
 
-        // Execute the statement
-        if ($stmt->execute()) {
-            echo "New record created successfully";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-
-        // Close statement
-        $stmt->close();
-
-        echo json_encode(['status' => 'success']);
-        exit();
+            // Close statement
+            $stmt->close();
             //echo "<h2>Invalid username or password</h2>";
-        
+        }
+        exit();
     }
 
     mysqli_close($con);

@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Validate the form
         if (validateForm()) {
             // If validation passes, send the data to the server
-            sendData(signUpForm, "signup.php", "new_user.html", signUpSection, loginSection);
+            sendData(signUpForm, "signup.php", "test.php", signUpSection, loginSection);
         }
     });
 
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById('login-error').innerText = data.message;
                 sectionShow.style.display = 'block';
                 sectionHide.style.display = 'none';  
-                // if login details are incorrect
+                // if user details are incorrect
             }
     
         })
