@@ -1,21 +1,10 @@
 <?php
 header('Content-Type: application/json');
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "comp1044_database";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+require_once 'db_connect.php'; // connect to database
 
 $sql = "SELECT ItemCode, ItemName, Price, ItemImage FROM items";
-$result = $conn->query($sql);
+$result = $con->query($sql);
 
 // Array to hold the menu items
 $menuItems = [];
@@ -31,5 +20,5 @@ if ($result && $result->num_rows > 0) {
 // Output the menuItems array as JSON
 echo json_encode($menuItems);
 
-$conn->close();
+$con->close();
 ?>
