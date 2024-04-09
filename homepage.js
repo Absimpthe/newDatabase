@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Validate the form
         if (validateForm()) {
             // If validation passes, send the data to the server
-            sendData(signUpForm, "signup.php", "test.php", signUpSection, loginSection);
+            sendData(signUpForm, "signup.php", signUpSection, loginSection);
         }
     });
 
     loginForm.addEventListener("submit", function(e) {
         e.preventDefault();
-        sendData(loginForm, "login.php", "test.php", loginSection, signUpSection);
+        sendData(loginForm, "login.php", loginSection, signUpSection);
 
     });
 
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return re.test(email);
     }
 
-    function sendData(form, file, redirect, sectionShow, sectionHide) {
+    function sendData(form, file, sectionShow, sectionHide) {
         var formData = new FormData(form);
         
         fetch(file, {
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             console.log(data);
             if (data.status === "success") {
-                window.location.href=redirect;
+                window.location.href="menu.html";
                 // user logins and can use the menu
             }
             else {

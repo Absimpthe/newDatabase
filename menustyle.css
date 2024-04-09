@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+    padding: 0;
+}
 .menu-section {
     overflow-x: auto;
     white-space: nowrap;
@@ -48,5 +52,5 @@
     background-color: #a884ac;
     color: white;
   }
-  
+
 /* Add your other styles here */
