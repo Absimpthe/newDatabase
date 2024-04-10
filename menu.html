@@ -9,7 +9,7 @@
 <body>
 
     <div class="topnav">
-        <a href="main.html">Nottingham Cafe</a>
+        <a href="main.html">Home</a>
         <a class="active">Menu</a>
         <a href="orders.html">My Orders</a>
         <a href="promotions.html">Promotions</a>
@@ -23,26 +23,30 @@
 
     <h2>Appetizers</h2>
     <section id="appetizers" class="menu-section">
-        <div class="menu-container" data-category="1">   
-
+        <button class="scroll-arrow left-arrow">&lt;</button>
+        <div id="appetizers-container" class="menu-container" data-category="1">   
+        <button class="scroll-arrow right-arrow">&gt;</button>
         </div>
     </section>
     <h2>Main Courses</h2>
     <section id="main-courses" class="menu-section">
-        <div class="menu-container" data-category="2">
-
+        <button class="scroll-arrow left-arrow">&lt;</button>
+        <div id="main-courses-container" class="menu-container" data-category="2">
+        <button class="scroll-arrow right-arrow">&gt;</button>
         </div>
     </section>
     <h2>Desserts</h2>
     <section id="desserts" class="menu-section">
-        <div class="menu-container" data-category="3">
-
+        <button class="scroll-arrow left-arrow">&lt;</button>
+        <div id="desserts-container" class="menu-container" data-category="3">
+        <button class="scroll-arrow right-arrow">&gt;</button>
         </div>
     </section>
     <h2>Beverages</h2>
     <section id="beverages" class="menu-section">
-        <div class="menu-container" data-category="4">
-
+        <button class="scroll-arrow left-arrow">&lt;</button>
+        <div id="beverages-container" class="menu-container" data-category="4">
+        <button class="scroll-arrow right-arrow">&gt;</button>
         </div>
     </section>
 
@@ -70,6 +74,6 @@
             })
             .catch(error => console.error('Error:', error));
     </script>
-    <script src="menujs.js"></script>   
 </body>
+<script src="menujs.js"></script>   
 </html>

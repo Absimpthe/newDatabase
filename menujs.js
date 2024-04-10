@@ -1,36 +1,76 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Function to enable drag-to-scroll
-    function enableDragScroll() {
-        const slider = document.querySelector('.menu-container');
+    // Function to enable drag-to-scroll for a specific container
+    function setupDragToScroll(containerId) {
+        const container = document.getElementById(containerId);
         let isDown = false;
         let startX;
         let scrollLeft;
 
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
+        if(container) { // Check if the container exists
+            container.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - container.offsetLeft;
+                scrollLeft = container.scrollLeft;
+            });
 
-        slider.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
+            container.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
 
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-        });
+            container.addEventListener('mouseup', () => {
+                isDown = false;
+            });
 
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 3; // Scroll-fast
-            slider.scrollLeft = scrollLeft - walk;
-        });
+            container.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - container.offsetLeft;
+                const walk = (x - startX) * 0.85;
+                container.scrollLeft = scrollLeft - walk;
+            });
+        }
     }
 
-    // Apply the drag-to-scroll feature to each menu container
-    document.querySelectorAll('.menu-container').forEach(container => {
-        enableDragScroll(container);
-    });
+    setupDragToScroll('appetizers-container');
+    setupDragToScroll('main-courses-container'); 
+    setupDragToScroll('desserts-container'); 
+    setupDragToScroll('beverages-container');
+
+    window.onload = function() {
+        document.querySelectorAll('.menu-section').forEach(section => {
+            const container = section.querySelector('.menu-container');
+            const leftArrow = section.querySelector('.left-arrow');
+            const rightArrow = section.querySelector('.right-arrow');
+        
+            // Hide the left arrow initially
+            leftArrow.style.display = 'none';
+        
+            // Function to update arrow visibility
+            const updateArrowVisibility = () => {
+                leftArrow.style.display = container.scrollLeft > 0 ? 'block' : 'none';
+                rightArrow.style.display = container.scrollLeft < container.scrollWidth - container.offsetWidth ? 'block' : 'none';
+            };
+
+            setTimeout(() => {
+                document.querySelectorAll('.menu-container').forEach(container => {
+                    container.dispatchEvent(new Event('scroll'));
+                });
+            }, 50); 
+        
+            // Initial update for arrow visibility
+            updateArrowVisibility();
+        
+            // Update arrow visibility on scroll
+            container.addEventListener('scroll', updateArrowVisibility);
+        
+            // Scroll the container when arrows are clicked
+            leftArrow.addEventListener('click', () => {
+                container.scrollLeft -= container.offsetWidth * 0.5;
+            });
+        
+            rightArrow.addEventListener('click', () => {
+                container.scrollLeft += container.offsetWidth * 0.5;
+            });
+        });
+    };    
 });
