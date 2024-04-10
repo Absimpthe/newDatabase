@@ -17,6 +17,7 @@
     if ($stmt_result->num_rows > 0) {
         $data = $stmt_result->fetch_assoc();
         if ($data['CustPassword'] === $password) {
+            $_SESSION['username'] = $username; // store their username as a session variable
             echo json_encode(['status' => 'success']);
             exit();
             // fetch user data
