@@ -1,56 +1,110 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
+
+footer {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  margin-left: 20px;
+  margin-top: 50px;
+  font-family: Georgia, serif;
+}
+
+h2 {
+  margin-left: 20px;
+  margin-top: 50px;
+  font-family: Georgia, serif;
+}
+
+h4 {
+  margin-left: 20px;
+  font-family: 'Times New Roman', serif;
+  font-size: 1.2rem;
+}
+
 .menu-section {
-    overflow-x: auto;
-    white-space: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.menu-container {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.menu-container::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
 .menu-item {
-    display: inline-block;
-    margin: 10px;
-    text-align: center;
-    border: 1px solid #cccccc; 
-    padding: 15px;
-    border-radius: 10px; 
-    background-color: #f9f9f9; 
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+  border: 1px solid #cccccc; 
+  padding: 15px;
+  border-radius: 10px; 
+  background-color: #f9f9f9; 
+  width: 250px;
 }
 
 .menu-item img {
-    width: 300px; 
-    height: auto;
-    border-radius: 5px;
+  width: 200px; 
+  height: auto;
+  border-radius: 5px;
 }
 
 .topnav {
-    background-color: #936b97;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-  }
+  background-color: #936b97;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
   
   /* Style the links inside the navigation bar */
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    font-family: Georgia, serif;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    width: 10%;
-  }
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  font-family: Georgia, serif;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  width: 10%;
+}
   
-  .topnav a:hover {
-    background-color: #eee4ef;
-    color: #715274;
-  }
+.topnav a:hover {
+  background-color: #eee4ef;
+  color: #715274;
+}
   
   /* Add a color to the active/current link */
-  .topnav a.active {
-    background-color: #a884ac;
-    color: white;
-  }
+.topnav a.active {
+  background-color: #a884ac;
+  color: white;
+}
 
-/* Add your other styles here */
+.view-cart-btn {
+  cursor: pointer;
+  width: 20%;
+  padding: 1em;
+  margin-bottom: 1em;
+  border: none;
+  border-bottom: 5px solid #824d78;
+  border-radius: 0.5em;
+  background-color: #b66ea9;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.view-cart-btn:hover {
+  background-color: #d485c6;
+}

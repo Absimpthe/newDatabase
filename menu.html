@@ -16,38 +16,59 @@
       </div>
 
     <header>
-        <h1>Delicious Eats</h1>
-        <p>Welcome to our online menu!</p>
+        <h1>Nottingham Cafe</h1>
+        <h4>Welcome to our online menu!</h4>
     </header>
 
+    <h2>Appetizers</h2>
     <section id="appetizers" class="menu-section">
-        <h2>Appetizers</h2>
-        <div class="menu-container">   
+        <div class="menu-container" data-category="1">   
+
+        </div>
+    </section>
+    <h2>Main Courses</h2>
+    <section id="main-courses" class="menu-section">
+        <div class="menu-container" data-category="2">
+
+        </div>
+    </section>
+    <h2>Desserts</h2>
+    <section id="desserts" class="menu-section">
+        <div class="menu-container" data-category="3">
+
+        </div>
+    </section>
+    <h2>Beverages</h2>
+    <section id="beverages" class="menu-section">
+        <div class="menu-container" data-category="4">
 
         </div>
     </section>
 
-    <!-- Repeat for other sections like Main Courses and Desserts -->
-
     <footer>
-        <p>Thank you for visiting! We hope to serve you soon.</p>
+        <button onclick="location.href='cart.html'" class="view-cart-btn">View Cart</button>
     </footer>
     <script>
         fetch('menuphp.php')
             .then(response => response.json())
             .then(data => {
-                const container = document.querySelector('.menu-container');
                 data.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'menu-item';
-                    div.innerHTML = `<img src="${item.ItemImage}" alt="${item.ItemName}">
-                                     <h3>${item.ItemName}</h3>
-                                     <p>Price: $${item.Price}</p>
-                                     <p>Code: ${item.ItemCode}</p>`; 
-                    container.appendChild(div);
+                    // Find the container that matches the category ID of the item
+                    const container = document.querySelector(`.menu-container[data-category="${item.CategoryID}"]`);
+                    
+                    if(container) {
+                        const div = document.createElement('div');
+                        div.className = 'menu-item';
+                        div.innerHTML = `<img src="${item.ItemImage}" alt="${item.ItemName}">
+                                        <h3>${item.ItemName}</h3>
+                                        <p>Price: $${item.Price}</p>
+                                        <p>Code: ${item.ItemCode}</p>`; 
+                        container.appendChild(div);
+                    }
                 });
             })
             .catch(error => console.error('Error:', error));
-    </script>    
+    </script>
+    <script src="menujs.js"></script>   
 </body>
 </html>
