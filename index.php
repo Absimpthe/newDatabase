@@ -1,7 +1,9 @@
 <?php
   session_start();
 
-  if (isset($_SESSION['username'])) {
+  require_once 'db_connect.php'; // connect to database
+  
+  if (!empty($_SESSION['username'])) {
     header("Location: menu.html");
   }
 ?>

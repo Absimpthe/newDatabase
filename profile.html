@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nottingham Cafe</title>
+  <title>Nottingham Cafe - Profile</title>
   <link rel="stylesheet" href="profile.css">
 </head>
 
@@ -14,6 +14,7 @@
   <div class="topnav">
     <a href="main.html">Nottingham Cafe</a>
     <a href="menu.html">Menu</a>
+    <a href="orders.html">My Orders</a>
     <a href="promotions.html">Promotions</a>
     <a class="active">My Profile</a>
   </div>
@@ -21,39 +22,42 @@
   <div class="container">
     <div class="left-column">
       <img src="./assets/watermelon.jpg" width=250>
-      <h1>Username</h1>
-
+      <h1>My Profile</h1>
     </div>
+
     <div class="right-column">
       <h1>Account Details</h1>
-      <form>
-        <div class="form-input">
-          <input type="text" name="username" id="username" placeholder="Username" required>
-        </div>
+      
+      <h2>Username</h2>
+      <p><span id="username"></span></p>
+      <h2>Email</h2>
+      <p><span id="email"></span></p>
 
-        <div class="form-input">
-          <input type="number" name="phone-no" id="phone-no" placeholder="Phone Number" required>
-        </div>
-
-        <div class="form-input">
-          <input type="email" name="email" id="email" placeholder="Email Address" required>
-        </div>
-
-        <div class="form-input">
-          <input type="text" name="address" id="address" placeholder="Home Address" required>
-        </div>
-
-        <input class="submit-btn" type="submit" value="Update Account">
-
-        <div class="login-error" id="login-error"></div>
-      </form>
+      <a href="logout.php" class="button">Logout</a>
+      </div>
 
     </div>
   </div>
     
   <script>
-    // script to fetch the account details from account_details.php and display them in their respective input boxes
-        
+    fetch('account_details.php')
+            .then(response => response.json())
+            .then(data => {
+              if (!data.error) {
+                // If there is no error, display the user details
+                document.getElementById('username').textContent = data.CustUsername || 'Not available';
+                document.getElementById('email').textContent = data.EmailAddress || 'Not available';
+              } 
+              else {
+                // Handle error (e.g., user not found)
+                console.error(data.error);
+                document.getElementById('username').textContent = 'Error loading details';
+                document.getElementById('email').textContent = 'Error loading details';
+              } 
+            })
+            .catch(error => console.error('Error:', error));
+            document.getElementById('username').textContent = 'Error loading details';
+            document.getElementById('email').textContent = 'Error loading details';    
 </script> 
 </body>
 

@@ -17,7 +17,7 @@
     if ($stmt_result->num_rows > 0) {
         $data = $stmt_result->fetch_assoc();
         if ($data['CustPassword'] === $password) {
-            $_SESSION['username'] = $username; // store their username as a session variable
+            $_SESSION['username'] = $data['CustUsername']; // store their username as a session variable
             echo json_encode(['status' => 'success']);
             exit();
             // fetch user data
@@ -32,7 +32,7 @@
     else {
         echo json_encode(['status' => 'error', 'message' => 'Invalid username or password']);
         exit();
-        //echo "<h2>Invalid username or password</h2>";
+        
     }
 
     mysqli_close($con);

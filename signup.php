@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    require_once 'db_connect.php'; // connect to database
 
     $username = $_POST['signup-username'];
     $phone_no = $_POST['phone-no'];
@@ -8,8 +9,6 @@
     $address = $_POST['address'];
     $password = $_POST['signup-password'];
 
-    require_once 'db_connect.php'; // connect to database
-    
     // checks if the username exists in the database
     $stmt1 = $con->prepare("select * from customers where CustUsername = ?");
     $stmt1->bind_param("s", $username);

@@ -54,18 +54,29 @@ main {
 
 .container {
     display: flex;
-    text-align: center;
     margin: 5%;
-    color: #ffffff;
+    color: #824d78;
 
 }
-  
+
+img {
+  border-radius: 50%;
+  border: 5px solid #342f35;
+}
+
 .left-column {
     flex: 35%;  /* Takes up 35% of the container */
     padding: 30px;
+    background-color:#f2f2f2;
+    margin: 0% 2% 0% 0%;
+    border-radius: 25px;
+    text-align: center;
 }
   
 .right-column {
     flex: 65%;  /* Takes up 65% of the container */
-    padding: 30px;
+    padding: 30px 45px;
+    background-color:#f2f2f2;
+    border-radius: 25px;
+    text-align: left;
 }  
