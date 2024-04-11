@@ -50,6 +50,22 @@ h4 {
   right: 0;
 }
 
+.arrow2 {
+  left: 0;
+  position: absolute;
+  cursor: pointer;
+  height: 364px;
+  transform: translateY(+2.5%);
+}
+
+.arrow3 {
+  right: 0;
+  position: absolute;
+  cursor: pointer;
+  height: 364px;
+  transform: translateY(-102.5%);
+}
+
 /* Show arrows when they are active */
 .menu-section .arrow.active {
   display: block;
