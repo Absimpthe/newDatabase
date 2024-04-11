@@ -61,9 +61,10 @@
                         const div = document.createElement('div');
                         div.className = 'menu-item';
                         div.innerHTML = `<img src="${item.ItemImage}" alt="${item.ItemName}">
-                                        <h3>${item.ItemName}</h3>
-                                        <p>Price: $${item.Price}</p>
-                                        <p>Code: ${item.ItemCode}</p>`; 
+                        <h3>${item.ItemCode}</h3>
+                        <h3>${item.ItemName}</h3>
+                        <p>RM${item.Price}</p>`;
+
                         container.appendChild(div);
                     }
                 });

@@ -32,14 +32,14 @@ h4 {
 .menu-section {
   overflow-x: auto;
   white-space: nowrap;
+  background-color: #dcc4df;
+  display: flex;
 }
 
 .menu-section .arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-27.5%);
   cursor: pointer;
-  height: 364px;
+  height: 390px;
   background-color: #d4a9d8;
   border-color: #d4a9d8;
   border-radius: 5px;
@@ -60,8 +60,7 @@ h4 {
   left: 0;
   position: absolute;
   cursor: pointer;
-  height: 364px;
-  transform: translateY(+2.5%);
+  height: 390px;
   background-color: #d4a9d8;
   border-color: #d4a9d8;
   border-radius: 5px;
@@ -74,8 +73,7 @@ h4 {
   right: 0;
   position: absolute;
   cursor: pointer;
-  height: 364px;
-  transform: translateY(-102.5%);
+  height: 390px;
   background-color: #d4a9d8;
   border-color: #d4a9d8;
   border-radius: 5px;
@@ -98,7 +96,7 @@ h4 {
   display: inline-block;
   margin: 10px;
   text-align: center;
-  border: 1px solid #cccccc; 
+  border: 1px solid #9b5cb3; 
   padding: 15px;
   border-radius: 10px; 
   background-color: #f9f9f9; 
