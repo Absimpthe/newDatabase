@@ -40,6 +40,12 @@ h4 {
   transform: translateY(-27.5%);
   cursor: pointer;
   height: 364px;
+  background-color: #d4a9d8;
+  border-color: #d4a9d8;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .menu-section .left-arrow {
@@ -56,6 +62,12 @@ h4 {
   cursor: pointer;
   height: 364px;
   transform: translateY(+2.5%);
+  background-color: #d4a9d8;
+  border-color: #d4a9d8;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .arrow3 {
@@ -64,11 +76,12 @@ h4 {
   cursor: pointer;
   height: 364px;
   transform: translateY(-102.5%);
-}
-
-/* Show arrows when they are active */
-.menu-section .arrow.active {
-  display: block;
+  background-color: #d4a9d8;
+  border-color: #d4a9d8;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .menu-container {
