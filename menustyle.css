@@ -34,7 +34,7 @@ h4 {
   white-space: nowrap;
 }
 
-.scroll-arrow {
+.menu-section .arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-27.5%);
@@ -42,12 +42,17 @@ h4 {
   height: 364px;
 }
 
-.left-arrow {
+.menu-section .left-arrow {
   left: 0;
 }
 
-.right-arrow {
+.menu-section .right-arrow {
   right: 0;
+}
+
+/* Show arrows when they are active */
+.menu-section .arrow.active {
+  display: block;
 }
 
 .menu-container {
