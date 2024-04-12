@@ -41,7 +41,13 @@
 
         // Execute the statement
         if ($stmt->execute()) {
-            $_SESSION['username'] = $username; // store their username as a session variable
+            $get_user = $con->prepare("select * from customers where CustUsername = ?");
+            $get_user->bind_param("s", $username);
+            $get_user->execute();
+            $get_user_result = $get_user->get_result();
+            $data = $get_user_result->fetch_assoc();
+
+            $_SESSION['user-id'] = $data['CustomerID']; // store their ID as a session variable
             echo json_encode(['status' => 'success']);
         } else {
             echo json_encode(['status' => 'error', 'message' => "Error: " . $stmt->error]);

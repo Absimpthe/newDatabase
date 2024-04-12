@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nottingham Cafe - Profile</title>
   <link rel="stylesheet" href="profile.css">
-  <script src="censor_details.js"></script>
+  <script src="censor_details.js" defer></script>
+  <script src="profile.js" defer></script>
 </head>
 
 <body>
@@ -81,6 +82,23 @@
       </div>
 
     </div>
+    
+  </div>
+
+  <!-- All modals -->
+
+  <div id="username-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>Change Username</h1>
+      <form action="update_username.php" method="post" class="update-username-form">
+        <input type="text" name="update-username" class="form-input" id="update-username" placeholder="Username">
+
+        <input class="form-input" id="submit-btn" type="submit" value="Save changes">
+      </form>
+
+    </div>
   </div>
     
   <script>
@@ -100,12 +118,18 @@
                 // Handle error (e.g., user not found)
                 console.error(data.error);
                 document.getElementById('username').textContent = 'Error loading details';
+                document.getElementById('password').textContent = 'Error loading details';
                 document.getElementById('email').textContent = 'Error loading details';
+                document.getElementById('address').textContent = 'Error loading details';
+                document.getElementById('phone-no').textContent = 'Error loading details';
               } 
             })
             .catch(error => console.error('Error:', error));
             document.getElementById('username').textContent = 'Error loading details';
-            document.getElementById('email').textContent = 'Error loading details';    
+            document.getElementById('password').textContent = 'Error loading details';
+            document.getElementById('email').textContent = 'Error loading details';
+            document.getElementById('address').textContent = 'Error loading details';
+            document.getElementById('phone-no').textContent = 'Error loading details';    
 </script> 
 </body>
 

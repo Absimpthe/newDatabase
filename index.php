@@ -3,7 +3,7 @@
 
   require_once 'db_connect.php'; // connect to database
   
-  if (!empty($_SESSION['username'])) {
+  if (!empty($_SESSION['user-id'])) {
     header("Location: menu.html");
   }
 ?>
