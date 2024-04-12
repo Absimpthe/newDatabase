@@ -20,3 +20,7 @@ function censorEmail(email) {
     }
     return email; // Return the original email if it doesn't contain "@"
 }
+
+function censorPassword(password) {
+    return '*'.repeat(password.length);
+}
