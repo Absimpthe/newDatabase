@@ -4,13 +4,13 @@ header('Content-Type: application/json');
 
 require_once 'db_connect.php'; 
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['user-id'])) {
     echo json_encode(['status' => 'guest']);
     exit();
   }
 
-$stmt = $con->prepare("select * from customers where CustUsername = ?");
-$stmt->bind_param("s", $_SESSION['username']);
+$stmt = $con->prepare("select * from customers where CustomerID = ?");
+$stmt->bind_param("s", $_SESSION['user-id']);
 $stmt->execute();
 $stmt_result = $stmt->get_result();
 
