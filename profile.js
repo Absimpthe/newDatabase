@@ -1,27 +1,16 @@
-// Get the modal
-var modal = document.getElementById("username-modal");
+/* --- Username modal --- */
+var usernameModal = document.getElementById("username-modal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("update-username");
+var btn = document.getElementById("update-username"); // button to open modal
+var span = document.getElementsByClassName("close")[0]; // element that closes the modal
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
+btn.onclick = function() { // user clicks on button, open modal
+  usernameModal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+span.onclick = function() { // user clicks on (x), close modal
+  usernameModal.style.display = "none";
 }
 
 var updateUsernameForm = document.querySelector(".update-username-form");
@@ -34,6 +23,108 @@ updateUsernameForm.addEventListener("submit", function(e) {
     sendData(updateUsernameForm, "update_username.php", "username-modal");
     
 });
+
+/* --- password modal --- */
+var passwordModal = document.getElementById("password-modal");
+
+var btn = document.getElementById("update-password"); // button to open modal
+var span = document.getElementsByClassName("close")[1]; // element that closes the modal
+
+
+btn.onclick = function() { // user clicks on button, open modal
+  passwordModal.style.display = "block";
+}
+
+span.onclick = function() { // user clicks on (x), close modal
+  passwordModal.style.display = "none";
+}
+
+var updatePasswordForm = document.querySelector(".update-password-form");
+
+// Listen for form submission
+updatePasswordForm.addEventListener("submit", function(e) {
+    // Prevent the default form submission
+    e.preventDefault();
+
+    sendData(updatePasswordForm, "update_password.php", "password-modal"); 
+});
+
+/* --- email modal --- */
+var emailModal = document.getElementById("email-modal");
+
+var btn = document.getElementById("update-email"); // button to open modal
+var span = document.getElementsByClassName("close")[2]; // element that closes the modal
+
+
+btn.onclick = function() { // user clicks on button, open modal
+  emailModal.style.display = "block";
+}
+
+span.onclick = function() { // user clicks on (x), close modal
+  emailModal.style.display = "none";
+}
+
+var updateEmailForm = document.querySelector(".update-email-form");
+
+// Listen for form submission
+updateEmailForm.addEventListener("submit", function(e) {
+    // Prevent the default form submission
+    e.preventDefault();
+
+    sendData(updateEmailForm, "update_email.php", "email-modal"); 
+});
+
+/* --- home address modal --- */
+var addressModal = document.getElementById("address-modal");
+
+var btn = document.getElementById("update-address"); // button to open modal
+var span = document.getElementsByClassName("close")[3]; // element that closes the modal
+
+
+btn.onclick = function() { // user clicks on button, open modal
+  addressModal.style.display = "block";
+}
+
+span.onclick = function() { // user clicks on (x), close modal
+  addressModal.style.display = "none";
+}
+
+var updateAddressForm = document.querySelector(".update-address-form");
+
+// Listen for form submission
+updateAddressForm.addEventListener("submit", function(e) {
+    // Prevent the default form submission
+    e.preventDefault();
+
+    sendData(updateAddressForm, "update_address.php", "address-modal"); 
+});
+
+/* --- phone number modal --- */
+var phoneNoModal = document.getElementById("phone-no-modal");
+
+var btn = document.getElementById("update-phone-no"); // button to open modal
+var span = document.getElementsByClassName("close")[4]; // element that closes the modal
+
+
+btn.onclick = function() { // user clicks on button, open modal
+  phoneNoModal.style.display = "block";
+}
+
+span.onclick = function() { // user clicks on (x), close modal
+  phoneNoModal.style.display = "none";
+}
+
+var updatePhoneNoForm = document.querySelector(".update-phone-no-form");
+
+// Listen for form submission
+updatePhoneNoForm.addEventListener("submit", function(e) {
+    // Prevent the default form submission
+    e.preventDefault();
+
+    sendData(updatePhoneNoForm, "update_phone_no.php", "phone-no-modal"); 
+});
+
+/* --- end of modals --- */
 
 function sendData(form, file, modal) {
     var formData = new FormData(form);
