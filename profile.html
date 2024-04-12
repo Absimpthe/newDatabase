@@ -24,17 +24,60 @@
     <div class="left-column">
       <img src="./assets/watermelon.jpg" width=250>
       <h1>My Profile</h1>
+
+      <a href="logout.php" class="logout">Logout</a>
+
     </div>
 
     <div class="right-column">
       <h1>Account Details</h1>
-      
-      <h2>Username</h2>
-      <p><span id="username"></span></p>
-      <h2>Email</h2>
-      <p><span id="email"></span></p>
 
-      <a href="logout.php" class="button">Logout</a>
+      <hr class="divider">
+
+      <h2>Username</h2>
+      
+      <div class="update-container">
+        <span class="text-details" id="username"></span>
+        <button class="update-btn" id="update-username">Change username</button>
+      </div>
+      
+      
+      
+
+      <hr class="divider">
+
+      <h2>Password</h2>
+      <div class="update-container">
+        <span id="password"></span>
+        <button class="update-btn" id="update-password">Change password</button>
+      </div>
+
+      <hr class="divider">
+
+      <h2>Email</h2>
+      <div class="update-container">
+        <span id="email"></span>
+        <button class="update-btn" id="update-email">Change email</button>
+      </div>
+      
+
+      <hr class="divider">
+
+      <h2>Home Address</h2>
+      <div class="update-container">
+        <span id="address"></span>
+        <button class="update-btn" id="update-address">Change address</button>
+      </div>
+      
+
+      <hr class="divider">
+
+      <h2>Phone Number</h2>
+      <div class="update-container">
+        <span id="phone-no"></span>
+        <button class="update-btn" id="update-phone-no">Change phone number</button>
+      </div>
+      
       </div>
 
     </div>
@@ -47,7 +90,11 @@
               if (!data.error) {
                 // If there is no error, display the user details
                 document.getElementById('username').textContent = data.CustUsername || 'Not available';
+                document.getElementById('password').textContent = data.CustPassword || 'Not available';
                 document.getElementById('email').textContent = censorEmail(data.EmailAddress) || 'Not available';
+                document.getElementById('address').textContent = data.Address || 'Not available';
+                document.getElementById('phone-no').textContent = censorEmail(data.PhoneNumber) || 'Not available';
+                
               } 
               else {
                 // Handle error (e.g., user not found)

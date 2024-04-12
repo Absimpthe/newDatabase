@@ -80,3 +80,38 @@ img {
     border-radius: 25px;
     text-align: left;
 }  
+
+.divider {
+  border: none;
+  border-top: 1.5px solid #decfe5;
+  margin-top: 20px; /* Add some space above the line */
+  margin-bottom: 20px; /* Add some space below the line */
+}
+
+.update-btn {
+  text-align: center;
+  font-family: 'Times New Roman', serif;
+  font-size: 1rem;
+  width: 200px;
+  display: block;
+  background-color: #b66ea9;
+  color: white; 
+  padding: 10px 20px; 
+  border: none; 
+  cursor: pointer; 
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.update-btn:hover {
+  background-color: #d485c6;
+}
+
+.update-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#text-details {
+  margin-right: auto;
+}
