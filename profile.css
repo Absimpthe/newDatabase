@@ -84,8 +84,8 @@ img {
 .divider {
   border: none;
   border-top: 1.5px solid #decfe5;
-  margin-top: 20px; /* Add some space above the line */
-  margin-bottom: 20px; /* Add some space below the line */
+  margin-top: 20px; 
+  margin-bottom: 20px; 
 }
 
 .update-btn {

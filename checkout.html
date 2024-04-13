@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nottingham Cafe - Profile</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+
+<body>
+
+    <div class="topnav">
+        <a href="cart.html">Back to Cart</a>
+      </div>
+
+    <div class="container">
+        <div class="left-column">
+          <h1>Checkout</h1>
+          <hr class="divider">
+          <form>
+            <h2>Delivery Address</h2>
+            <p id="delivery-address"></p>
+            <input type="text" name="delivery-address" class="address" id="address" placeholder="Address" required>
+            <h2>Payment Option</h2>
+            <select id="payment" name="payment">
+                <option value="cash">Cash on delivery</option>
+            </select>
+
+            <hr class="divider">
+
+            <h2>Contact Information</h2>
+            <input type="text" name="phone-no" class="phone-no" id="phone-no" placeholder="Phone Number" required>
+
+            <p>Order details will be sent to your email address.</p>
+
+            <input class="submit-btn" id="submit-btn" type="submit" value="Place Order">
+          </form>
+          
+    
+        </div>
+    
+        <div class="right-column">
+            <h1>Order Summary</h1>
+            <hr class="divider">
+            <!--
+                List number of items
+                Show the item names, quantity, subtotal
+                Calculate total and show total
+            -->
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        fetch('account_details.php')
+            .then(response => response.json())
+            .then(data => {
+              if (!data.error) {
+                // If there is no error, display the user details
+                document.getElementById('address').value = data.Address;
+                document.getElementById('phone-no').value = data.PhoneNumber;
+              } 
+              else {
+                // Handle error (e.g., user not found)
+                console.error(data.error);
+              } 
+            })
+            .catch(error => console.error('Error:', value));
+        });
+    </script>
+
+</body>
+</html>
