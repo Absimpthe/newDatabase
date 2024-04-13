@@ -32,6 +32,15 @@ body {
 
 }
 
+.order-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+  }
+
+
+
 img {
   border-radius: 50%;
   border: 5px solid #342f35;

@@ -1,8 +1,8 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #56355a;
-  }
+  margin: 0;
+  padding: 0;
+  background-color: #56355a;
+}
 
 .main-body {
   box-sizing: border-box;
@@ -23,40 +23,39 @@ main {
 }
 
 .topnav {
-    background-color: #936b97;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-  }
+  background-color: #936b97;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
   
-  /* Style the links inside the navigation bar */
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    font-family: Georgia, serif;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    width: 10%;
-  }
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  font-family: Georgia, serif;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  width: 10%;
+}
   
-  .topnav a:hover {
-    background-color: #eee4ef;
-    color: #715274;
-  }
+.topnav a:hover {
+  background-color: #eee4ef;
+  color: #715274;
+}
   
-  /* Add a color to the active/current link */
-  .topnav a.active {
-    background-color: #a884ac;
-    color: white;
-  }
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #a884ac;
+  color: white;
+}
 
 .container {
-    display: flex;
-    margin: 5%;
-    color: #824d78;
-
+  display: flex;
+  margin: 5%;
+  color: #824d78;
 }
 
 img {
@@ -65,20 +64,20 @@ img {
 }
 
 .left-column {
-    flex: 35%;  /* Takes up 35% of the container */
-    padding: 30px;
-    background-color:#f2f2f2;
-    margin: 0% 2% 0% 0%;
-    border-radius: 25px;
-    text-align: center;
+  flex: 35%;  /* Takes up 35% of the container */
+  padding: 30px;
+  background-color:#f2f2f2;
+  margin: 0% 2% 0% 0%;
+  border-radius: 25px;
+  text-align: center;
 }
   
 .right-column {
-    flex: 65%;  /* Takes up 65% of the container */
-    padding: 30px 45px;
-    background-color:#f2f2f2;
-    border-radius: 25px;
-    text-align: left;
+  flex: 65%;  /* Takes up 65% of the container */
+  padding: 30px 45px;
+  background-color:#f2f2f2;
+  border-radius: 25px;
+  text-align: left;
 }  
 
 .divider {

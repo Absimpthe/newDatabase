@@ -49,27 +49,16 @@
                 Show the item names, quantity, subtotal
                 Calculate total and show total
             -->
-
+            
+            <div id="order-container" class="order-container">
+            </div> 
+          
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-        fetch('account_details.php')
-            .then(response => response.json())
-            .then(data => {
-              if (!data.error) {
-                // If there is no error, display the user details
-                document.getElementById('address').value = data.Address;
-                document.getElementById('phone-no').value = data.PhoneNumber;
-              } 
-              else {
-                // Handle error (e.g., user not found)
-                console.error(data.error);
-              } 
-            })
-            .catch(error => console.error('Error:', value));
-        });
+    <script src="checkout.js">
+        
+
     </script>
 
 </body>
