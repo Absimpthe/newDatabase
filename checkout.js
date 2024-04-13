@@ -38,31 +38,60 @@ document.addEventListener('DOMContentLoaded', function() {
             const element = document.createElement('div');
             element.className = 'item';
 
-            const name = document.createElement('h3');
-            name.textContent = cart[itemCode].name;
-            element.className = 'item-name';
-
             const quantity = document.createElement('p');
             quantity.textContent = `${cart[itemCode].quantity}x`;
-            element.className = 'item-quantity';
+            quantity.className = 'item-quantity';
 
-            const price = document.createElement('p');
+            const name = document.createElement('h3');
+            name.textContent = cart[itemCode].name;
+            name.className = 'item-name';
+
+            const price = document.createElement('h3');
             price.textContent = `RM${cart[itemCode].subtotal.toFixed(2)}`;
-            element.className = 'item-price';
+            price.className = 'item-price';
 
             const divider = document.createElement('hr');
-           
+            divider.className = 'divider';
 
             element.appendChild(quantity);
             element.appendChild(name);
             element.appendChild(price);
-            element.appendChild(divider);
+            //container.appendChild(divider);
 
             container.appendChild(element);
 
         });
     }
 
+    function getTotal() {
+        fetch('total_price.php')
+            .then(response => response.json())
+            .then(data => {
+              if (!data.error) {
+                // If there is no error, display the user details
+                const totalContainer = document.querySelector('.total-price');
+
+                const total = document.createElement('h2');
+                total.textContent = "Total:";
+                total.className = 'total';
+
+                const totalPrice = document.createElement('h2');
+                totalPrice.textContent = `RM${data.toFixed(2)}`;
+                totalPrice.className = 'total-price-amount';
+
+                totalContainer.appendChild(total);
+                totalContainer.appendChild(totalPrice);
+              } 
+              else {
+                // Handle error (e.g., user not found)
+                console.error(data.error);
+              } 
+            })
+    .catch(error => console.error('Error:', value));
+        
+    }
+
     getAccountDetails();
     getCart();
+    getTotal();
 });

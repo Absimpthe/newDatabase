@@ -33,12 +33,40 @@ body {
 }
 
 .order-container {
+    width: 100%;
+    padding: 0%;
+}
+
+.total-price {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    align-items: center;
+}
+
+.total-price-amount {
+    margin-left:20px;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5em;
   }
 
+.item-quantity {
+    margin-right: auto;
+    width: 10%;
+}
+
+.item-name {
+    margin-right:20px;
+    width: 65%;
+}
+
+.item-price {
+    margin-left: 20px;
+    width: 25%;
+}
 
 
 img {
