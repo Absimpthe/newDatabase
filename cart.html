@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Cart</title>
-    <link rel="stylesheet" href="cartstyle.css"> <!-- Make sure to link your CSS for styling -->
+    <title>Shopping Cart</title>
+    <style>
+        #cartContainer {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .cart-item {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Shopping Cart</h1>
-        <button onclick="window.location.href='menu.html'">Continue Shopping</button>
-    </header>
-
-    <div id="cartContents">
-        <!-- Cart items will be dynamically inserted here -->
+    <h1>Your Shopping Cart</h1>
+    <div id="cartContainer">
+        <!-- Cart items will be displayed here -->
     </div>
 
-    <footer>
-        <button onclick="proceedToCheckout()">Checkout</button>
-        <button onclick="window.location.href='menu.html'">Back to Menu</button>
-    </footer>
-
-    <script src="showcart.js"></script> <!-- Link to your external JS file -->
+    <!-- Link to the external JavaScript file -->
+    <script src="showcart.js"></script>
 </body>
 </html>
