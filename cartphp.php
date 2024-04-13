@@ -1,22 +1,34 @@
 <?php
-session_start(); // Start or resume a session
+session_start();
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $data = json_decode(file_get_contents("php://input"), true);
-    $itemCode = $data['itemCode'];
+function sendJson($status, $message = '', $data = []) {
+    header('Content-Type: application/json');
+    echo json_encode(['success' => $status, 'message' => $message, 'data' => $data]);
+    exit;
+}
 
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $postData = json_decode(file_get_contents('php://input'), true);
+    $itemCode = $postData['itemCode'];
+    $itemName = $postData['itemName'];
+    $itemPrice = $postData['itemPrice'];
+    $increment = $postData['increment'];
 
     if (!isset($_SESSION['cart'][$itemCode])) {
-        $_SESSION['cart'][$itemCode] = 1; // Initial quantity
+        // Add new item
+        $_SESSION['cart'][$itemCode] = [
+            'name' => $itemName,
+            'price' => $itemPrice,
+            'quantity' => $increment,
+            'subtotal' => $itemPrice
+        ];
     } else {
-        $_SESSION['cart'][$itemCode] += 1; // Increment quantity
+        // Increment existing item quantity
+        $_SESSION['cart'][$itemCode]['quantity'] += $increment;
+        $_SESSION['cart'][$itemCode]['subtotal'] = $_SESSION['cart'][$itemCode]['quantity'] * $itemPrice;
     }
 
-    echo json_encode(['success' => true]);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+    sendJson(true, 'Item added/updated in cart');
 }
 ?>
+

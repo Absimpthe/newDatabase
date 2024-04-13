@@ -15,14 +15,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateCartDisplay(cart) {
-        const cartContainer = document.querySelector('#cartContainer');
-        cartContainer.innerHTML = ''; // Clear the current cart display
-
+        const cartTableBody = document.querySelector('#cartTable tbody');
+        cartTableBody.innerHTML = ''; // Clear the current cart display
+    
         Object.keys(cart).forEach(itemCode => {
-            const itemElement = document.createElement('div');
-            itemElement.textContent = `Item Code: ${itemCode}, Quantity: ${cart[itemCode]}`;
-            cartContainer.appendChild(itemElement);
+            const row = document.createElement('tr');
+            
+            // Create cell for item code
+            const itemCodeCell = document.createElement('td');
+            itemCodeCell.textContent = itemCode;
+            row.appendChild(itemCodeCell);
+    
+            // Create cell for item name
+            const itemNameCell = document.createElement('td');
+            itemNameCell.textContent = cart[itemCode].name; 
+            row.appendChild(itemNameCell);
+    
+            // Create cell for quantity
+            const quantityCell = document.createElement('td');
+            quantityCell.textContent = cart[itemCode].quantity; 
+            row.appendChild(quantityCell);
+    
+            // Create cell for price
+            const priceCell = document.createElement('td');
+            priceCell.textContent = cart[itemCode].subtotal.toFixed(2);
+            row.appendChild(priceCell);
+    
+            // Append the row to the table body
+            cartTableBody.appendChild(row);
         });
     }
+    
     fetchCart();
 });

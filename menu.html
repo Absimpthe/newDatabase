@@ -63,7 +63,7 @@
                         div.innerHTML = `<img src="${item.ItemImage}" alt="${item.ItemName}">
                         <h3>${item.ItemName}</h3>
                         <p>RM${item.Price}</p>
-                        <button class="add-to-cart-btn" data-itemcode="${item.ItemCode}">Add to Cart</button>`;
+                        <button class="add-to-cart-btn" data-itemcode="${item.ItemCode}" data-itemname="${item.ItemName}" data-itemprice="${item.Price}">Add to Cart</button>`;
                         container.appendChild(div);
                     }
                 });

@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <style>
-        #cartContainer {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-        }
-        .cart-item {
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="cartstyle.css">
 </head>
 <body>
     <h1>Your Shopping Cart</h1>
-    <div id="cartContainer">
-        <!-- Cart items will be displayed here -->
-    </div>
-
-    <!-- Link to the external JavaScript file -->
+    <table id="cartTable">
+        <thead>
+            <tr>
+                <th>Item Code</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Cart items will be dynamically inserted here -->
+        </tbody>
+    </table>
     <script src="showcart.js"></script>
 </body>
 </html>

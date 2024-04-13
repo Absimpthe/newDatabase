@@ -1,0 +1,15 @@
+#cartContainer {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.cart-item {
+    margin-bottom: 10px;
+}
+
+h1 {
+    margin-left: 20px;
+    margin-top: 50px;
+    font-family: Georgia, serif;
+}

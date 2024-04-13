@@ -39,7 +39,7 @@ h4 {
 .menu-section .arrow {
   position: absolute;
   cursor: pointer;
-  height: 371px;
+  height: 370px;
   background-color: #d4a9d8;
   border-color: #d4a9d8;
   border-radius: 5px;
@@ -60,7 +60,7 @@ h4 {
   left: 0;
   position: absolute;
   cursor: pointer;
-  height: 371px;
+  height: 370px;
   background-color: #d4a9d8;
   border-color: #d4a9d8;
   border-radius: 5px;
@@ -73,7 +73,7 @@ h4 {
   right: 0;
   position: absolute;
   cursor: pointer;
-  height: 371px;
+  height: 370px;
   background-color: #d4a9d8;
   border-color: #d4a9d8;
   border-radius: 5px;
@@ -104,9 +104,26 @@ h4 {
 }
 
 .menu-item img {
-  width: 200px; 
+  width: 185px; 
   height: auto;
   border-radius: 5px;
+}
+
+.add-to-cart-btn {
+  cursor: pointer;
+  width: 50%;
+  padding: 0.6em;
+  margin-bottom: 0.2em;
+  border: none;
+  border-bottom: 2px solid #824d78;
+  border-radius: 0.5em;
+  background-color: #b66ea9;
+  color: white;
+  text-transform: uppercase;
+}
+
+.view-cart-btn:hover {
+  background-color: #d485c6;
 }
 
 .topnav {
