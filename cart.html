@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cart</title>
+    <link rel="stylesheet" href="cartstyle.css"> <!-- Make sure to link your CSS for styling -->
+</head>
+<body>
+    <header>
+        <h1>Shopping Cart</h1>
+        <button onclick="window.location.href='menu.html'">Continue Shopping</button>
+    </header>
+
+    <div id="cartContents">
+        <!-- Cart items will be dynamically inserted here -->
+    </div>
+
+    <footer>
+        <button onclick="proceedToCheckout()">Checkout</button>
+        <button onclick="window.location.href='menu.html'">Back to Menu</button>
+    </footer>
+
+    <script src="showcart.js"></script> <!-- Link to your external JS file -->
+</body>
+</html>
