@@ -124,6 +124,7 @@ CREATE TABLE `orders` (
 -- Indexes for table `orderItems`
 --
 ALTER TABLE `orderItems`
+  ADD PRIMARY KEY (`OrderID`, `ItemCode`),
   ADD KEY `OrderID` (`OrderID`),
   ADD KEY `ItemCode` (`ItemCode`);
 
