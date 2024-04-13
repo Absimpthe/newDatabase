@@ -25,10 +25,10 @@ USE COMP1044_database;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carts`
+-- Table structure for table `orderItems`
 --
-DROP TABLE IF EXISTS carts;
-CREATE TABLE carts (
+DROP TABLE IF EXISTS orderItems;
+CREATE TABLE orderItems (
   `OrderID` int(20) UNSIGNED NOT NULL,
   `ItemCode` char(4) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ItemQuantity` int(10) UNSIGNED NOT NULL,
@@ -121,9 +121,9 @@ CREATE TABLE `orders` (
 --
 
 --
--- Indexes for table `carts`
+-- Indexes for table `orderItems`
 --
-ALTER TABLE `carts`
+ALTER TABLE `orderItems`
   ADD KEY `OrderID` (`OrderID`),
   ADD KEY `ItemCode` (`ItemCode`);
 
@@ -188,11 +188,11 @@ ALTER TABLE `orders`
 --
 
 --
--- Constraints for table `carts`
+-- Constraints for table `orderItems`
 --
-ALTER TABLE `carts`
-  ADD CONSTRAINT `carts_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `carts_ibfk_2` FOREIGN KEY (`ItemCode`) REFERENCES `items` (`ItemCode`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `orderItems`
+  ADD CONSTRAINT `orderItems_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orderItems_ibfk_2` FOREIGN KEY (`ItemCode`) REFERENCES `items` (`ItemCode`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `deliveries`
