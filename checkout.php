@@ -41,13 +41,16 @@ if ($stmt_result->num_rows > 0) {
             }
 
             echo json_encode(['status' => 'success']);
+            exit();
         } else {
             // The cart is empty
             echo json_encode(['status' => 'error', 'message' => 'Cart is empty']);
+            exit();
         }
     } else {
         // The cart does not exist
         echo json_encode(['status' => 'error', 'message' => 'Cart does not exist']);
+        exit();
     }
   }
 

@@ -94,42 +94,43 @@ document.addEventListener('DOMContentLoaded', function() {
     getAccountDetails();
     getCart();
     getTotal();
+
+    var placeOrderForm = document.querySelector(".place-order-form");
+
+    // Listen for form submission
+    placeOrderForm.addEventListener("submit", function(e) {
+      // Prevent the default form submission
+      e.preventDefault();
+
+      addOrder(placeOrderForm); 
+      });
+
+    function addOrder(form) {
+      var formData = new FormData(form);
+
+      fetch('checkout.php', {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        console.log("Received response", response);
+        return response.json();
+      })
+      .then (data => {
+        console.log(data);
+        if (data.status === "success") {
+          window.location.href="order_received.html";
+          // order succesfully added to database
+        }
+        else {
+          document.getElementById('error').innerText = data.message;
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        document.getElementById('error').innerText = "An unexpected error occurred. Please try again.";
+        // Handle errors
+      });
+    }
 });
 
-var placeOrderForm = document.querySelector(".place-order-form");
-
-// Listen for form submission
-placeOrderForm.addEventListener("submit", function(e) {
-  // Prevent the default form submission
-  e.preventDefault();
-
-  addOrder(placeOrderForm); 
-  });
-
-function addOrder(form) {
-  var formData = new FormData(form);
-
-  fetch('checkout.php', {
-    method: "POST",
-    body: formData
-  })
-  .then(response => {
-    console.log("Received response", response);
-    return response.json();
-  })
-  .then (data => {
-    console.log(data);
-    if (data.status === "success") {
-      window.location.href="order_received.html";
-      // order succesfully added to database
-    }
-    else {
-      document.getElementById('error').innerText = data.message;
-    }
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-    document.getElementById('error').innerText = "An unexpected error occurred. Please try again.";
-    // Handle errors
-  });
-}
