@@ -9,25 +9,23 @@ $stmt->bind_param("s", $_SESSION['user-id']);
 $stmt->execute();
 $stmt_result = $stmt->get_result();
 
-// get today's date here
+// get today's date
+$date = date('Y-m-d');
+$status = "Pending";
 
 if ($stmt_result->num_rows > 0) {
-    $user_data = $stmt_result->fetch_assoc();
     
     if (isset($_SESSION['cart'])) {
         
         if (!empty($_SESSION['cart'])) {
 
             // Update orders table
-            $add_order = $con->prepare("INSERT INTO orders (CustomerID, TotalPrice, Date, OrderStatus, Payment Status) VALUES (?, ?, ?, Pending, Pending");
-            $add_order->bind_param("ids", $_SESSION['user_id'], $_SESSION['Total'], $date);
+            $add_order = $con->prepare("INSERT INTO orders (CustomerID, TotalPrice, Date, OrderStatus, PaymentStatus) VALUES (?, ?, ?, ?, ?)");
+            $add_order->bind_param("idsss", $_SESSION['user-id'], $_SESSION['Total'], $date, $status, $status);
             $add_order->execute();
 
-            $sql = $con->prepare("select OrderID from orders where CustomerID = ?");
-            $sql->bind_param("s", $_SESSION['user_id']);
-            $sql->execute();
-            $sql_result = $sql->get_result();
-            $order_id = $sql_result->fetch_assoc();
+            //
+            $last_id = $con->insert_id;
 
             foreach ($_SESSION['cart'] as $item) {
                 // Get the item code
@@ -38,10 +36,9 @@ if ($stmt_result->num_rows > 0) {
                 $item_code = $find_item_result->fetch_assoc();
 
                 $add_order_items = $con->prepare("INSERT INTO orderitems (orderID, ItemCode, ItemQuantity, SubtotalPrice) VALUES (?, ?, ?, ?)");
-                $add_order_items->bind_param("isid", $order_id['orderID'], $item_code['ItemCode'], $item['quantity'], $item['price']);
+                $add_order_items->bind_param("isid", $last_id, $item_code['ItemCode'], $item['quantity'], $item['price']);
                 $add_order_items->execute();
             }
-
 
             echo json_encode(['status' => 'success']);
         } else {

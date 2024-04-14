@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nottingham Cafe - Profile</title>
+    <title>Nottingham Cafe - Checkout</title>
     <link rel="stylesheet" href="checkout.css">
 </head>
 
@@ -19,7 +19,7 @@
         <div class="left-column">
           <h1>Checkout</h1>
           <hr class="divider">
-          <form action="checkout.php" method="post">
+          <form class="place-order-form">
             <h2>Delivery Address</h2>
             <p id="delivery-address"></p>
             <input type="text" name="delivery-address" class="address" id="address" placeholder="Address" required>
@@ -36,6 +36,7 @@
             <p>Order details will be sent to your email address.</p>
 
             <input class="submit-btn" id="submit-btn" type="submit" value="Place Order">
+            <p id="error"></p>
           </form>
           
     
@@ -58,8 +59,7 @@
         </div>
     </div>
 
-    <script src="checkout.js">
-    </script>
+    <script src="checkout.js"></script>
 
 </body>
 </html>
