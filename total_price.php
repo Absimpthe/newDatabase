@@ -12,7 +12,5 @@
     $data = $_SESSION['Total'];
     
     echo json_encode($data);
-    
-
-    
+     
 ?>
