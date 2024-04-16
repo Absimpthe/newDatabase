@@ -28,10 +28,23 @@
     margin-bottom: 10px;
 }
 
+body {
+    margin: 0;
+}
+
+#title {
+    background-color: #936b97;
+    overflow: hidden;
+    display: flex;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
 h1 {
     margin-left: 20px;
     margin-top: 50px;
     font-family: Georgia, serif;
+    color: white;
 }
 
 /* Table styles */
