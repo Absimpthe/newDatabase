@@ -59,7 +59,7 @@ CREATE TABLE customers (
   `Address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `EmailAddress` varchar(255) DEFAULT NULL,
   `PhoneNumber` varchar(20) NOT NULL,
-  `isAdmin` BOOLEAN NOT NULL DEFAULT FALSE
+  `UserType` enum('Customer', 'Driver', 'Admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -152,7 +152,8 @@ ALTER TABLE `deliveries`
 -- Indexes for table `drivers`
 --
 ALTER TABLE `drivers`
-  ADD PRIMARY KEY (`DriverID`);
+  ADD PRIMARY KEY (`DriverID`),
+  ADD KEY `DriverID` (`DriverID`);
 
 --
 -- Indexes for table `items`
@@ -213,6 +214,13 @@ ALTER TABLE `items`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+--
+-- Constraints for table `drivers`
+--
+ALTER TABLE `drivers`
+  ADD CONSTRAINT `drivers_ibfk_1` FOREIGN KEY (`DriverID`) REFERENCES `customers` (`CustomerID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

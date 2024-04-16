@@ -35,7 +35,7 @@ if ($stmt_result->num_rows > 0) {
         "orderItems" => $orderItems
     ];
 
-    echo json_encode($data);
+    echo json_encode(['success' => 'success', 'data' => $data]);
 }
 else {
     echo json_encode(['status' => 'error', 'message' => 'No orders.']);

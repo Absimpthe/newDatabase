@@ -21,27 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const orderTableBody = document.querySelector('#orderTable tbody');
         orderTableBody.innerHTML = ''; // Clear the current order display
     
-        Object.keys(order).forEach(orderID => {
+        Object.keys(order).forEach(OrderID => {
             const row = document.createElement('tr');
             
             const orderIDCell = document.createElement('td');
-            orderIDCell.textContent = orderID;
+            orderIDCell.textContent = OrderID;
             row.appendChild(orderIDCell);
 
             const totalPrice = document.createElement('td');
-            totalPrice.textContent = order[orderID].TotalPrice; 
+            totalPrice.textContent = `RM${order[OrderID].TotalPrice.toFixed(2)}`; 
             row.appendChild(totalPrice);
     
             const date = document.createElement('td');
-            date.textContent = order[orderID].Date; 
+            date.textContent = order[OrderID].Date; 
             row.appendChild(date);
     
             const orderStatus = document.createElement('td');
-            orderStatus.textContent = order[orderID].OrderStatus;
+            orderStatus.textContent = order[OrderID].OrderStatus;
             row.appendChild(orderStatus);
 
             const paymentStatus = document.createElement('td');
-            paymentStatus.textContent = order[orderID].PaymentStatus;
+            paymentStatus.textContent = order[OrderID].PaymentStatus;
             row.appendChild(paymentStatus);
     
             // Append the row to the table body

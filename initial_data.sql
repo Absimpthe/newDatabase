@@ -59,13 +59,15 @@ INSERT INTO items (ItemCode, ItemName, Price, Availability, CategoryID, ItemImag
 ('B105', 'Virgin Mojito', 7.00, 1, 4, 'menupics/virgin_mojito.jpg'),
 ('B106', 'Shirley Temple', 7.00, 1, 4, 'menupics/shirley_temple.jpg');
 
-INSERT INTO customers (CustUsername, CustPassword, Address, EmailAddress, PhoneNumber, isAdmin) VALUES
-('CEOsidneySoh', 'PGR1Mario0', '123 UNM, Semenyih', 'explodingCat@gmail.com', '011-1001111', TRUE),
-('hueyTeng', 'teamMaruCoffee', '456 UNM, Semenyih', 'Bidetblast@gmail.com', '012-1212221', FALSE),
-('shu', 'teamZusCoffee', '789 UNM, Semenyih', 'NekoAtsume@gmail.com', '013-3133133', FALSE),
-('NawfalNazzeeeeeem', 'gigaChad123', '101 UNM, Semenyih', 'weddingWitch@gmail.com', '014-5678999', FALSE),
-('marksim_Skobun', 'iHateCornSoup', '123 UNM, Semenyih', 'alamak@gmail.com', '010-0100100', FALSE);
+INSERT INTO customers (CustUsername, CustPassword, Address, EmailAddress, PhoneNumber, UserType) VALUES
+('CEOsidneySoh', 'PGR1Mario0', '123 UNM, Semenyih', 'explodingCat@gmail.com', '011-1001111', 'Admin'),
+('hueyTeng', 'teamMaruCoffee', '456 UNM, Semenyih', 'Bidetblast@gmail.com', '012-1212221', 'Customer'),
+('shu', 'teamZusCoffee', '789 UNM, Semenyih', 'NekoAtsume@gmail.com', '013-3133133', 'Customer'),
+('NawfalNazzeeeeeem', 'gigaChad123', '101 UNM, Semenyih', 'weddingWitch@gmail.com', '014-5678999', 'Customer'),
+('marksim_Skobun', 'iHateCornSoup', '123 UNM, Semenyih', 'alamak@gmail.com', '010-0100100', 'Customer'),
+('itsaMeMario', 'MammaMia1', '120 Castle, Mushroom Kingdom', 'mario@gmail.com', '012-0003293', 'Driver'),
+('JohnDoe', 'PlainJane0', '222 Average Street', 'placeholder@gmail.com', '000-0000000', 'Driver');
 
 INSERT INTO drivers (DriverID, CarPlateNo, DriverRating) VALUES
-(333101, 'MARIO69', 0),
-(301234, 'ABC420', 5);
+(6, 'MARIO69', 0),
+(7, 'ABC420', 5);
