@@ -92,6 +92,32 @@ tr:hover {
     color: white;
 }
 
+.actions {
+    margin-top: 60px;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    height: 70px;
+}
+
+.actions button {
+    cursor: pointer;
+    margin-bottom: 1em;
+    border: none;
+    border-bottom: 5px solid #824d78;
+    border-radius: 0.5em;
+    background-color: #b66ea9;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    width: 170px;
+}
+
+/* Optional: Add hover effect for buttons */
+.actions button:hover {
+    background-color: #d485c6;
+}
+
 /* Responsive design adjustments */
 @media screen and (max-width: 600px) {
     table {
