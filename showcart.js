@@ -16,34 +16,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateCartDisplay(cart) {
         const cartTableBody = document.querySelector('#cartTable tbody');
-        cartTableBody.innerHTML = ''; // Clear the current cart display
+        // Clear any existing cart item entries but keep the total row
+        while (cartTableBody.firstChild && cartTableBody.firstChild.id !== 'totalRow') {
+            cartTableBody.removeChild(cartTableBody.firstChild);
+        }
+        let total = 0; // Initialize total amount
     
         Object.keys(cart).forEach(itemCode => {
             const row = document.createElement('tr');
             
-            // Create cell for item code
             const itemCodeCell = document.createElement('td');
             itemCodeCell.textContent = itemCode;
             row.appendChild(itemCodeCell);
     
-            // Create cell for item name
             const itemNameCell = document.createElement('td');
-            itemNameCell.textContent = cart[itemCode].name; 
+            itemNameCell.textContent = cart[itemCode].name;
             row.appendChild(itemNameCell);
     
-            // Create cell for quantity
             const quantityCell = document.createElement('td');
-            quantityCell.textContent = cart[itemCode].quantity; 
+            quantityCell.textContent = cart[itemCode].quantity;
             row.appendChild(quantityCell);
     
-            // Create cell for price
             const priceCell = document.createElement('td');
-            priceCell.textContent = cart[itemCode].subtotal.toFixed(2);
+            priceCell.textContent = `RM${cart[itemCode].subtotal.toFixed(2)}`;
             row.appendChild(priceCell);
     
-            // Append the row to the table body
-            cartTableBody.appendChild(row);
+            cartTableBody.insertBefore(row, cartTableBody.querySelector('#totalRow')); // Insert before the total row
+            total += parseFloat(cart[itemCode].subtotal);
         });
+    
+        // Update the total price in the existing 'totalRow'
+        const totalPriceCell = document.querySelector('#totalPrice');
+        totalPriceCell.textContent = `RM${total.toFixed(2)}`;
+        totalPriceCell.colSpan = 3;
+        totalPriceCell.style.textAlign = 'center';
     }
     
     fetchCart();

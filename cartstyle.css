@@ -13,3 +13,67 @@ h1 {
     margin-top: 50px;
     font-family: Georgia, serif;
 }
+
+/* Table styles */
+table {
+    width: 70%; /* Sets the width of the table to 80% of its container */
+    margin: 20px auto; /* Centers the table horizontally */
+    margin-top: 70px;
+    border-collapse: collapse; /* Collapses borders between table cells */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds shadow under the table */
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+th, td {
+    text-align: left; /* Aligns text to the left */
+    border-left: 1px solid #9b5cb3; 
+    border-right: 1px solid #9b5cb3;
+}
+
+td {
+    padding: 20px;
+}
+
+th:first-child, td:first-child {
+    border-left: none; /* Removes border from the leftmost cells */
+}
+
+th:last-child, td:last-child {
+    border-right: none; /* Ensures no double border on the rightmost edge */
+}
+
+tr th, tr td {
+    border-top: none; /* No horizontal borders on top of cells */
+    border-bottom: none; /* No horizontal borders on bottom of cells */
+}
+
+th {
+    color: #9b5cb3; /* White text color for headers */
+    font-family: 'Times New Roman', serif;
+    font-size: 1.75rem;
+    padding: 15px;
+}
+
+thead th {
+    border-bottom: 2px solid #9b5cb3;
+}
+
+tr:hover {
+    background-color: #ddd; /* Light grey background on row hover */
+}
+
+#totalRow {
+    font-size: 1.5rem;
+    background-color: #d4a9d8;
+    color: white;
+}
+
+/* Responsive design adjustments */
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%; /* Full-width on smaller screens */
+    }
+}
