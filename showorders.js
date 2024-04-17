@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
-                data.orders.forEach(order => {
+            if (data.status === 'success') {
+                data.data.orders.forEach(order => {
+                    orderID = order.OrderID;
                     updateOrderDisplay(order);
                 });
                 
@@ -18,35 +19,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateOrderDisplay(order) {
-        const orderTableBody = document.querySelector('#orderTable tbody');
-        orderTableBody.innerHTML = ''; // Clear the current order display
-    
-        Object.keys(order).forEach(OrderID => {
-            const row = document.createElement('tr');
-            
-            const orderIDCell = document.createElement('td');
-            orderIDCell.textContent = OrderID;
-            row.appendChild(orderIDCell);
+        const leftContainer = document.querySelector('#left-column');
 
-            const totalPrice = document.createElement('td');
-            totalPrice.textContent = `RM${order[OrderID].TotalPrice.toFixed(2)}`; 
-            row.appendChild(totalPrice);
-    
-            const date = document.createElement('td');
-            date.textContent = order[OrderID].Date; 
-            row.appendChild(date);
-    
-            const orderStatus = document.createElement('td');
-            orderStatus.textContent = order[OrderID].OrderStatus;
-            row.appendChild(orderStatus);
+        const column = document.createElement('div');
+        column.className = 'order-details';
 
-            const paymentStatus = document.createElement('td');
-            paymentStatus.textContent = order[OrderID].PaymentStatus;
-            row.appendChild(paymentStatus);
-    
-            // Append the row to the table body
-            orderTableBody.appendChild(row);
-        });
+        const orderIDTitle = document.createElement('h2');
+        orderIDTitle.textContent = 'Order ID';
+        const orderID = document.createElement('p');
+        orderID.textContent = order.OrderID;
+        column.appendChild(orderIDTitle);
+        column.appendChild(orderID);
+
+        const totalPriceTitle = document.createElement('h2');
+        totalPriceTitle.textContent = 'Total Price';
+        const totalPrice = document.createElement('p');
+        totalPrice.textContent = `RM${order.TotalPrice}`;
+        column.appendChild(totalPriceTitle);
+        column.appendChild(totalPrice);
+
+        const dateTitle = document.createElement('h2');
+        dateTitle.textContent = 'Date';
+        const date = document.createElement('p');
+        date.textContent = order.Date; 
+        column.appendChild(dateTitle);
+        column.appendChild(date);
+
+        const orderStatusTitle = document.createElement('h2');
+        orderStatusTitle.textContent = 'Order Status';
+        const orderStatus = document.createElement('p');
+        orderStatus.textContent = order.OrderStatus;
+        column.appendChild(orderStatusTitle);
+        column.appendChild(orderStatus);
+
+        const paymentStatusTitle = document.createElement('h2');
+        paymentStatusTitle.textContent = 'Payment Status';
+        const paymentStatus = document.createElement('p');
+        paymentStatus.textContent = order.PaymentStatus;
+        column.appendChild(paymentStatusTitle);
+        column.appendChild(paymentStatus);
+
+        leftContainer.appendChild(column);    
     }
     
     fetchOrders();

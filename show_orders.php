@@ -23,7 +23,7 @@ if ($stmt_result->num_rows > 0) {
 
     foreach($orders as $order) {
         $stmt = $con->prepare("select * from orderItems where OrderId = ?");
-        $stmt->bind_param("s", $orders['OrderId']);
+        $stmt->bind_param("s", $order['OrderId']);
         $stmt->execute();
         $stmt_result = $stmt->get_result();
         $rowItems = $stmt_result->fetch_assoc();
@@ -35,7 +35,7 @@ if ($stmt_result->num_rows > 0) {
         "orderItems" => $orderItems
     ];
 
-    echo json_encode(['success' => 'success', 'data' => $data]);
+    echo json_encode(['status' => 'success', 'data' => $data]);
 }
 else {
     echo json_encode(['status' => 'error', 'message' => 'No orders.']);
