@@ -4,40 +4,45 @@ header('Content-Type: application/json');
 
 require_once 'db_connect.php'; 
 
-$stmt = $con->prepare("SELECT * FROM orders WHERE OrderStatus = ?");
+// Prepare statement for fetching orders
+$stmtOrders = $con->prepare("SELECT * FROM orders WHERE OrderStatus = ?");
 $confirmedStatus = 'Confirmed';
-$stmt->bind_param("s", $confirmedStatus);
-$stmt->execute();
-$stmt_result = $stmt->get_result();
+$stmtOrders->bind_param("s", $confirmedStatus);
+$stmtOrders->execute();
+$stmt_resultOrders = $stmtOrders->get_result();
 
 $orders = [];
-$orderItems = [];
 
 // Check if there are results 
-if ($stmt_result->num_rows > 0) {
-    while($row = $stmt_result->fetch_assoc()) {
-        // Add each row to orders array
-        $orders[] = $row;
-    }
+if ($stmt_resultOrders->num_rows > 0) {
+    while($order = $stmt_resultOrders->fetch_assoc()) {
+        // Use the correct field name for the order ID
+        $orderID = $order['OrderID'];  // Assuming 'OrderID' is the correct column name
 
-    // Fetch items for each order
-    foreach($orders as $order) {
-        $stmt = $con->prepare("SELECT * FROM orderItems WHERE OrderId = ?");
-        $stmt->bind_param("s", $order['OrderId']);
-        $stmt->execute();
-        $stmt_result = $stmt->get_result();
-        
-        while($rowItems = $stmt_result->fetch_assoc()) {
-            $orderItems[$order['OrderId']][] = $rowItems;
+        // Prepare statement for fetching items for this specific order
+        $stmtItems = $con->prepare("SELECT * FROM orderItems WHERE OrderId = ?");
+        $stmtItems->bind_param("s", $orderID);
+        $stmtItems->execute();
+        $stmt_resultItems = $stmtItems->get_result();
+
+        // Fetch items and store them in the array
+        $items = [];
+        while($item = $stmt_resultItems->fetch_assoc()) {
+            $items[] = $item;
         }
+
+        // Add items array to the order only if items are found
+        if (!empty($items)) {
+            $order['Items'] = $items;
+        } else {
+            $order['Items'] = [];  // Ensure 'Items' is an empty array if no items found
+        }
+
+        // Add order to orders array
+        $orders[] = $order;
     }
 
-    $data = [
-        "orders" => $orders,
-        "orderItems" => $orderItems
-    ];
-
-    echo json_encode(['status' => 'success', 'data' => $data]);
+    echo json_encode(['status' => 'success', 'data' => $orders]);
 } else {
     echo json_encode(['status' => 'error', 'message' => 'No confirmed orders.']);
 }
