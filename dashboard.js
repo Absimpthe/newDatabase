@@ -47,12 +47,21 @@ function fetchOrders() {
 
 function displayOrders(data) {
     const ordersContainer = document.getElementById('ordersContainer');
-    if (!data.orders.length) {
+    
+    // Since data is the array directly, check its length
+    if (!data.length) {
         ordersContainer.innerHTML = '<p>No confirmed orders found.</p>';
         return;
     }
 
-    data.orders.forEach(order => {
+    // Clear previous contents
+    ordersContainer.innerHTML = '';
+
+    data.forEach(order => {
+        let itemsHTML = order.Items.map(item => `
+            <li>${item.ItemCode} - Quantity: ${item.ItemQuantity}, Subtotal: $${item.SubtotalPrice}</li>
+        `).join('');
+
         let orderHTML = `
             <div class="order">
                 <h2>Order ID: ${order.OrderID}</h2>
@@ -62,14 +71,12 @@ function displayOrders(data) {
                 <p>Payment Status: ${order.PaymentStatus}</p>
                 <div class="items">
                     <h3>Items:</h3>
-                    <ul>
-                        ${data.orderItems[order.OrderID].map(item => `
-                            <li>${item.ItemCode} - Quantity: ${item.ItemQuantity}, Subtotal: $${item.SubtotalPrice}</li>
-                        `).join('')}
-                    </ul>
+                    <ul>${itemsHTML}</ul>
                 </div>
             </div>
         `;
+
         ordersContainer.innerHTML += orderHTML;
     });
 }
+
