@@ -8,16 +8,14 @@
 </head>
 <body>
     <header>
-        <nav>
-            <ul class="nav-links">
-                <li class="active" id="unfulfilled-tab">Unfulfilled Orders</li>
-                <li id="accepted-tab">Accepted Orders</li>
-            </ul>
-        </nav>
+        <div class="topnav">
+            <a class="active" href="#unfulfilled-orders">Unfulfilled Orders</a>
+            <a href="#accepted-orders">Accepted Orders</a>
+        </div>         
     </header>
     <section id="unfulfilled-orders" class="content active">
         <h1>Unfulfilled Orders</h1>
-        <!-- Unfulfilled orders list here -->
+        <div id="ordersContainer"></div>
     </section>
     <section id="accepted-orders" class="content">
         <h1>Accepted Orders</h1>
