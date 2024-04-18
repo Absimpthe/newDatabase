@@ -11,7 +11,8 @@ $stmt_result = $stmt->get_result();
 
 // get today's date
 $date = date('Y-m-d');
-$status = "Confirmed";
+$orderstatus = "Confirmed";
+$paymentstatus = "Pending";
 
 if ($stmt_result->num_rows > 0) {
     
@@ -21,7 +22,7 @@ if ($stmt_result->num_rows > 0) {
 
             // Update orders table
             $add_order = $con->prepare("INSERT INTO orders (CustomerID, TotalPrice, Date, OrderStatus, PaymentStatus) VALUES (?, ?, ?, ?, ?)");
-            $add_order->bind_param("idsss", $_SESSION['user-id'], $_SESSION['Total'], $date, $status, $status);
+            $add_order->bind_param("idsss", $_SESSION['user-id'], $_SESSION['Total'], $date, $orderstatus, $paymentstatus);
             $add_order->execute();
 
             //
