@@ -11,7 +11,7 @@ $stmt_result = $stmt->get_result();
 
 // get today's date
 $date = date('Y-m-d');
-$status = "Pending";
+$status = "Confirmed";
 
 if ($stmt_result->num_rows > 0) {
     
