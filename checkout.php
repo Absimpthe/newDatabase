@@ -40,6 +40,8 @@ if ($stmt_result->num_rows > 0) {
                 $add_order_items->bind_param("isid", $last_id, $item_code['ItemCode'], $item['quantity'], $item['price']);
                 $add_order_items->execute();
             }
+            // Clear the cart
+            $_SESSION['cart'] = [];
 
             echo json_encode(['status' => 'success']);
             exit();
