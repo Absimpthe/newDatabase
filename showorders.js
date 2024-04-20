@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                updateOrderDisplay(data.data); // Pass the entire data array to the function
+                updateOrderDisplay(data.data);
             } else {
                 console.error('Failed to fetch orders:', data.message);
             }
@@ -13,36 +13,45 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateOrderDisplay(orders) {
-        const ordersContainer = document.getElementById('left-column');
-
-        // Clear previous contents
-        ordersContainer.innerHTML = '';
-
-        // Check if there are orders and update the DOM
+        const ordersWrapper = document.getElementById('orders-wrapper');
+        ordersWrapper.innerHTML = '';  // Clear previous contents
+    
         if (orders.length === 0) {
-            ordersContainer.innerHTML = '<p>No confirmed orders found.</p>';
+            ordersWrapper.innerHTML = '<p>No confirmed orders found.</p>';
             return;
         }
-
+    
         orders.forEach(order => {
-            let itemsHTML = order.Items.map(item => `
-                <li>${item.ItemCode} - Quantity: ${item.ItemQuantity}, Subtotal: $${item.SubtotalPrice}</li>
-            `).join('');
-
-            let orderHTML = `
-                <div class="order">
+            const orderContainer = document.createElement('div');
+            orderContainer.className = 'order-container'; // This is the container for each order
+    
+            const metadataHTML = `
+                <div class="order-metadata">
                     <h2>Order ID: ${order.OrderID}</h2>
                     <p>Date: ${order.Date}</p>
                     <p>Total Price: $${order.TotalPrice}</p>
                     <p>Order Status: ${order.OrderStatus}</p>
                     <p>Payment Status: ${order.PaymentStatus}</p>
+                </div>
+            `;
+    
+            const itemsHTML = order.Items.map(item => `
+                <li>${item.ItemCode} - Quantity: ${item.ItemQuantity}, Subtotal: $${item.SubtotalPrice}</li>
+            `).join('');
+    
+            const itemsContainerHTML = `
+                <div class="order-items">
+                    <h3>Items:</h3>
                     <ul>${itemsHTML}</ul>
                 </div>
             `;
-
-            ordersContainer.innerHTML += orderHTML;
+    
+            // Set the innerHTML of orderContainer
+            orderContainer.innerHTML = metadataHTML + itemsContainerHTML;
+            // Append each orderContainer to the ordersWrapper
+            ordersWrapper.appendChild(orderContainer);
         }); 
-    }    
+    }
     
     fetchOrders();
 });

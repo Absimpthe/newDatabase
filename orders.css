@@ -1,82 +1,67 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, serif;
 }
 
 h1 {
   margin-left: 20px;
   margin-top: 50px;
-  font-family: Georgia, serif;
-}
-  
-.main-body {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    font-family: Georgia, serif;
-    font-size: 1.2rem;
-    color: rgb(255, 255, 255);
-    overflow-y: hidden; 
 }
 
-.container {
-  display: flex;
-  margin: 50px;
-}
-
-.order-details {
-  display: flex;
-  justify-content: space-around;
-}
-
-.column {
+.order-container {
+  margin: 50px auto;
   width: 70%;  
   padding: 30px;
-  background-color:#f2f2f2;
-  margin: 0% 0.25% 0% 0%;
+  background-color: #f2f2f2;
   border-radius: 5px;
-
-  h2 {
-    font-size: 1.2rem;
-    text-align: left;
-  }
+  display: flex;
+  justify-content: space-between;
 }
 
-main {
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.order-metadata, .order-items {
+  width: 50%;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.topnav {
+  background-color: #936b97;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
   
-.topnav {
-    background-color: #936b97;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-}
-    
-/* Style the links inside the navigation bar */
+  /* Style the links inside the navigation bar */
 .topnav a {
-    float: left;
-    color: #f2f2f2;
-    font-family: Georgia, serif;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    width: 10%;
+  float: left;
+  color: #f2f2f2;
+  font-family: Georgia, serif;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  width: 10%;
 }
-
+  
 .topnav a:hover {
-    background-color: #eee4ef;
-    color: #715274;
+  background-color: #eee4ef;
+  color: #715274;
 }
-    
+  
   /* Add a color to the active/current link */
 .topnav a.active {
-    background-color: #a884ac;
-    color: white;
+  background-color: #a884ac;
+  color: white;
 }
     
+h2 {
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+ul {
+  line-height: 2.0;
+}
