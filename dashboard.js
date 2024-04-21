@@ -87,6 +87,7 @@ function displayOrders(data) {
             <div class="order">
                 ${metadataHTML}
                 ${itemsContainerHTML}
+                <div class="button-container"><button class="accept-btn">Accept Order</button></div>
             </div>
         `;
 

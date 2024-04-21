@@ -56,18 +56,47 @@ h1 {
 
 .order {
     margin: 50px auto;
-    width: 70%;  
+    width: 80%;  
     padding: 30px;
     background-color: #f2f2f2;
     border-radius: 5px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }
 
 .order-metadata, .order-items {
-    width: 50%;
+    width: 40%;
     margin: 5px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.accept-btn {
+    cursor: pointer;
+    height: 20%;
+    width: 50%;
+    padding: 0.6em;
+    border: none;
+    border-bottom: 2px solid #824d78;
+    border-radius: 0.5em;
+    background-color: #b66ea9;
+    color: white;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* This will vertically center the button in the div */
+    align-items: center; /* This will horizontally center the button in the div, if needed */
+    width: 40%;
+}
+
+ul {
+    line-height: 2.0;
 }
