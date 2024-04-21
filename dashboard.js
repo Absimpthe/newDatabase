@@ -98,6 +98,40 @@ function displayOrders(data) {
 
         // Append the new order container to the main container
         ordersContainer.appendChild(orderContainer);
+
+        // Add event listener for button click
+        const acceptBtn = orderContainer.querySelector('.accept-btn');
+        acceptBtn.addEventListener('click', () => {
+            // Call a function to handle accepting the order
+            handleAcceptOrder(order.OrderID);
+        });
     });
 }
 
+function handleAcceptOrder(orderID) {
+    // Update order status to "In Progress"
+    const updateData = { orderID: orderID, newStatus: 'In Progress' };
+
+    fetch('update_order_status.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            console.log('Order status updated successfully:', orderID);
+            // Remove the order from the UI
+            window.location.reload();
+            fetchOrders();
+        } else {
+            console.error('Failed to update order status:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error updating order status:', error);
+        // Optionally, handle the error or inform the user
+    });
+}
