@@ -35,11 +35,16 @@ if ($stmt_result->num_rows > 0) {
                 $find_item->execute();
                 $find_item_result = $find_item->get_result();
                 $item_code = $find_item_result->fetch_assoc();
-
+            
+                // Calculate the subtotal for the current item
+                $subtotalPrice = $item['price'] * $item['quantity'];
+            
+                // Prepare and execute the insertion of the order item
                 $add_order_items = $con->prepare("INSERT INTO orderitems (orderID, ItemCode, ItemQuantity, SubtotalPrice) VALUES (?, ?, ?, ?)");
-                $add_order_items->bind_param("isid", $last_id, $item_code['ItemCode'], $item['quantity'], $item['price']);
+                $add_order_items->bind_param("isid", $last_id, $item_code['ItemCode'], $item['quantity'], $subtotalPrice);
                 $add_order_items->execute();
             }
+            
             // Clear the cart
             $_SESSION['cart'] = [];
 
