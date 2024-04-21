@@ -15,6 +15,7 @@
         <a href="promotions.html">Promotions</a>
         <a href="profile.html">My Profile</a>
     </div>
+    <div class="hidden" id="pop-up"><b>Item added to cart</b></div>
 
     <header>
         <h1>Nottingham Cafe</h1>
@@ -63,7 +64,7 @@
                         div.innerHTML = `<img src="${item.ItemImage}" alt="${item.ItemName}">
                         <h3>${item.ItemName}</h3>
                         <p>RM${item.Price}</p>
-                        <button class="add-to-cart-btn" data-itemcode="${item.ItemCode}" data-itemname="${item.ItemName}" data-itemprice="${item.Price}">Add to Cart</button>`;
+                        <button class="add-to-cart-btn" id="add-to-cart-btn" data-itemcode="${item.ItemCode}" data-itemname="${item.ItemName}" data-itemprice="${item.Price}">Add to Cart</button>`;
                         container.appendChild(div);
                     }
                 });
