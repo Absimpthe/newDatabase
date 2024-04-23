@@ -99,9 +99,34 @@ function displayOrders(data, status) {
     });
 }
 
+function handleDeliveredOrder(orderID) {
+    const update_data = {orderID: orderID, newStatus: 'Completed'};
+    fetch('update_order_status.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(update_data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            console.log('Order status updated successfully:', orderID);
+            // Remove the order from the UI
+            window.location.reload();
+            fetchOrders();
+        } else {
+            console.error('Failed to update order status:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error updating order status:', error);
+    });
+}
+
 function handleAcceptOrder(orderID) {
     // Update order status to "In Progress"
-    const updateData = { orderID: orderID, newStatus: 'In Progress' };
+    const updateData = {orderID: orderID, newStatus: 'In Progress'};
 
     fetch('update_order_status.php', {
         method: 'POST',
@@ -123,6 +148,5 @@ function handleAcceptOrder(orderID) {
     })
     .catch(error => {
         console.error('Error updating order status:', error);
-        // Optionally, handle the error or inform the user
     });
 }
