@@ -66,6 +66,7 @@ function displayOrders(data, status) {
                 <p>Total Price: $${order.TotalPrice}</p>
                 <p>Order Status: ${order.OrderStatus}</p>
                 <p>Payment Status: ${order.PaymentStatus}</p>
+                <p>Customer Address: ${order.Address}</p>
             </div>
         `;
 
