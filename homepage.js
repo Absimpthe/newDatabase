@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Validate the form
         if (validateForm()) {
             // If validation passes, send the data to the server
-            sendData(signUpForm, "signup.php", signUpSection, loginSection);
+            sendData(signUpForm, "signup.php");
         }
     });
 
     loginForm.addEventListener("submit", function(e) {
         e.preventDefault();
-        sendData(loginForm, "login.php", loginSection, signUpSection);
+        sendData(loginForm, "login.php");
 
     });
 
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return re.test(email);
     }
 
-    function sendData(form, file, sectionShow, sectionHide) {
+    function sendData(form, file) {
         var formData = new FormData(form);
         
         fetch(file, {
@@ -128,12 +128,45 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
             else {
-                
+                showErrorPopup(data.message);
             }
     
         })
         .catch((error) => {
             console.error('Error:', error);
+            showErrorPopup("An unexpected error occurred. Please try again.");
         });
+    }
+
+    function showErrorPopup(message) {
+        const popup = document.createElement('div');
+        popup.setAttribute('id', 'errorPopup');
+        popup.style.position = 'fixed';
+        popup.style.left = '50%';
+        popup.style.top = '50%';
+        popup.style.transform = 'translate(-50%, -50%)';
+        popup.style.padding = '20px';
+        popup.style.color = 'white';
+        popup.style.background = '#d485c6';
+        popup.style.zIndex = '1000';
+        popup.style.borderRadius = '8px';
+        popup.style.transition = 'opacity 0.5s ease';
+
+        popup.style.opacity = '1'; // Start fully visible
+        const messageText = document.createTextNode(message);
+        popup.appendChild(messageText);
+
+        document.body.appendChild(popup);
+
+        // Fade out after 3 seconds
+        setTimeout(() => {
+            popup.style.opacity = '0';
+            // Remove from DOM after transition
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.parentNode.removeChild(popup);
+                }
+            }, 500); // Matches the transition time
+        }, 3000); 
     }
 });
