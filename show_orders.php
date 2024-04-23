@@ -2,11 +2,44 @@
 session_start();
 header('Content-Type: application/json');
 
-require_once 'db_connect.php'; 
+require_once 'db_connect.php';
 
+// Assume userID is passed via session or another method, validate it
 if (!isset($_SESSION['user-id']) || empty($_SESSION['user-id'])) {
     echo json_encode(['status' => 'error', 'message' => 'User ID not provided.']);
     exit();
+  }
+
+$stmt = $con->prepare("select * from orders where CustomerID = ?");
+$stmt->bind_param("s", $_SESSION['user-id']);
+$stmt->execute();
+$stmt_result = $stmt->get_result();
+
+// Check if there are results 
+if ($stmt_result->num_rows > 0) {
+    while($row = $stmt_result->fetch_assoc()) {
+    // Add each row to orders array
+    $orders[] = $row;
+    }
+
+    foreach($orders as $order) {
+        $stmt = $con->prepare("select * from orderItems where OrderId = ?");
+        $stmt->bind_param("s", $order['OrderId']);
+        $stmt->execute();
+        $stmt_result = $stmt->get_result();
+        $rowItems = $stmt_result->fetch_assoc();
+        $orderItems[] = $rowItems;
+    }
+
+    $data = [
+        "orders" => $orders,
+        "orderItems" => $orderItems
+    ];
+
+    echo json_encode(['status' => 'success', 'data' => $data]);
+}
+else {
+    echo json_encode(['status' => 'error', 'message' => 'No orders.']);
 }
 
 $userId = $_SESSION['user-id'];

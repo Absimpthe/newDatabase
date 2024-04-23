@@ -1,5 +1,5 @@
 body, html {
-    font-family: Arial, sans-serif;
+    font-family: Georgia, serif;
     margin: 0;
     padding: 0;
 }
@@ -7,31 +7,43 @@ body, html {
 header {
     background-color: #936b97;
     color: white;
-    padding: 10px 20px;
     text-align: center;
 }
 
-.nav-links {
-    list-style: none;
-    padding: 0;
+.topnav {
+    background-color: #936b97;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
-
-.nav-links li {
-    display: inline;
-    margin-right: 20px;
-    cursor: pointer;
+    
+    /* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    font-family: Georgia, serif;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    width: 10%;
 }
-
-.nav-links li.active {
-    font-weight: bold;
-    font-size: 1.2rem;
+    
+.topnav a:hover {
+    background-color: #eee4ef;
+    color: #715274;
+}
+    
+    /* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #a884ac;
+    color: white;
 }
 
 .content {
     display: none;
     padding: 20px;
-    margin-top: 20px;
-    background-color: #f4f4f4;
+    margin-top: 5px;
 }
 
 .content.active {
@@ -39,7 +51,7 @@ header {
 }
 
 h1 {
-    color: #333;
+    font-size: 1.95rem;
 }
 
 .order-container {
