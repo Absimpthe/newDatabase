@@ -1,0 +1,56 @@
+.topnav {
+    top:0;
+    position:fixed;
+    width: 100%;
+}
+
+.leftnav {
+    position: fixed;
+    width: 200px;
+    top: 59px;
+    height: 100%;
+    background-color:rgb(191, 200, 240);
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* in case of many links */
+
+
+    a {
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        display: block;
+    }
+
+    a:active {
+        color: #928dbd;
+    }
+}
+
+.main {
+    margin-top: 120px;
+    margin-left: 300px;
+    margin-right: 20px;
+}
+
+img {
+    width:150px;
+}
+
+.menu-container {
+    display:flex;
+    justify-content:flex-start;
+    flex-wrap:wrap;
+}
+
+.menu-item {
+    flex: 0 0 20%; 
+    gap: 10px;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+}

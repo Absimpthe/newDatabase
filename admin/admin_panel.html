@@ -7,23 +7,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nottingham Cafe - Profile</title>
   <link rel="stylesheet" href="admin_panel.css">
-  <script src="censor_details.js" defer></script>
-  <script src="profile.js" defer></script>
+  <script src="/censor_details.js" defer></script>
+  <script src="/profile.js" defer></script>
 </head>
 
 <body>
     <div class="topnav">
-        <!-- 
-            Can view:
-            1. Customer orders
-            2. Customer details
-            3. Driver details
-        -->
         <a class="active">Admin Panel</a>
-        <a href="admin_view_menu.html">View Menu Items</a>
-        <a href="admin_view_orders.html">View Customer Orders</a>
-        <a href="admin_view_customers.html">View Customer Details</a>
-        <a href="admin_view_drivers.html">View Drivers</a>
+        <a href="/admin/view_menu.html">View Menu Items</a>
+        <a href="/admin/view_orders.html">View Customer Orders</a>
+        <a href="/admin/view_customers.html">View Customer Details</a>
+        <a href="/admin/view_drivers.html">View Drivers</a>
     </div>
 
     <div class="heading">
@@ -32,10 +26,10 @@
 
     <div class="container">
         <div class="left-column">
-          <img src="./assets/watermelon.jpg" width=250>
+          <img src="/assets/watermelon.jpg" width=250 class="pfp">
           <h1>My Profile</h1>
           <div class="logout">
-            <a href="logout.php" id="logout-btn">Logout</a>
+            <a href="/logout.php" id="logout-btn">Logout</a>
           </div>
         </div>
     
@@ -98,7 +92,7 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <h1 class="modal-title">Change Username</h1>
-          <form action="update_username.php" method="post" class="update-username-form">
+          <form action="/update_username.php" method="post" class="update-username-form">
             <input type="text" name="update-username" class="form-input" id="update-username" placeholder="Username">
             <input class="form-input" id="submit-btn" type="submit" value="Save changes">
           </form>
@@ -112,7 +106,7 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <h1 class="modal-title">Change Password</h1>
-          <form action="update_password.php" method="post" class="update-password-form">
+          <form action="/update_password.php" method="post" class="update-password-form">
             <input type="password" name="current-password" class="form-input" id="current-password" placeholder="Enter current password">
             <input type="password" name="update-password" class="form-input" id="update-password" placeholder="Password">
             <input class="form-input" id="submit-btn" type="submit" value="Save changes">
@@ -127,7 +121,7 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <h1 class="modal-title">Change Email Address</h1>
-          <form action="update_email.php" method="post" class="update-email-form">
+          <form action="/update_email.php" method="post" class="update-email-form">
             <input type="email" name="update-email" class="form-input" id="update-email" placeholder="Email address">
             <input class="form-input" id="submit-btn" type="submit" value="Save changes">
           </form>
@@ -141,7 +135,7 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <h1 class="modal-title">Change Home Address</h1>
-          <form action="update_address.php" method="post" class="update-address-form">
+          <form action="/update_address.php" method="post" class="update-address-form">
             <input type="text" name="update-address" class="form-input" id="update-address" placeholder="Home address">
             <input class="form-input" id="submit-btn" type="submit" value="Save changes">
           </form>
@@ -155,7 +149,7 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <h1 class="modal-title">Change Home Address</h1>
-          <form action="update_phone_no.php" method="post" class="update-phone-no-form">
+          <form action="/update_phone_no.php" method="post" class="update-phone-no-form">
             <input type="number" name="update-phone-no" class="form-input" id="update-phone-no" placeholder="Phone number">
             <input class="form-input" id="submit-btn" type="submit" value="Save changes">
           </form>
@@ -165,7 +159,7 @@
       </div>
         
       <script>
-        fetch('account_details.php')
+        fetch('/account_details.php')
                 .then(response => response.json())
                 .then(data => {
                   if (!data.error) {

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <link rel="stylesheet" href="admin_panel.css">
+    <link rel="stylesheet" href="view_menu.css"> 
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="/admin/admin_panel.html">Admin Panel</a>
+        <a class="active">View Menu Items</a>
+        <a href="/admin/view_orders.html">View Customer Orders</a>
+        <a href="/admin/view_customers.html">View Customer Details</a>
+        <a href="/admin/view_drivers.html">View Drivers</a>
+    </div>
+
+    <div class="leftnav">
+        <a href="#appetizer-title">Appetizers</a><br>
+        <a href="#main-course-title">Main Course</a><br>
+        <a href="#dessert-title">Desserts</a><br>
+        <a href="#beverages-title">Beverages</a><br>
+    </div>
+
+    <div class="main" id="main">
+        <h2 id="appetizer-title">Appetizers</h2>
+        <section id="appetizers" class="menu-section">
+            
+            <div id="appetizers-container" class="menu-container" data-category="1"></div>
+            
+        </section>
+        <h2 id="main-course-title">Main Courses</h2>
+        <section id="main-courses" class="menu-section">
+            
+            <div id="main-courses-container" class="menu-container" data-category="2"></div>
+            
+        </section>
+        <h2 id="dessert-title">Desserts</h2>
+        <section id="desserts" class="menu-section">
+            
+            <div id="desserts-container" class="menu-container" data-category="3"></div>
+            
+        </section>
+        <h2 id="beverages-title">Beverages</h2>
+        <section id="beverages" class="menu-section">
+            
+            <div id="beverages-container" class="menu-container" data-category="4"></div>
+            
+        </section>
+    </div>
+
+    <script>
+        fetch('/menuphp.php')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(item => {
+                    // Find the container that matches the category ID of the item
+                    const container = document.querySelector(`.menu-container[data-category="${item.CategoryID}"]`);
+                    
+                    if(container) {
+                        const div = document.createElement('div');
+                        div.className = 'menu-item';
+                        div.innerHTML = `<img src="/${item.ItemImage}" alt="${item.ItemName}">
+                        <h3>${item.ItemName}</h3>
+                        <p>RM${item.Price}</p>
+                        <input type="number" id="stock" name="quantity" min="0">`;
+                        container.appendChild(div);
+                    }
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>

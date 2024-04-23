@@ -14,6 +14,8 @@ body {
   }
 
 .topnav {
+    display:flex;
+    flex: 75%;
     background-color: rgb(148, 160, 216);
     overflow: hidden;
     display: flex;
@@ -63,7 +65,7 @@ body {
     color: #2d2953;
   }
   
-  img {
+  .pfp {
     border-radius: 50%;
     border: 5px solid #342f35;
   }
