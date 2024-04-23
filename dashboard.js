@@ -61,7 +61,7 @@ function displayOrders(data, status) {
 
         let metadataHTML = `
             <div class="order-metadata">
-                <h2>Order ID: ${order.OrderID}</h2>
+                <h3>Order ID: ${order.OrderID}</h3>
                 <p>Date: ${order.Date}</p>
                 <p>Total Price: $${order.TotalPrice}</p>
                 <p>Order Status: ${order.OrderStatus}</p>
@@ -72,6 +72,7 @@ function displayOrders(data, status) {
 
         let itemsContainerHTML = `
             <div class="order-items">
+                <h3>Items:</h3>
                 <ul>${itemsHTML}</ul>
             </div>
         `;
