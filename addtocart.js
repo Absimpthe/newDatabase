@@ -7,14 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const itemName = event.target.getAttribute('data-itemname');
             const itemPrice = parseFloat(event.target.getAttribute('data-itemprice')); // Convert price to a float
             addToCart(itemCode, itemName, itemPrice);
-            var warningMessage = document.getElementById('pop-up');
-            warningMessage.classList.remove('hidden');
-            warningMessage.classList.add('visible');
-
-            setTimeout(function() {
-                warningMessage.classList.remove('visible');
-                warningMessage.classList.add('hidden');
-            }, 3000); // Message will hide after 3000 milliseconds (3 seconds)
         }
     });
 });

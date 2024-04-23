@@ -11,8 +11,7 @@ $stmt_result = $stmt->get_result();
 
 // get today's date
 $date = date('Y-m-d');
-$orderstatus = "Confirmed";
-$paymentstatus = "Pending";
+$status = "Pending";
 
 if ($stmt_result->num_rows > 0) {
     
@@ -22,7 +21,7 @@ if ($stmt_result->num_rows > 0) {
 
             // Update orders table
             $add_order = $con->prepare("INSERT INTO orders (CustomerID, TotalPrice, Date, OrderStatus, PaymentStatus) VALUES (?, ?, ?, ?, ?)");
-            $add_order->bind_param("idsss", $_SESSION['user-id'], $_SESSION['Total'], $date, $orderstatus, $paymentstatus);
+            $add_order->bind_param("idsss", $_SESSION['user-id'], $_SESSION['Total'], $date, $status, $status);
             $add_order->execute();
 
             //
@@ -35,18 +34,11 @@ if ($stmt_result->num_rows > 0) {
                 $find_item->execute();
                 $find_item_result = $find_item->get_result();
                 $item_code = $find_item_result->fetch_assoc();
-            
-                // Calculate the subtotal for the current item
-                $subtotalPrice = $item['price'] * $item['quantity'];
-            
-                // Prepare and execute the insertion of the order item
+
                 $add_order_items = $con->prepare("INSERT INTO orderitems (orderID, ItemCode, ItemQuantity, SubtotalPrice) VALUES (?, ?, ?, ?)");
-                $add_order_items->bind_param("isid", $last_id, $item_code['ItemCode'], $item['quantity'], $subtotalPrice);
+                $add_order_items->bind_param("isid", $last_id, $item_code['ItemCode'], $item['quantity'], $item['price']);
                 $add_order_items->execute();
             }
-            
-            // Clear the cart
-            $_SESSION['cart'] = [];
 
             echo json_encode(['status' => 'success']);
             exit();

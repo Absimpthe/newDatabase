@@ -5,8 +5,8 @@ body {
 }
 
 h1 {
-  margin-left: 20px;
-  margin-top: 50px;
+margin-left: 20px;
+margin-top: 50px;
 }
 
 .order-container {
@@ -33,7 +33,7 @@ h1 {
   display: flex;
   justify-content: center;
 }
-  
+
   /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
@@ -45,18 +45,17 @@ h1 {
   font-size: 17px;
   width: 10%;
 }
-  
+
 .topnav a:hover {
   background-color: #eee4ef;
   color: #715274;
 }
-  
-  /* Add a color to the active/current link */
+
 .topnav a.active {
   background-color: #a884ac;
   color: white;
 }
-    
+
 h2 {
   font-size: 1.2rem;
   text-align: left;
