@@ -8,20 +8,30 @@ require_once 'db_connect.php';
 $inputJSON = file_get_contents('php://input');
 $input = json_decode($inputJSON, TRUE); // Convert JSON to array
 
-if (!isset($input['orderID']) || trim($input['orderID']) == '') {
-    echo json_encode(['status' => 'error', 'message' => 'Order ID is missing']);
+// Check for necessary data
+if (!isset($input['orderID']) || trim($input['orderID']) == '' || 
+    !isset($input['newStatus']) || trim($input['newStatus']) == '') {
+    echo json_encode(['status' => 'error', 'message' => 'Required data is missing']);
     exit;
 }
 
 $orderID = $input['orderID'];
+$newStatus = $input['newStatus'];
 
-// Prepare an update statement to change the order status to "In Progress"
-$stmt = $con->prepare("UPDATE orders SET OrderStatus = 'In Progress' WHERE OrderID = ?");
-$stmt->bind_param("i", $orderID);
+// Validate the new status
+$allowedStatuses = ['In Progress', 'Completed'];
+if (!in_array($newStatus, $allowedStatuses)) {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid status provided']);
+    exit;
+}
+
+// Prepare an update statement to change the order status based on the input
+$stmt = $con->prepare("UPDATE orders SET OrderStatus = ? WHERE OrderID = ?");
+$stmt->bind_param("si", $newStatus, $orderID);
 
 // Execute the statement
 if ($stmt->execute()) {
-    echo json_encode(['status' => 'success', 'message' => 'Order status updated to In Progress']);
+    echo json_encode(['status' => 'success', 'message' => 'Order status updated to ' . $newStatus]);
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Failed to update order status']);
 }
