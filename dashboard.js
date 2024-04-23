@@ -92,6 +92,10 @@ function displayOrders(data, status) {
             const acceptBtn = orderContainer.querySelector('.accept-btn');
             acceptBtn.addEventListener('click', () => handleAcceptOrder(order.OrderID));
         }
+        if (status === "accepted") {
+            const deliveredBtn = orderContainer.querySelector('.mark-as-delivered-btn');
+            deliveredBtn.addEventListener('click', () => handleDeliveredOrder(order.OrderID));
+        }
     });
 }
 
