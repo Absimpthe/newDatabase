@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     function fetchOrders() {
-        fetch('show_orders.php', {
-            method: 'GET'
-        })
+        fetch('show_orders.php', { method: 'GET' })
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {

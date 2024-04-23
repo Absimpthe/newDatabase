@@ -113,7 +113,7 @@ CREATE TABLE `orders` (
   `CustomerID` int(10) UNSIGNED NOT NULL,
   `TotalPrice` decimal(5,2) UNSIGNED NOT NULL,
   `Date` date NOT NULL,
-  `OrderStatus` enum('Pending','Confirmed','Cancelled','Completed') NOT NULL,
+  `OrderStatus` enum('In Progress','Confirmed','Cancelled','Completed') NOT NULL,
   `PaymentStatus` enum('Pending','Completed') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 --
