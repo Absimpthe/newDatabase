@@ -23,14 +23,12 @@ if ($stmt_result->num_rows > 0) {
     }
 
     foreach($orders as $order) {
-        $stmt = $con->prepare("select * from orderitems where OrderID = ?");
-        $stmt->bind_param("i", $order['OrderID']);
+        $stmt = $con->prepare("select * from orderItems where OrderId = ?");
+        $stmt->bind_param("s", $order['OrderId']);
         $stmt->execute();
         $stmt_result = $stmt->get_result();
-        while($rowItems = $stmt_result->fetch_assoc()) {
-            $orderItems[] = $rowItems;
-        }
-        
+        $rowItems = $stmt_result->fetch_assoc();
+        $orderItems[] = $rowItems;
     }
 
     $data = [

@@ -5,10 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.status === 'success') {
                 data.data.orders.forEach(order => {
-                    // finds all order items items that match the orderID
-                    let items = data.data.orderItems.filter(items => items.OrderID === order.OrderID);
+                    orderID = order.OrderID;
                     updateOrderDisplay(order);
-                    updateOrderItemsDisplay(items);
                 });
                 
             } else {
@@ -19,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateOrderDisplay(order) {
-        const leftColumn = document.querySelector('#left-column');
+        const leftContainer = document.querySelector('#left-column');
 
         const column = document.createElement('div');
         column.className = 'order-details';
@@ -59,33 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
         column.appendChild(paymentStatusTitle);
         column.appendChild(paymentStatus);
 
-        leftColumn.appendChild(column);    
+        leftContainer.appendChild(column);    
     }
-
-    function updateOrderItemsDisplay(items) {
-        const rightColumn = document.querySelector('#right-column');
-        items.forEach(item => {
     
-            const orderItemsDetails = document.createElement('div');
-            orderItemsDetails.className = 'order-items-details';
-
-            const itemNameTitle = document.createElement('h2');
-            itemNameTitle.textContent = 'Item Name';
-            const itemName = document.createElement('p');
-            itemName.textContent = item.ItemCode;
-            orderItemsDetails.appendChild(itemNameTitle);
-            orderItemsDetails.appendChild(itemName);
-
-            const itemQuantityTitle = document.createElement('h2');
-            itemQuantityTitle.textContent = 'Quantity';
-            const itemQuantity = document.createElement('p');
-            itemQuantity.textContent = item.ItemQuantity;
-            orderItemsDetails.appendChild(itemQuantityTitle);
-            orderItemsDetails.appendChild(itemQuantity);
-
-            rightColumn.appendChild(orderItemsDetails);
-        });
-        
-    }
     fetchOrders();
 });
