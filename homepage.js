@@ -121,21 +121,19 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             console.log(data);
             if (data.status === "success") {
-                window.location.href="menu.html";
-                // user logins and can use the menu
+                if (data.userType === 'Driver') {
+                    window.location.href = 'dashboard.html'; // Assuming you have an HTML file for drivers
+                } else {
+                    window.location.href = 'main.html'; // Assuming you have an HTML file for customers
+                }
             }
             else {
-                document.getElementById('login-error').innerText = data.message;
-                sectionShow.style.display = 'block';
-                sectionHide.style.display = 'none';  
-                // if user details are incorrect
+                
             }
     
         })
         .catch((error) => {
             console.error('Error:', error);
-            document.getElementById('login-error').innerText = "An unexpected error occurred. Please try again.";
-            // Handle errors
         });
     }
 });
