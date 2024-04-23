@@ -58,14 +58,15 @@
                 data.forEach(item => {
                     // Find the container that matches the category ID of the item
                     const container = document.querySelector(`.menu-container[data-category="${item.CategoryID}"]`);
-                    
                     if(container) {
                         const div = document.createElement('div');
                         div.className = 'menu-item';
                         div.innerHTML = `<img src="/${item.ItemImage}" alt="${item.ItemName}">
                         <h3>${item.ItemName}</h3>
                         <p>RM${item.Price}</p>
-                        <input type="number" id="stock" name="quantity" min="0">`;
+                        <p>Availability: 
+                            <input type="number" id="stock" name="quantity" min="0" max="1" value="${item.Availability}">
+                        </p> `;
                         container.appendChild(div);
                     }
                 });
