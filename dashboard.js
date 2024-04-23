@@ -23,21 +23,20 @@ function setActiveTab(tab) {
         acceptedTab.classList.add('active');
         unfulfilledTab.classList.remove('active');
     }
+    fetchOrders(tab);
 }
 
-// Initially show unfulfilled orders
-setActiveTab('unfulfilled');
-
 document.addEventListener('DOMContentLoaded', function() {
-    fetchOrders();
+    setActiveTab('unfulfilled'); // Automatically fetches the orders too
 });
 
-function fetchOrders() {
-    fetch('unfulfilled_orders.php')  // Replace with the actual URL of your PHP script
+function fetchOrders(status) {
+    let url = `${status}_orders.php`;  // Dynamic URL based on order status
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                displayOrders(data.data);
+                displayOrders(data.data, status);
             } else {
                 console.error('Failed to fetch orders:', data.message);
             }
@@ -45,25 +44,21 @@ function fetchOrders() {
         .catch(error => console.error('Error fetching orders:', error));
 }
 
-function displayOrders(data) {
-    const ordersContainer = document.getElementById('ordersContainer');
+function displayOrders(data, status) {
+    let ordersContainer = document.getElementById(`${status}-ordersContainer`); // Dynamic container based on status
 
-    // Check if the data array is empty
     if (!data.length) {
-        ordersContainer.innerHTML = '<p>No confirmed orders found.</p>';
+        ordersContainer.innerHTML = `<p>No ${status} orders found.</p>`;
         return;
     }
 
-    // Clear previous contents
     ordersContainer.innerHTML = '';
 
     data.forEach(order => {
-        // Generate HTML for items
         let itemsHTML = order.Items.map(item => `
             <li>${item.ItemCode} - Quantity: ${item.ItemQuantity}, Subtotal: $${item.SubtotalPrice}</li>
         `).join('');
 
-        // Create container for order metadata
         let metadataHTML = `
             <div class="order-metadata">
                 <h2>Order ID: ${order.OrderID}</h2>
@@ -74,37 +69,29 @@ function displayOrders(data) {
             </div>
         `;
 
-        // Create container for order items
         let itemsContainerHTML = `
             <div class="order-items">
-                <h2>Items:</h2>
                 <ul>${itemsHTML}</ul>
             </div>
         `;
 
-        // Combine metadata and items in the main order container
-        let orderHTML = `
-            <div class="order">
-                ${metadataHTML}
-                ${itemsContainerHTML}
-                <div class="button-container"><button class="accept-btn">Accept Order</button></div>
-            </div>
-        `;
+        let orderHTML = `${metadataHTML}${itemsContainerHTML}`;
+        if (status === "unfulfilled") {
+            orderHTML += `<div class="button-container"><button class="accept-btn">Accept Order</button></div>`;
+        }
+        if (status === "accepted") {
+            orderHTML += `<div class="button-container"><button class="mark-as-delivered-btn">Mark as Delivered</button></div>`
+        }
 
-        // Create a new container for each order
         let orderContainer = document.createElement('div');
         orderContainer.className = 'order-container';
         orderContainer.innerHTML = orderHTML;
-
-        // Append the new order container to the main container
         ordersContainer.appendChild(orderContainer);
 
-        // Add event listener for button click
-        const acceptBtn = orderContainer.querySelector('.accept-btn');
-        acceptBtn.addEventListener('click', () => {
-            // Call a function to handle accepting the order
-            handleAcceptOrder(order.OrderID);
-        });
+        if (status === "unfulfilled") {
+            const acceptBtn = orderContainer.querySelector('.accept-btn');
+            acceptBtn.addEventListener('click', () => handleAcceptOrder(order.OrderID));
+        }
     });
 }
 
