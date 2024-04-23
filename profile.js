@@ -20,7 +20,7 @@ updateUsernameForm.addEventListener("submit", function(e) {
     // Prevent the default form submission
     e.preventDefault();
 
-    sendData(updateUsernameForm, "update_username.php", "username-modal");
+    sendData(updateUsernameForm, "update_username.php", "username-modal", 0);
     
 });
 
@@ -46,7 +46,7 @@ updatePasswordForm.addEventListener("submit", function(e) {
     // Prevent the default form submission
     e.preventDefault();
 
-    sendData(updatePasswordForm, "update_password.php", "password-modal"); 
+    sendData(updatePasswordForm, "update_password.php", "password-modal", 1); 
 });
 
 /* --- email modal --- */
@@ -71,7 +71,7 @@ updateEmailForm.addEventListener("submit", function(e) {
     // Prevent the default form submission
     e.preventDefault();
 
-    sendData(updateEmailForm, "update_email.php", "email-modal"); 
+    sendData(updateEmailForm, "update_email.php", "email-modal", 2); 
 });
 
 /* --- home address modal --- */
@@ -96,7 +96,7 @@ updateAddressForm.addEventListener("submit", function(e) {
     // Prevent the default form submission
     e.preventDefault();
 
-    sendData(updateAddressForm, "update_address.php", "address-modal"); 
+    sendData(updateAddressForm, "update_address.php", "address-modal", 3); 
 });
 
 /* --- phone number modal --- */
@@ -121,12 +121,12 @@ updatePhoneNoForm.addEventListener("submit", function(e) {
     // Prevent the default form submission
     e.preventDefault();
 
-    sendData(updatePhoneNoForm, "update_phone_no.php", "phone-no-modal"); 
+    sendData(updatePhoneNoForm, "update_phone_no.php", "phone-no-modal", 4); 
 });
 
 /* --- end of modals --- */
 
-function sendData(form, file, modal) {
+function sendData(form, file, modal, number) {
     var formData = new FormData(form);
     var showModal = document.getElementById(modal);
     
@@ -145,7 +145,7 @@ function sendData(form, file, modal) {
             // user successfully updates account detail(s)
         }
         else {
-            document.getElementById('login-error').innerText = data.message;
+            document.getElementsByClassName('login-error')[number].innerText = data.message;
             showModal.style.display = 'block';  
             // if there is error in updating
         }
@@ -153,7 +153,7 @@ function sendData(form, file, modal) {
     })
     .catch((error) => {
         console.error('Error:', error);
-        document.getElementById('login-error').innerText = "An unexpected error occurred. Please try again.";
+        document.getElementsByClassName('login-error')[number].innerText = "An unexpected error occurred. Please try again.";
         // Handle errors
     });
 }

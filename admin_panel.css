@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .main-body {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0;
+    font-family: Georgia, serif;
+    font-size: 1.2rem;
+    overflow-y: hidden; 
+  }
+
+.topnav {
+    background-color: rgb(148, 160, 216);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    font-family: Georgia, serif;
+    text-align: center;
+    padding: 20px 20px;
+    text-decoration: none;
+    font-size: 17px;
+    width: 20%;
+    display: block;
+  }
+    
+  .topnav a:hover {
+    background-color: #bdb9ef;
+    color: #2d2953;
+  }
+    
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: #2d2953;
+    color: white;
+  }
+  
+.heading {
+    padding: 50px;
+    color:#2d2953;
+    text-align: left;
+    font-size: 2.5em;
+    background-color: rgb(148, 160, 216);
+}
+
+.details {
+    margin-top: 20px;
+    margin-left: 50px;
+}
