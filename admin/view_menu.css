@@ -15,19 +15,24 @@
     overflow-y: auto; /* in case of many links */
 
 
-    a {
+    .nav {
         text-decoration: none;
         font-size: 20px;
         font-weight: bold;
-        padding: 20px;
+        padding: 20px 20px;
         margin-top: 10px;
         margin-bottom: 10px;
         text-align: center;
         display: block;
     }
 
-    a:active {
+    .nav:active {
         color: #928dbd;
+    }
+
+    .nav:hover {
+        background-color: rgb(225, 229, 250);
+        color: #484567;
     }
 }
 
@@ -38,7 +43,9 @@
 }
 
 img {
-    width:150px;
+    width:200px;
+    border-width: 5px;
+    border-color: #342f35;
 }
 
 .menu-container {
@@ -48,10 +55,10 @@ img {
 }
 
 .menu-item {
-    flex: 0 0 20%; 
+    flex: 0 0 30%; 
     gap: 10px;
     padding: 20px;
-    text-align: center;
+    text-align: left;
     box-sizing: border-box;
 }
 
@@ -67,9 +74,37 @@ img {
     border-width: 0px;
     border-radius: 5px;
     font-family: Georgia, serif;
+    border-width: 3px;
+    border-color: #342f35;
 }
 
 .button:hover {
     cursor: pointer;
     background-color: rgb(118, 132, 191);
+}
+
+#name {
+    width: 55%;
+}
+
+#price {
+    width: 45%;
+}
+
+.add-item {
+    color: rgb(132, 58, 58);
+    background-color: rgb(191, 200, 240);
+    text-align: center;
+    font-size: 20px;
+    padding: 20px 20px;
+    width: 200px;
+    display: block;
+    font-family: Georgia, serif;
+    border: none; 
+    cursor: pointer; 
+}
+
+.add-item:hover {
+    color: rgb(132, 58, 58);
+    background-color:rgb(239, 161, 161);
 }
