@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 require_once 'db_connect.php'; // connect to database
 
-$sql = "SELECT ItemCode, ItemName, Price, CategoryID, ItemImage FROM items";
+$sql = "SELECT * FROM items";
 $result = $con->query($sql);
 
 // Array to hold the menu items
