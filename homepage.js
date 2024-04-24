@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Validate the form
         if (validateForm()) {
             // If validation passes, send the data to the server
-            sendData(signUpForm, "signup.php", signUpSection, loginSection);
+            sendData(signUpForm, "signup.php", signUpSection, loginSection, 0);
         }
     });
 
     loginForm.addEventListener("submit", function(e) {
         e.preventDefault();
-        sendData(loginForm, "login.php", loginSection, signUpSection);
+        sendData(loginForm, "login.php", loginSection, signUpSection, 1);
 
     });
 
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return re.test(email);
     }
 
-    function sendData(form, file, sectionShow, sectionHide) {
+    function sendData(form, file, sectionShow, sectionHide, number) {
         var formData = new FormData(form);
         
         fetch(file, {
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // user logins and can use the menu
             }
             else {
-                document.getElementById('login-error').innerText = data.message;
+                document.getElementsByClass('login-error')[number].innerText = data.message;
                 sectionShow.style.display = 'block';
                 sectionHide.style.display = 'none';  
                 // if user details are incorrect
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch((error) => {
             console.error('Error:', error);
-            document.getElementById('login-error').innerText = "An unexpected error occurred. Please try again.";
+            document.getElementsByClass('login-error')[number].innerText = "An unexpected error occurred. Please try again.";
             // Handle errors
         });
     }

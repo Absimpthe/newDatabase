@@ -51,6 +51,10 @@
         </section>
     </div>
 
+    <div>
+        <button class="button">Save changes</button>
+    </div>
+
     <script>
         fetch('/menuphp.php')
             .then(response => response.json())
@@ -65,8 +69,9 @@
                         <h3>${item.ItemName}</h3>
                         <p>RM${item.Price}</p>
                         <p>Availability: 
-                            <input type="number" id="stock" name="quantity" min="0" max="1" value="${item.Availability}">
-                        </p> `;
+                            <input type="number" id="stock" name="quantity" min="0" max="1", value=${item.Availability}>
+                        </p>`;
+                        
                         container.appendChild(div);
                     }
                 });
