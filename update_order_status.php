@@ -25,15 +25,22 @@ if (!in_array($newStatus, $allowedStatuses)) {
     exit;
 }
 
-// Prepare an update statement to change the order status based on the input
-$stmt = $con->prepare("UPDATE orders SET OrderStatus = ? WHERE OrderID = ?");
-$stmt->bind_param("si", $newStatus, $orderID);
+// Prepare an update statement to change the order status and payment status based on the input
+if ($newStatus === 'Completed') {
+    $paymentStatus = 'Completed';
+    $stmt = $con->prepare("UPDATE orders SET OrderStatus = ?, PaymentStatus = ? WHERE OrderID = ?");
+    $stmt->bind_param("ssi", $newStatus, $paymentStatus, $orderID);
+} else {
+    // If not completed, do not update PaymentStatus
+    $stmt = $con->prepare("UPDATE orders SET OrderStatus = ? WHERE OrderID = ?");
+    $stmt->bind_param("si", $newStatus, $orderID);
+}
 
 // Execute the statement
 if ($stmt->execute()) {
-    echo json_encode(['status' => 'success', 'message' => 'Order status updated to ' . $newStatus]);
+    echo json_encode(['status' => 'success', 'message' => 'Order status and payment status updated to ' . $newStatus]);
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'Failed to update order status']);
+    echo json_encode(['status' => 'error', 'message' => 'Failed to update order and payment status']);
 }
 
 // Close the statement and connection

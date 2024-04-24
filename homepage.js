@@ -121,8 +121,11 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             console.log(data);
             if (data.status === "success") {
-                window.location.href="menu.html";
-                // user logins and can use the menu
+                if (data.userType === 'Driver') {
+                    window.location.href = 'dashboard.html'; // Assuming you have an HTML file for drivers
+                } else {
+                    window.location.href = 'main.html'; // Assuming you have an HTML file for customers
+                }
             }
             else {
                 document.getElementsByClass('login-error')[number].innerText = data.message;
@@ -137,5 +140,37 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementsByClass('login-error')[number].innerText = "An unexpected error occurred. Please try again.";
             // Handle errors
         });
+    }
+
+    function showErrorPopup(message) {
+        const popup = document.createElement('div');
+        popup.setAttribute('id', 'errorPopup');
+        popup.style.position = 'fixed';
+        popup.style.left = '50%';
+        popup.style.top = '50%';
+        popup.style.transform = 'translate(-50%, -50%)';
+        popup.style.padding = '20px';
+        popup.style.color = 'white';
+        popup.style.background = '#d485c6';
+        popup.style.zIndex = '1000';
+        popup.style.borderRadius = '8px';
+        popup.style.transition = 'opacity 0.5s ease';
+
+        popup.style.opacity = '1'; // Start fully visible
+        const messageText = document.createTextNode(message);
+        popup.appendChild(messageText);
+
+        document.body.appendChild(popup);
+
+        // Fade out after 3 seconds
+        setTimeout(() => {
+            popup.style.opacity = '0';
+            // Remove from DOM after transition
+            setTimeout(() => {
+                if (popup.parentNode) {
+                    popup.parentNode.removeChild(popup);
+                }
+            }, 500); // Matches the transition time
+        }, 3000); 
     }
 });

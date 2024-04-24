@@ -2,10 +2,12 @@
 session_start();
 header('Content-Type: application/json');
 
-require_once 'db_connect.php'; 
+require_once 'db_connect.php';
 
-// Prepare statement for fetching orders
-$stmtOrders = $con->prepare("SELECT * FROM orders WHERE OrderStatus = ?");
+// Prepare statement for fetching orders along with customer addresses
+$stmtOrders = $con->prepare("SELECT orders.*, customers.Address FROM orders
+                             JOIN customers ON orders.CustomerId = customers.CustomerId
+                             WHERE OrderStatus = ?");
 $confirmedStatus = 'In Progress';
 $stmtOrders->bind_param("s", $confirmedStatus);
 $stmtOrders->execute();
@@ -13,11 +15,10 @@ $stmt_resultOrders = $stmtOrders->get_result();
 
 $orders = [];
 
-// Check if there are results 
+// Check if there are results
 if ($stmt_resultOrders->num_rows > 0) {
     while($order = $stmt_resultOrders->fetch_assoc()) {
-        // Use the correct field name for the order ID
-        $orderID = $order['OrderID'];  // Assuming 'OrderID' is the correct column name
+        $orderID = $order['OrderID'];
 
         // Prepare statement for fetching items for this specific order
         $stmtItems = $con->prepare("SELECT * FROM orderItems WHERE OrderId = ?");
@@ -31,12 +32,8 @@ if ($stmt_resultOrders->num_rows > 0) {
             $items[] = $item;
         }
 
-        // Add items array to the order only if items are found
-        if (!empty($items)) {
-            $order['Items'] = $items;
-        } else {
-            $order['Items'] = [];  // Ensure 'Items' is an empty array if no items found
-        }
+        // Add items array to the order
+        $order['Items'] = $items;
 
         // Add order to orders array
         $orders[] = $order;
