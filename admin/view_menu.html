@@ -104,13 +104,14 @@
                         const div = document.createElement('div');
                         div.className = 'menu-item';
                         div.innerHTML = `
-                        <h3 id="item-code">${item.ItemCode}</h3>
+                        <h3>${item.ItemCode}</h3>
+                        <input type="hidden" class="item-code" name="code" value="${item.ItemCode}">
                         <img src="/${item.ItemImage}" alt="${item.ItemName}">
                         <p>Name: 
-                            <input type="text" id="item-name" name="item-name", value="${item.ItemName}">
+                            <input type="text" class="item-name" name="item-name", value="${item.ItemName}">
                         </p>
                         <p> Price:
-                            RM <input type="number" id="item-price" name="price" inputmode="decimal" pattern="^\d+(\.\d{1,2})?$" min="0" value="${item.Price}"">
+                            RM <input type="number" class="item-price" name="price" inputmode="decimal" pattern="^\d+(\.\d{1,2})?$" min="0" value="${item.Price}"">
                         </p>
                         <p>Availability: 
                             <select id="stock" class="stock">
