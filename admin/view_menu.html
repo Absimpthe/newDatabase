@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="admin_panel.css">
     <link rel="stylesheet" href="view_menu.css"> 
     <script src="add_new_item.js" defer></script>
+    <script src="update_item_details.js" defer></script>
 </head>
 
 <body>
@@ -54,7 +55,7 @@
     </div>
 
     <div>
-        <button class="button">Save changes</button>
+        <button id="save-btn" class="save-btn">Save changes</button>
     </div>
 
     <!-- Modal to add new item -->
@@ -103,16 +104,16 @@
                         const div = document.createElement('div');
                         div.className = 'menu-item';
                         div.innerHTML = `
-                        <h3>${item.ItemCode}</h3>
+                        <h3 id="item-code">${item.ItemCode}</h3>
                         <img src="/${item.ItemImage}" alt="${item.ItemName}">
                         <p>Name: 
-                            <input type="text" id="name" name="item-name", value="${item.ItemName}">
+                            <input type="text" id="item-name" name="item-name", value="${item.ItemName}">
                         </p>
                         <p> Price:
-                            RM <input type="number" id="price" name="price" inputmode="decimal" pattern="^\d+(\.\d{1,2})?$" min="0" value="${item.Price}"">
+                            RM <input type="number" id="item-price" name="price" inputmode="decimal" pattern="^\d+(\.\d{1,2})?$" min="0" value="${item.Price}"">
                         </p>
                         <p>Availability: 
-                            <select class="stock">
+                            <select id="stock" class="stock">
                                 <option value="0">Out Of Stock</option>
                                 <option value="1">Available</option>
                             </select>
