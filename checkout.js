@@ -1,18 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     function getAccountDetails() {
     fetch('account_details.php')
-            .then(response => response.json())
-            .then(data => {
-              if (!data.error) {
-                // If there is no error, display the user details
-                document.getElementById('address').value = data.Address;
-                document.getElementById('phone-no').value = data.PhoneNumber;
-              } 
-              else {
-                // Handle error (e.g., user not found)
-                console.error(data.error);
-              } 
-            })
+        .then(response => response.json())
+        .then(data => {
+          if (!data.error) {
+            // If there is no error, display the user details
+            document.getElementById('address').value = data.Address;
+            document.getElementById('phone-no').value = data.PhoneNumber;
+          } 
+          else {
+            // Handle error (e.g., user not found)
+            console.error(data.error);
+          } 
+        })
     .catch(error => console.error('Error:', value));
     }
 

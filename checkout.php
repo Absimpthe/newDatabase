@@ -9,6 +9,13 @@ $stmt->bind_param("s", $_SESSION['user-id']);
 $stmt->execute();
 $stmt_result = $stmt->get_result();
 
+// Fetch the address from POST data and validate it
+$address = isset($_POST['address']) ? $_POST['address'] : null;
+if (empty($address)) {
+    echo json_encode(['status' => 'error', 'message' => 'Address is missing']);
+    exit();
+}
+
 // get today's date
 $date = date('Y-m-d');
 $orderstatus = "Confirmed";
@@ -21,8 +28,8 @@ if ($stmt_result->num_rows > 0) {
         if (!empty($_SESSION['cart'])) {
 
             // Update orders table
-            $add_order = $con->prepare("INSERT INTO orders (CustomerID, TotalPrice, Date, OrderStatus, PaymentStatus) VALUES (?, ?, ?, ?, ?)");
-            $add_order->bind_param("idsss", $_SESSION['user-id'], $_SESSION['Total'], $date, $orderstatus, $paymentstatus);
+            $add_order = $con->prepare("INSERT INTO orders (CustomerID, Address, TotalPrice, Date, OrderStatus, PaymentStatus) VALUES (?, ?, ?, ?, ?, ?)");
+            $add_order->bind_param("isdsss", $_SESSION['user-id'], $address, $_SESSION['Total'], $date, $orderstatus, $paymentstatus);
             $add_order->execute();
 
             //

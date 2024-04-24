@@ -5,12 +5,7 @@ header('Content-Type: application/json');
 require_once 'db_connect.php'; 
 
 // Prepare statement for fetching orders with customer address
-$stmtOrders = $con->prepare("
-    SELECT o.*, c.Address 
-    FROM orders o 
-    JOIN customers c ON o.CustomerID = c.CustomerID
-    WHERE o.OrderStatus = ?
-");
+$stmtOrders = $con->prepare("SELECT * FROM orders WHERE OrderStatus = ?");
 
 $confirmedStatus = 'Confirmed';
 $stmtOrders->bind_param("s", $confirmedStatus);

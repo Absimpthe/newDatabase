@@ -111,6 +111,7 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `OrderID` int(20) UNSIGNED NOT NULL,
   `CustomerID` int(10) UNSIGNED NOT NULL,
+  `Address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `TotalPrice` decimal(5,2) UNSIGNED NOT NULL,
   `Date` date NOT NULL,
   `OrderStatus` enum('In Progress','Confirmed','Cancelled','Completed') NOT NULL,

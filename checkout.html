@@ -19,26 +19,24 @@
         <div class="left-column">
           <h1>Checkout</h1>
           <hr class="divider">
-          <form class="place-order-form">
+          <form class="place-order-form" action="checkout.php" method="POST">
             <h2>Delivery Address</h2>
-            <p id="delivery-address"></p>
-            <input type="text" name="delivery-address" class="address" id="address" placeholder="Address" required>
+            <!-- Removed the <p> tag for delivery address since it's not needed for submission -->
+            <input type="text" name="address" id="address" class="address" placeholder="Address" required>
+        
             <h2>Payment Option</h2>
             <select id="payment" name="payment">
                 <option value="cash">Cash on delivery</option>
             </select>
-
-            <hr class="divider">
-
+        
             <h2>Contact Information</h2>
-            <input type="text" name="phone-no" class="phone-no" id="phone-no" placeholder="Phone Number" required>
-
+            <input type="text" name="phone-no" id="phone-no" class="phone-no" placeholder="Phone Number" required>
+        
             <p>Order details will be sent to your email address.</p>
-
-            <input class="submit-btn" id="submit-btn" type="submit" value="Place Order">
+        
+            <input type="submit" class="submit-btn" id="submit-btn" value="Place Order">
             <p id="error"></p>
           </form>
-          
     
         </div>
     
