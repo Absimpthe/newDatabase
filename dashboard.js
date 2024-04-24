@@ -38,7 +38,10 @@ function fetchOrders(status) {
             if (data.status === 'success') {
                 displayOrders(data.data, status);
             } else {
-                console.error('Failed to fetch orders:', data.message);
+                let orderContainer = document.getElementById(`${status}-ordersContainer`);
+                orderContainer.innerHTML = '';
+                orderContainer.innerHTML = `<p>No ${status} orders found.</p>`;
+                return;
             }
         })
         .catch(error => console.error('Error fetching orders:', error));
@@ -46,11 +49,6 @@ function fetchOrders(status) {
 
 function displayOrders(data, status) {
     let ordersContainer = document.getElementById(`${status}-ordersContainer`); // Dynamic container based on status
-
-    if (!data.length) {
-        ordersContainer.innerHTML = `<p>No ${status} orders found.</p>`;
-        return;
-    }
 
     ordersContainer.innerHTML = '';
 
