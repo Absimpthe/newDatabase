@@ -40,7 +40,7 @@ function fetchOrders(status) {
             } else {
                 let orderContainer = document.getElementById(`${status}-ordersContainer`);
                 orderContainer.innerHTML = '';
-                orderContainer.innerHTML = `<p>No ${status} orders found.</p>`;
+                orderContainer.innerHTML = `<p>No ${status} orders found. Please come back again later.</p>`;
                 return;
             }
         })

@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'success') {
                 updateOrderDisplay(data.data);
             } else {
-                console.error('Failed to fetch orders:', data.message);
+                const orderWrapper = document.getElementById('orders-wrapper');
+                orderWrapper.innerHTML = '';
+                orderWrapper.style.marginLeft = '20px';
+                orderWrapper.innerHTML = '<p>No orders yet. Place your first order now!</p>';
+                return;
             }
         })
         .catch(error => console.error('Error fetching orders:', error));
@@ -15,11 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateOrderDisplay(orders) {
         const ordersWrapper = document.getElementById('orders-wrapper');
         ordersWrapper.innerHTML = '';  // Clear previous contents
-    
-        if (orders.length === 0) {
-            ordersWrapper.innerHTML = '<p>No confirmed orders found.</p>';
-            return;
-        }
     
         orders.forEach(order => {
             const orderContainer = document.createElement('div');
