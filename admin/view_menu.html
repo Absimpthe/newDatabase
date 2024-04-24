@@ -6,6 +6,7 @@
     <title>Restaurant Menu</title>
     <link rel="stylesheet" href="admin_panel.css">
     <link rel="stylesheet" href="view_menu.css"> 
+    <script src="add_new_item.js" defer></script>
 </head>
 
 <body>
@@ -18,10 +19,11 @@
     </div>
 
     <div class="leftnav">
-        <a href="#appetizer-title">Appetizers</a><br>
-        <a href="#main-course-title">Main Course</a><br>
-        <a href="#dessert-title">Desserts</a><br>
-        <a href="#beverages-title">Beverages</a><br>
+        <a class="nav" href="#appetizer-title">Appetizers</a><br>
+        <a class="nav" href="#main-course-title">Main Course</a><br>
+        <a class="nav" href="#dessert-title">Desserts</a><br>
+        <a class="nav" href="#beverages-title">Beverages</a><br>
+        <button id="add-item" class="add-item">Add New Item</button>
     </div>
 
     <div class="main" id="main">
@@ -55,24 +57,72 @@
         <button class="button">Save changes</button>
     </div>
 
+    <!-- Modal to add new item -->
+    <div id="new-item-modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h1 class="modal-title">Add New Item</h1>
+          <form method="post" class="add-item-form">
+            <h3>Item ID</h3>
+            <input type="text" name="new-item-id" class="form-input" id="new-item-id" placeholder="Enter Item ID">
+            <h3>Item Name</h3>
+            <input type="text" name="new-item-name" class="form-input" id="new-item-name" placeholder="Enter Item Name">
+            <h3>Item Price</h3>
+            <input type="number" name="new-item-price" class="form-input" id="new-item-price" placeholder="Enter Item Price">
+            <h3>Item Category</h3>
+            <select name="new-item-category" class="form-input" id="new-item-category">
+                <option value="1">Appetizers</option>
+                <option value="2">Main Course</option>
+                <option value="3">Desserts</option>
+                <option value="4">Beverages</option>
+            </select>
+
+            <h3>Item Availability</h3>
+            <select name="new-item-availability" class="form-input" id="new-item-availability">
+                <option value="0">Out of Stock</option>
+                <option value="1">Available</option>
+            </select>
+
+            <h3>Item Image URL</h3>
+            <input type="text" name="new-item-image" class="form-input" id="new-item-image" placeholder="menupics/example_image.jpg">
+            <input class="form-input" id="submit-btn" type="submit" value="Add item">
+          </form>
+          <div class="login-error" id="login-error"></div>
+    </div>
+
     <script>
         fetch('/menuphp.php')
             .then(response => response.json())
             .then(data => {
+                var itemNo = 0;
                 data.forEach(item => {
                     // Find the container that matches the category ID of the item
                     const container = document.querySelector(`.menu-container[data-category="${item.CategoryID}"]`);
                     if(container) {
                         const div = document.createElement('div');
                         div.className = 'menu-item';
-                        div.innerHTML = `<img src="/${item.ItemImage}" alt="${item.ItemName}">
-                        <h3>${item.ItemName}</h3>
-                        <p>RM${item.Price}</p>
+                        div.innerHTML = `
+                        <h3>${item.ItemCode}</h3>
+                        <img src="/${item.ItemImage}" alt="${item.ItemName}">
+                        <p>Name: 
+                            <input type="text" id="name" name="item-name", value="${item.ItemName}">
+                        </p>
+                        <p> Price:
+                            RM <input type="number" id="price" name="price" inputmode="decimal" pattern="^\d+(\.\d{1,2})?$" min="0" value="${item.Price}"">
+                        </p>
                         <p>Availability: 
-                            <input type="number" id="stock" name="quantity" min="0" max="1", value=${item.Availability}>
+                            <select class="stock">
+                                <option value="0">Out Of Stock</option>
+                                <option value="1">Available</option>
+                            </select>
                         </p>`;
                         
                         container.appendChild(div);
+
+                        const selectElement = div.querySelector('.stock');
+                        selectElement.value = item.Availability; 
+                        itemNo += 1;
                     }
                 });
             })

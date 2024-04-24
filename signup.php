@@ -55,7 +55,6 @@
 
         // Close statement
         $stmt->close();
-        //echo "<h2>Invalid username or password</h2>";
     }
     exit();
     
