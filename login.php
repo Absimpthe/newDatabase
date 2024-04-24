@@ -7,7 +7,7 @@
     require_once 'db_connect.php'; // Connect to database
     
     // Query to fetch the UserType along with other necessary details
-    $stmt = $con->prepare("SELECT CustomerID, CustPassword, UserType FROM customers WHERE CustUsername = ?");
+    $stmt = $con->prepare("SELECT UserID, UserPassword, UserType FROM users WHERE Username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $stmt_result = $stmt->get_result();
@@ -16,8 +16,8 @@
 
     if ($stmt_result->num_rows > 0) {
         $data = $stmt_result->fetch_assoc();
-        if ($data['CustPassword'] === $password) {
-            $_SESSION['user-id'] = $data['CustomerID']; // Store ID in session variable
+        if ($data['UserPassword'] === $password) {
+            $_SESSION['user-id'] = $data['UserID']; // Store ID in session variable
 
             // Return user type for client-side logic
             echo json_encode(['status' => 'success', 'userType' => $data['UserType']]);

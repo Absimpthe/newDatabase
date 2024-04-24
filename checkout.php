@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 require_once 'db_connect.php';
 
-$stmt = $con->prepare("select * from customers where CustomerID = ?");
+$stmt = $con->prepare("select * from users where UserID = ?");
 $stmt->bind_param("s", $_SESSION['user-id']);
 $stmt->execute();
 $stmt_result = $stmt->get_result();
@@ -28,7 +28,7 @@ if ($stmt_result->num_rows > 0) {
         if (!empty($_SESSION['cart'])) {
 
             // Update orders table
-            $add_order = $con->prepare("INSERT INTO orders (CustomerID, Address, TotalPrice, Date, OrderStatus, PaymentStatus) VALUES (?, ?, ?, ?, ?, ?)");
+            $add_order = $con->prepare("INSERT INTO orders (UserID, Address, TotalPrice, Date, OrderStatus, PaymentStatus) VALUES (?, ?, ?, ?, ?, ?)");
             $add_order->bind_param("isdsss", $_SESSION['user-id'], $address, $_SESSION['Total'], $date, $orderstatus, $paymentstatus);
             $add_order->execute();
 

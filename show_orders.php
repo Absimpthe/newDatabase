@@ -13,7 +13,7 @@ if (!isset($_SESSION['user-id']) || empty($_SESSION['user-id'])) {
 $userId = $_SESSION['user-id'];
 
 // Prepare statement for fetching orders by user ID
-$stmtOrders = $con->prepare("SELECT * FROM orders WHERE CustomerId = ?");
+$stmtOrders = $con->prepare("SELECT * FROM orders WHERE UserId = ?");
 $stmtOrders->bind_param("s", $_SESSION['user-id']);
 $stmtOrders->execute();
 $stmt_resultOrders = $stmtOrders->get_result();

@@ -23,6 +23,5 @@ if (isset($data['items'])) {
     echo json_encode(['status' => 'error', 'message' => 'No data received']);
 }
 
-$stmt->close();
 $con->close();
 ?>

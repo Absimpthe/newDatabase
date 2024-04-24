@@ -122,9 +122,9 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(data);
             if (data.status === "success") {
                 if (data.userType === 'Driver') {
-                    window.location.href = 'dashboard.html'; // Assuming you have an HTML file for drivers
+                    window.location.href = 'dashboard.html'; // HTML file for drivers
                 } else {
-                    window.location.href = 'main.html'; // Assuming you have an HTML file for customers
+                    window.location.href = 'main.html'; // HTML file for customers
                 }
             }
             else {

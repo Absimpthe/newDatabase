@@ -7,7 +7,7 @@
     $new_address = $_POST['update-address'];
 
     // Prepare statement to update record
-    $stmt = $con->prepare("UPDATE customers SET Address = ? WHERE CustomerID = ?");
+    $stmt = $con->prepare("UPDATE users SET Address = ? WHERE UserID = ?");
 
     // Bind parameters
     $stmt->bind_param("si", $new_address, $_SESSION['user-id']);

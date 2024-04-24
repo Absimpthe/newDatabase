@@ -7,7 +7,7 @@
     $new_phone_no = $_POST['update-phone-no'];
 
     // Prepare statement to update record
-    $stmt = $con->prepare("UPDATE customers SET PhoneNumber = ? WHERE CustomerID = ?");
+    $stmt = $con->prepare("UPDATE users SET PhoneNumber = ? WHERE UsSerID = ?");
 
     // Bind parameters
     $stmt->bind_param("si", $new_phone_no, $_SESSION['user-id']);

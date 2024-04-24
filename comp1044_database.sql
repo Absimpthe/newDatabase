@@ -49,13 +49,13 @@ CREATE TABLE categories (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
+-- Table structure for table `users`
 --
-DROP TABLE IF EXISTS customers;
-CREATE TABLE customers (
-  `CustomerID` int(10) UNSIGNED NOT NULL,
-  `CustUsername` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `CustPassword` varchar(20) NOT NULL,
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
+  `UserID` int(10) UNSIGNED NOT NULL,
+  `Username` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `UserPassword` varchar(20) NOT NULL,
   `Address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `EmailAddress` varchar(255) DEFAULT NULL,
   `PhoneNumber` varchar(20) NOT NULL,
@@ -110,7 +110,7 @@ CREATE TABLE items (
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `OrderID` int(20) UNSIGNED NOT NULL,
-  `CustomerID` int(10) UNSIGNED NOT NULL,
+  `UserID` int(10) UNSIGNED NOT NULL,
   `Address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `TotalPrice` decimal(5,2) UNSIGNED NOT NULL,
   `Date` date NOT NULL,
@@ -136,10 +136,10 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`CategoryID`);
 
 --
--- Indexes for table `customers`
+-- Indexes for table `users`
 --
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`CustomerID`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`UserID`);
 
 --
 -- Indexes for table `deliveries`
@@ -168,17 +168,17 @@ ALTER TABLE `items`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`OrderID`),
-  ADD KEY `CustomerID` (`CustomerID`);
+  ADD KEY `UserID` (`UserID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `customers`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `customers`
-  MODIFY `CustomerID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+  MODIFY `UserID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -214,14 +214,14 @@ ALTER TABLE `items`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 --
 -- Constraints for table `drivers`
 --
 ALTER TABLE `drivers`
-  ADD CONSTRAINT `drivers_ibfk_1` FOREIGN KEY (`DriverID`) REFERENCES `customers` (`CustomerID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `drivers_ibfk_1` FOREIGN KEY (`DriverID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

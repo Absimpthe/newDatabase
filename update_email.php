@@ -6,7 +6,7 @@
 
     $new_email = $_POST['update-email'];
 
-    $stmt = $con->prepare("select * from customers where CustomerID = ?");
+    $stmt = $con->prepare("select * from users where UserID = ?");
     $stmt->bind_param("i", $_SESSION['user-id']);
     $stmt->execute();
     $stmt_result = $stmt->get_result();
@@ -18,7 +18,7 @@
         exit();
     }
 
-    $stmt = $con->prepare("select * from customers where EmailAddress = ?");
+    $stmt = $con->prepare("select * from users where EmailAddress = ?");
     $stmt->bind_param("s", $new_email);
     $stmt->execute();
     $stmt_result = $stmt->get_result();
@@ -28,7 +28,7 @@
         echo json_encode(['status' => 'error', 'message' => 'Email already taken']);
     }
     else {
-        $stmt = $con->prepare("UPDATE customers SET EmailAddress = ? WHERE CustomerID = ?");
+        $stmt = $con->prepare("UPDATE users SET EmailAddress = ? WHERE UserID = ?");
 
         // Bind parameters
         $stmt->bind_param("si", $new_email, $_SESSION['user-id']);

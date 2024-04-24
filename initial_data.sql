@@ -59,7 +59,7 @@ INSERT INTO items (ItemCode, ItemName, Price, Availability, CategoryID, ItemImag
 ('B105', 'Virgin Mojito', 7.00, 1, 4, 'menupics/virgin_mojito.jpg'),
 ('B106', 'Shirley Temple', 7.00, 1, 4, 'menupics/shirley_temple.jpg');
 
-INSERT INTO customers (CustUsername, CustPassword, Address, EmailAddress, PhoneNumber, UserType) VALUES
+INSERT INTO users (Username, UserPassword, Address, EmailAddress, PhoneNumber, UserType) VALUES
 ('CEOsidneySoh', 'PGR1Mario0', '123 UNM, Semenyih', 'explodingCat@gmail.com', '011-1001111', 'Admin'),
 ('hueyTeng', 'teamMaruCoffee', '456 UNM, Semenyih', 'Bidetblast@gmail.com', '012-1212221', 'Customer'),
 ('shu', 'teamZusCoffee', '789 UNM, Semenyih', 'NekoAtsume@gmail.com', '013-3133133', 'Customer'),

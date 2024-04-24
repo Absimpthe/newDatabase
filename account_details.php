@@ -9,7 +9,7 @@ if (!isset($_SESSION['user-id'])) {
     exit();
   }
 
-$stmt = $con->prepare("select * from customers where CustomerID = ?");
+$stmt = $con->prepare("select * from users where UserID = ?");
 $stmt->bind_param("s", $_SESSION['user-id']);
 $stmt->execute();
 $stmt_result = $stmt->get_result();

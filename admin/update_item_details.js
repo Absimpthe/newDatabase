@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     saveButton.addEventListener('click', function() {
         const items = [];
         document.querySelectorAll('.menu-container').forEach(container => {
-            const itemCode = container.getElementById('#item-code');
+            const itemCode = container.querySelector('#item-code').value;
             const itemName = container.querySelector('#item-name').value;
             const price = container.querySelector('#item-price').value;
             const availability = container.querySelector('#stock').value;

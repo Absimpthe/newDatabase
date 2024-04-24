@@ -6,19 +6,19 @@
 
     $new_username = $_POST['update-username'];
 
-    $stmt = $con->prepare("select * from customers where CustomerID = ?");
+    $stmt = $con->prepare("select * from users where UserID = ?");
     $stmt->bind_param("i", $_SESSION['user-id']);
     $stmt->execute();
     $stmt_result = $stmt->get_result();
     $data = $stmt_result->fetch_assoc();
 
     // Check if username is the same
-    if ($new_username === $data['CustUsername']) {
+    if ($new_username === $data['Username']) {
         echo json_encode(['status' => 'error', 'message' => 'Cannot enter same username as before']);
         exit();
     }
     
-    $stmt = $con->prepare("select * from customers where CustUsername = ?");
+    $stmt = $con->prepare("select * from users where Username = ?");
     $stmt->bind_param("s", $new_username);
     $stmt->execute();
     $stmt_result = $stmt->get_result();
@@ -29,7 +29,7 @@
     }
     else {
          // Prepare statement to update record
-        $stmt = $con->prepare("UPDATE customers SET CustUsername = ? WHERE CustomerID = ".$_SESSION['user-id']);
+        $stmt = $con->prepare("UPDATE users SET Username = ? WHERE UserID = ".$_SESSION['user-id']);
 
         // Bind parameters
         $stmt->bind_param("s", $new_username);

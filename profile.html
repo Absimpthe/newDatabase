@@ -160,8 +160,8 @@
             .then(data => {
               if (!data.error) {
                 // If there is no error, display the user details
-                document.getElementById('username').textContent = data.CustUsername || 'Not available';
-                document.getElementById('password').textContent = censorPassword(data.CustPassword) || 'Not available';
+                document.getElementById('username').textContent = data.Username || 'Not available';
+                document.getElementById('password').textContent = censorPassword(data.UserPassword) || 'Not available';
                 document.getElementById('email').textContent = censorEmail(data.EmailAddress) || 'Not available';
                 document.getElementById('address').textContent = data.Address || 'Not available';
                 document.getElementById('phone-no').textContent = censorEmail(data.PhoneNumber) || 'Not available';

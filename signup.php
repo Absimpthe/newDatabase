@@ -10,13 +10,13 @@
     $password = $_POST['signup-password'];
 
     // checks if the username exists in the database
-    $stmt1 = $con->prepare("select * from customers where CustUsername = ?");
+    $stmt1 = $con->prepare("select * from users where Username = ?");
     $stmt1->bind_param("s", $username);
     $stmt1->execute();
     $stmt1_result = $stmt1->get_result();
 
     // checks if the email exists in the database
-    $stmt2 = $con->prepare("select * from customers where EmailAddress = ?");
+    $stmt2 = $con->prepare("select * from users where EmailAddress = ?");
     $stmt2->bind_param("s", $email);
     $stmt2->execute();
     $stmt2_result = $stmt2->get_result();
@@ -34,20 +34,20 @@
         $stmt2->close();
     }
     else {
-        $stmt = $con->prepare("INSERT INTO customers (CustUsername, CustPassword, Address, EmailAddress, PhoneNumber, isAdmin) VALUES (?, ?, ?, ?, ?, 0)");
+        $stmt = $con->prepare("INSERT INTO users (Username, UserPassword, Address, EmailAddress, PhoneNumber, isAdmin) VALUES (?, ?, ?, ?, ?, 0)");
 
         // Bind parameters
         $stmt->bind_param("sssss", $username, $password, $address, $email, $phone_no);
 
         // Execute the statement
         if ($stmt->execute()) {
-            $get_user = $con->prepare("select * from customers where CustUsername = ?");
+            $get_user = $con->prepare("select * from users where Username = ?");
             $get_user->bind_param("s", $username);
             $get_user->execute();
             $get_user_result = $get_user->get_result();
             $data = $get_user_result->fetch_assoc();
 
-            $_SESSION['user-id'] = $data['CustomerID']; // store their ID as a session variable
+            $_SESSION['user-id'] = $data['UserID']; // store their ID as a session variable
             echo json_encode(['status' => 'success']);
         } else {
             echo json_encode(['status' => 'error', 'message' => "Error: " . $stmt->error]);
