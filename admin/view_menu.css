@@ -62,7 +62,7 @@ img {
     box-sizing: border-box;
 }
 
-.button {
+.save-btn {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -78,7 +78,7 @@ img {
     border-color: #342f35;
 }
 
-.button:hover {
+.save-btn:hover {
     cursor: pointer;
     background-color: rgb(118, 132, 191);
 }
