@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
             else {
-                document.getElementsByClass('login-error')[number].innerText = data.message;
+                document.getElementsByClassName('login-error')[number].innerText = data.message;
                 sectionShow.style.display = 'block';
                 sectionHide.style.display = 'none';  
                 // if user details are incorrect
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch((error) => {
             console.error('Error:', error);
-            document.getElementsByClass('login-error')[number].innerText = "An unexpected error occurred. Please try again.";
+            document.getElementsByClassName('login-error')[number].innerText = "An unexpected error occurred. Please try again.";
             // Handle errors
         });
     }
