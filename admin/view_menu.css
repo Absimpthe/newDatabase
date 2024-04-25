@@ -1,43 +1,60 @@
-.topnav {
-    top:0;
-    position:fixed;
+.big-container {
+    position: relative;
     width: 100%;
+    height: 70px;
+    display: flex;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.topnav {
+    top: 0;
+    height: 70px;
+    width: 100%;
+    z-index: 50;
+    position: fixed;
 }
 
 .leftnav {
-    position: fixed;
+    position: relative;
+    top: 70px;
+    height: 100vh;
     width: 200px;
-    top: 59px;
-    height: 100%;
     background-color:rgb(191, 200, 240);
-    padding: 20px;
     overflow-x: hidden;
-    overflow-y: auto; /* in case of many links */
+}
 
+.nav {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: block;
+}
 
-    .nav {
-        text-decoration: none;
-        font-size: 20px;
-        font-weight: bold;
-        padding: 20px 20px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        text-align: center;
-        display: block;
-    }
+/* Styles for normal links */
+a:link {
+    color: #484567; /* Change from default blue to green */
+}
 
-    .nav:active {
-        color: #928dbd;
-    }
+/* Optional: change link color when active/clicked */
+a:active {
+    color: #928dbd;
+}
 
-    .nav:hover {
-        background-color: rgb(225, 229, 250);
-        color: #484567;
-    }
+.nav:hover {
+    background-color: rgb(225, 229, 250);
+    color: #484567;
 }
 
 .main {
-    margin-top: 120px;
+    margin-top: 10px;
     margin-left: 300px;
     margin-right: 20px;
 }
@@ -75,7 +92,7 @@ img {
     border-radius: 5px;
     font-family: Georgia, serif;
     border-width: 3px;
-    border-color: #342f35;
+    border-color: #889ac5;
 }
 
 .save-btn:hover {
