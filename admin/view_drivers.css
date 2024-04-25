@@ -39,6 +39,12 @@ body {
     color: #2d2953;
   }
   
+  /* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #2d2953;
+  color: white;
+}
+
   .container {
     margin: 50px auto;
     width: 70%;  
