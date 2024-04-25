@@ -93,7 +93,7 @@
     </div>
 
     <script>
-        fetch('/menuphp.php')
+        fetch('../menuphp.php')
             .then(response => response.json())
             .then(data => {
                 var itemNo = 0;
@@ -106,7 +106,7 @@
                         div.innerHTML = `
                         <h3>${item.ItemCode}</h3>
                         <input type="hidden" class="item-code" name="code" value="${item.ItemCode}">
-                        <img src="/${item.ItemImage}" alt="${item.ItemName}">
+                        <img src="../${item.ItemImage}" alt="${item.ItemName}">
                         <p>Name: 
                             <input type="text" class="item-name" name="item-name", value="${item.ItemName}">
                         </p>
