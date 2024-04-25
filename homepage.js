@@ -123,8 +123,10 @@ document.addEventListener("DOMContentLoaded", function() {
             if (data.status === "success") {
                 if (data.userType === 'Driver') {
                     window.location.href = 'dashboard.html'; // HTML file for drivers
+                } else if (data.userType === 'Admin') {
+                    window.location.href = 'admin/admin_panel.html';
                 } else {
-                    window.location.href = 'main.html'; // HTML file for customers
+                    window.location.href = 'main.html';
                 }
             }
             else {

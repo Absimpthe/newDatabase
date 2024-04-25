@@ -32,18 +32,18 @@ body {
     font-size: 17px;
     width: 20%;
     display: block;
-  }
-    
-  .topnav a:hover {
-    background-color: #bdb9ef;
-    color: #2d2953;
-  }
-    
-  /* Add a color to the active/current link */
-  .topnav a.active {
-    background-color: #2d2953;
-    color: white;
-  }
+}
+  
+.topnav a:hover {
+  background-color: #bdb9ef;
+  color: #2d2953;
+}
+  
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #2d2953;
+  color: white;
+}
   
 .heading {
     padding: 30px;

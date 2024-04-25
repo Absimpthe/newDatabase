@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nottingham Cafe - Profile</title>
   <link rel="stylesheet" href="admin_panel.css">
-  <script src="/censor_details.js" defer></script>
-  <script src="/profile.js" defer></script>
+  <script src="../censor_details.js" defer></script>
+  <script src="../profile.js" defer></script>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
           <img src="/assets/pumpkin.webp" width=250 class="pfp">
           <h1>My Profile</h1>
           <div class="logout">
-            <a href="/logout.php" id="logout-btn">Logout</a>
+            <button id="logout-btn" onclick="window.location.href='logout.php';">Logout</button>
           </div>
         </div>
     
@@ -159,7 +159,7 @@
       </div>
         
       <script>
-        fetch('/account_details.php')
+        fetch('../account_details.php')
                 .then(response => response.json())
                 .then(data => {
                   if (!data.error) {
