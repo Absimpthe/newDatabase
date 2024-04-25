@@ -66,7 +66,7 @@ INSERT INTO users (Username, UserPassword, Address, EmailAddress, PhoneNumber, U
 ('NawfalNazzeeeeeem', 'gigaChad123', '101 UNM, Semenyih', 'weddingWitch@gmail.com', '014-5678999', 'Customer'),
 ('marksim_Skobun', 'iHateCornSoup', '123 UNM, Semenyih', 'alamak@gmail.com', '010-0100100', 'Customer'),
 ('itsaMeMario', 'MammaMia1', '120 Castle, Mushroom Kingdom', 'mario@gmail.com', '012-0003293', 'Driver'),
-('JohnDoe', 'PlainJane0', '222 Average Street', 'placeholder@gmail.com', '000-0000000', 'Driver');
+('JohnDoe', 'PlainJane0', '222 Average Street', 'placeholder@gmail.com', '019-8765432', 'Driver');
 
 INSERT INTO drivers (DriverID, CarPlateNo, DriverRating) VALUES
 (6, 'MARIO69', 0),
