@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const orderWrapper = document.getElementById('orders-wrapper');
                 orderWrapper.innerHTML = '';
                 orderWrapper.style.marginLeft = '20px';
-                orderWrapper.innerHTML = '<p>No orders yet. Place your first order now!</p>';
+                orderWrapper.innerHTML = '<p>No orders found.</p>';
                 return;
             }
         })
