@@ -182,24 +182,21 @@ img {
   cursor: pointer;
 }
 
-.logout{
+#logout-btn {
+  font-family: 'Times New Roman', serif;
+  color: white;
+  text-decoration: none;
   cursor: pointer;
-  font-size: 2.00rem;
-  padding:10px;
+  padding: 10px;
+  width: 220px;
+  font-size: 1.50rem;
   margin-top: 1em;
   border: none;
   border-bottom: 5px solid #824d78;
   border-radius: 0.5em;
   background-color: #b66ea9;
-  font-weight: 600;
 }
 
-#logout-btn {
-  font-family: 'Times New Roman', serif;
-  color: white;
-  text-decoration: none;
-}
-
-.logout:hover {
+#logout-btn:hover {
   background-color: #d485c6;
 }
