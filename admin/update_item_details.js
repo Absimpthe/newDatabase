@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             });
         });
-
+        console.log(JSON.stringify(items));
         if (items.length > 0) {
             fetch('/admin/update_items.php', {
                 method: 'POST',

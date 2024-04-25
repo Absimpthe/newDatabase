@@ -5,6 +5,7 @@ require_once '../db_connect.php';
 header('Content-Type: application/json');
 $data = json_decode(file_get_contents('php://input'), true);
 
+
 if (isset($data['items'])) {
     foreach ($data['items'] as $item) {
         $stmt = $con->prepare("UPDATE items SET ItemName = ?, Price = ?, Availability = ? WHERE ItemCode = ?");
@@ -16,6 +17,7 @@ if (isset($data['items'])) {
             $con->close();
             exit;
         }
+        $stmt->close();
     }
 
     echo json_encode(['status' => 'success']);
