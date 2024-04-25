@@ -1,13 +1,14 @@
 <?php
 
     session_start();
-    require_once 'db_connect.php'; // connect to database
+    require_once '../db_connect.php'; // connect to database
 
-    $username = $_POST['signup-username'];
-    $phone_no = $_POST['phone-no'];
-    $email = $_POST['email'];
-    $address = $_POST['address'];
-    $password = $_POST['signup-password'];
+    $username = $_POST['driver-username'];
+    $phone_no = $_POST['driver-phone-no'];
+    $email = $_POST['driver-email'];
+    $address = $_POST['driver-address'];
+    $password = $_POST['driver-password'];
+    $car_plate = $_POST['driver-car-plate'];
 
     // checks if the username exists in the database
     $stmt1 = $con->prepare("select * from users where Username = ?");
@@ -34,22 +35,24 @@
         $stmt2->close();
     }
     else {
-        $usertype = 'Customer';
+        $usertype = 'Driver';
         $stmt = $con->prepare("INSERT INTO users (Username, UserPassword, Address, EmailAddress, PhoneNumber, UserType) VALUES (?, ?, ?, ?, ?, ?)");
-
+        
         // Bind parameters
         $stmt->bind_param("ssssss", $username, $password, $address, $email, $phone_no, $usertype);
 
         // Execute the statement
         if ($stmt->execute()) {
-            $get_user = $con->prepare("select * from users where Username = ?");
-            $get_user->bind_param("s", $username);
-            $get_user->execute();
-            $get_user_result = $get_user->get_result();
-            $data = $get_user_result->fetch_assoc();
-
-            $_SESSION['user-id'] = $data['UserID']; // store their ID as a session variable
-            echo json_encode(['status' => 'success']);
+            // if stmt executed, add to drivers table using the ID
+            $last_id = $con->insert_id;
+            $stmt_insert = $con->prepare("INSERT INTO drivers (DriverID, CarPlateNo, DriverRating) VALUES (?, ?, 5)");
+            $stmt_insert->bind_param("ss", $last_id, $car_plate);
+            if ($stmt_insert->execute()) {
+                echo json_encode(['status' => 'success']);
+            }
+            else {
+                echo json_encode(['status' => 'error', 'message' => "Error: " . $stmt->error]);
+            }
         } else {
             echo json_encode(['status' => 'error', 'message' => "Error: " . $stmt->error]);
         }

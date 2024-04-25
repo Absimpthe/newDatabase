@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nottingham Cafe - My Orders</title>
   <link rel="stylesheet" href="/admin/view_drivers.css">
+  <script src="view_drivers.js" defer></script>
+  <script src="add_driver.js" defer></script>
 </head>
 
 <body>
@@ -21,12 +23,30 @@
       <header><h1 class="title">Driver Details</h1></header>
       
       <!-- Button to open modal -->
-      <button class="add-btn">Add Driver Account</button>
+      <button id="add-btn">Add Driver Account</button>
+
+      <div id="add-driver-modal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h1 class="modal-title">Add New Driver Account</h1>
+          <form action="add_driver.php" method="post" class="add-driver-form">
+            <input type="text" name="driver-username" class="form-input" id="driver-username" placeholder="Driver Username">
+            <input type="number" name="driver-phone-no" class="form-input" id="driver-phone-no" placeholder="Phone Number">
+            <input type="text" name="driver-email" class="form-input" id="driver-email" placeholder="Email Address">
+            <input type="text" name="driver-address" class="form-input" id="driver-address" placeholder="Home Address">
+            <input type="text" name="driver-password" class="form-input" id="driver-password" placeholder="Password">
+            <input type="text" name="driver-car-plate" class="form-input" id="driver-car-plate" placeholder="Car Plate Number">
+            <input class="form-input" id="submit-btn" type="submit" value="Create Driver Account">
+          </form>
+          <div class="login-error" id="login-error"></div>
+        </div>
+      </div>
 
       <div class="container" id="driver-container">
       </div>
 
-    <script src="view_drivers.js"></script>
+    
 </body>
 
 </html>
