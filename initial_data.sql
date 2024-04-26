@@ -68,6 +68,6 @@ INSERT INTO users (Username, UserPassword, Address, EmailAddress, PhoneNumber, U
 ('itsaMeMario', 'MammaMia1', '120 Castle, Mushroom Kingdom', 'mario@gmail.com', '012-0003293', 'Driver'),
 ('JohnDoe', 'PlainJane0', '222 Average Street', 'placeholder@gmail.com', '019-8765432', 'Driver');
 
-INSERT INTO drivers (DriverID, CarPlateNo, DriverRating) VALUES
-(6, 'MARIO69', 0),
-(7, 'ABC420', 5);
+INSERT INTO drivers (DriverID, CarPlateNo) VALUES
+(6, 'MARIO69'),
+(7, 'ABC420');

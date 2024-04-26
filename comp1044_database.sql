@@ -71,8 +71,7 @@ DROP TABLE IF EXISTS deliveries;
 CREATE TABLE deliveries (
   `DeliveryID` int(20) UNSIGNED NOT NULL,
   `DriverID` int(20) UNSIGNED NOT NULL,
-  `OrderID` int(20) UNSIGNED NOT NULL,
-  `Tip` decimal(5,2) UNSIGNED NOT NULL
+  `OrderID` int(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -83,8 +82,7 @@ CREATE TABLE deliveries (
 DROP TABLE IF EXISTS drivers;
 CREATE TABLE drivers (
   `DriverID` int(20) UNSIGNED NOT NULL,
-  `CarPlateNo` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `DriverRating` tinyint(3) UNSIGNED NOT NULL
+  `CarPlateNo` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
