@@ -124,8 +124,8 @@ function handleDeliveredOrder(orderID) {
     });
 }
 
-function handleAcceptOrder(orderID) {
-    // Update order status to "In Progress"
+function handleAcceptOrder(orderID, driverID) {
+    // First, update the order status to "In Progress"
     const updateData = {orderID: orderID, newStatus: 'In Progress'};
 
     fetch('update_order_status.php', {
@@ -139,14 +139,40 @@ function handleAcceptOrder(orderID) {
     .then(data => {
         if (data.status === 'success') {
             console.log('Order status updated successfully:', orderID);
-            // Remove the order from the UI
-            window.location.reload();
-            fetchOrders();
+            // Assuming status update is successful, proceed to add to deliveries
+            addOrderToDeliveries(orderID, driverID);
         } else {
             console.error('Failed to update order status:', data.message);
         }
     })
     .catch(error => {
         console.error('Error updating order status:', error);
+    });
+}
+
+function addOrderToDeliveries(orderID, driverID) {
+    // Create a FormData object to send the POST data for adding to deliveries
+    var formData = new FormData();
+    formData.append('action', 'acceptOrder');
+    formData.append('orderID', orderID);
+    formData.append('driverID', driverID);
+
+    // Make a second fetch request to add the order to deliveries
+    fetch('acceptingorders.php', {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            console.log(data.message);
+            alert('Order accepted and added to deliveries successfully!');
+            window.location.reload();  // Reload the page or fetch orders to update UI
+        } else {
+            console.error('Failed to add order to deliveries:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error adding order to deliveries:', error);
     });
 }

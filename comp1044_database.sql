@@ -184,6 +184,8 @@ ALTER TABLE `users`
 ALTER TABLE `orders`
   MODIFY `OrderID` int(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `deliveries`
+  MODIFY `DeliveryID` int(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
