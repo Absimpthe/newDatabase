@@ -9,9 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateCartDisplay(data.data);
             } else {
                 console.error('Failed to fetch cart:', data.message);
+                return false;
             }
         })
         .catch(error => console.error('Error fetching cart:', error));
+        return true;
     }
 
     function updateCartDisplay(cart) {
@@ -79,21 +81,17 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error removing item:', error));
     }
     
-    fetchCart();
+    var hasCart = fetchCart();
     document.getElementById('back-to-menu').addEventListener('click', function() {
         window.location.href = "menu.html"; // Adjust the URL to your site's menu page
     });
     
     document.getElementById('checkout').addEventListener('click', function() {
-        fetch('showcart.php')
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                window.location.href = "checkout.html"; 
-            } else {
-                document.getElementById('cart-error').innerText = "No items found in cart. Go add some!";
-            }
-        })
-        .catch(error => console.error('Error:', error));   
+        if (hasCart) {
+            window.location.href = "checkout.html"; 
+        }
+        else {
+            document.getElementById('cart-error').innerText = "No items found in cart. Go add some!";
+        }
     });    
 });

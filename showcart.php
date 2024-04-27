@@ -11,7 +11,7 @@ function sendJson($status, $message = '', $data = []) {
 // Check if the cart exists in the session
 if (isset($_SESSION['cart'])) {
     // If the cart is not empty, send cart data
-    if ($_SESSION['cart'] == []) {
+    if (!empty($_SESSION['cart'])) {
         sendJson(true, 'Cart retrieved successfully', $_SESSION['cart']);
     } else {
         // The cart is empty
