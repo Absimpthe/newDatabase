@@ -4,7 +4,20 @@
   require_once 'db_connect.php'; // connect to database
   
   if (!empty($_SESSION['user-id'])) {
-    header("Location: menu.html");
+    switch ($_SESSION['user-type']) {
+      case 'Admin':
+        header("Location: admin/admin_panel.html");
+        break;
+      case 'Driver':
+        header("Location: dashboard.html");
+        break;
+      case 'Customer':
+        header("Location: menu.html");
+        break;
+      default:
+        header("Location: index.php");
+        break;
+    }
   }
 ?>
 

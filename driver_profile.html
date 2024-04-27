@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nottingham Cafe - Profile</title>
+  <link rel="stylesheet" href="profile.css">
+  <script src="censor_details.js" defer></script>
+  <script src="profile.js" defer></script>
+</head>
+
+<body>
+  
+    <div class="topnav">
+        <a id="unfulfilled-tab" href="dashboard.html#unfulfilled-orders">Unfulfilled Orders</a>
+        <a id="accepted-tab" href="dashboard.html#accepted-orders">Accepted Orders</a>
+        <a id="profile" class="active">My Profile</a>
+    </div>
+
+  <div class="container">
+    <div class="left-column">
+      <img src="./assets/watermelon.jpg" width=250>
+      <h1>My Profile</h1>
+      <div class="logout">
+        <button id="logout-btn" onclick="window.location.href='logout.php';">Logout</button>
+      </div>
+    </div>
+
+    <div class="right-column">
+      <h1>Account Details</h1>
+
+      <hr class="divider">
+
+      <h2>Username</h2>
+      
+      <div class="update-container">
+        <span class="text-details" id="username"></span>
+        <button class="update-btn" id="update-username">Change username</button>
+      </div>
+      
+      <hr class="divider">
+
+      <h2>Password</h2>
+      <div class="update-container">
+        <span id="password"></span>
+        <button class="update-btn" id="update-password">Change password</button>
+      </div>
+
+      <hr class="divider">
+
+      <h2>Email</h2>
+      <div class="update-container">
+        <span id="email"></span>
+        <button class="update-btn" id="update-email">Change email</button>
+      </div>
+      
+
+      <hr class="divider">
+
+      <h2>Home Address</h2>
+      <div class="update-container">
+        <span id="address"></span>
+        <button class="update-btn" id="update-address">Change address</button>
+      </div>
+      
+
+      <hr class="divider">
+
+      <h2>Phone Number</h2>
+      <div class="update-container">
+        <span id="phone-no"></span>
+        <button class="update-btn" id="update-phone-no">Change phone number</button>
+      </div>
+      
+      </div>
+
+    </div>
+    
+  </div>
+
+  <!-- All modals -->
+
+  <div id="username-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1 class="modal-title">Change Username</h1>
+      <form action="update_username.php" method="post" class="update-username-form">
+        <input type="text" name="update-username" class="form-input" id="update-username" placeholder="Username">
+        <input class="form-input" id="submit-btn" type="submit" value="Save changes">
+      </form>
+      <div class="login-error" id="login-error"></div>
+    </div>
+
+  </div>
+
+  <div id="password-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1 class="modal-title">Change Password</h1>
+      <form action="update_password.php" method="post" class="update-password-form">
+        <input type="password" name="current-password" class="form-input" id="current-password" placeholder="Enter current password">
+        <input type="password" name="update-password" class="form-input" id="update-password" placeholder="Password">
+        <input class="form-input" id="submit-btn" type="submit" value="Save changes">
+      </form>
+      <div class="login-error" id="login-error"></div>
+    </div>
+
+  </div>
+
+  <div id="email-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1 class="modal-title">Change Email Address</h1>
+      <form action="update_email.php" method="post" class="update-email-form">
+        <input type="email" name="update-email" class="form-input" id="update-email" placeholder="Email address">
+        <input class="form-input" id="submit-btn" type="submit" value="Save changes">
+      </form>
+      <div class="login-error" id="login-error"></div>
+    </div>
+
+  </div>
+
+  <div id="address-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1 class="modal-title">Change Home Address</h1>
+      <form action="update_address.php" method="post" class="update-address-form">
+        <input type="text" name="update-address" class="form-input" id="update-address" placeholder="Home address">
+        <input class="form-input" id="submit-btn" type="submit" value="Save changes">
+      </form>
+      <div class="login-error" id="login-error"></div>
+    </div>
+
+  </div>
+
+  <div id="phone-no-modal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1 class="modal-title">Change Home Address</h1>
+      <form action="update_phone_no.php" method="post" class="update-phone-no-form">
+        <input type="number" name="update-phone-no" class="form-input" id="update-phone-no" placeholder="Phone number">
+        <input class="form-input" id="submit-btn" type="submit" value="Save changes">
+      </form>
+      <div class="login-error" id="login-error"></div>
+    </div>
+
+  </div>
+    
+  <script>
+    fetch('account_details.php')
+            .then(response => response.json())
+            .then(data => {
+              if (!data.error) {
+                // If there is no error, display the user details
+                document.getElementById('username').textContent = data.Username || 'Not available';
+                document.getElementById('password').textContent = censorPassword(data.UserPassword) || 'Not available';
+                document.getElementById('email').textContent = censorEmail(data.EmailAddress) || 'Not available';
+                document.getElementById('address').textContent = data.Address || 'Not available';
+                document.getElementById('phone-no').textContent = censorEmail(data.PhoneNumber) || 'Not available';
+                
+              } 
+              else {
+                // Handle error (e.g., user not found)
+                console.error(data.error);
+                document.getElementById('username').textContent = 'Error loading details';
+                document.getElementById('password').textContent = 'Error loading details';
+                document.getElementById('email').textContent = 'Error loading details';
+                document.getElementById('address').textContent = 'Error loading details';
+                document.getElementById('phone-no').textContent = 'Error loading details';
+              } 
+            })
+            .catch(error => console.error('Error:', error));
+            document.getElementById('username').textContent = 'Error loading details';
+            document.getElementById('password').textContent = 'Error loading details';
+            document.getElementById('email').textContent = 'Error loading details';
+            document.getElementById('address').textContent = 'Error loading details';
+            document.getElementById('phone-no').textContent = 'Error loading details';    
+</script> 
+</body>
+
+
+</html>

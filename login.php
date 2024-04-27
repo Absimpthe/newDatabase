@@ -18,6 +18,7 @@
         $data = $stmt_result->fetch_assoc();
         if ($data['UserPassword'] === $password) {
             $_SESSION['user-id'] = $data['UserID']; // Store ID in session variable
+            $_SESSION['user-type'] = $data['UserType']; // store their user type as a session variable
 
             // Return user type for client-side logic
             echo json_encode(['status' => 'success', 'userType' => $data['UserType']]);

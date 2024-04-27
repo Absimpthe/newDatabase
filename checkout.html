@@ -19,10 +19,10 @@
         <div class="left-column">
           <h1>Checkout</h1>
           <hr class="divider">
-          <form class="place-order-form" action="checkout.php" method="POST">
+          <form class="place-order-form" action="checkout.php" method="post">
             <h2>Delivery Address</h2>
             <!-- Removed the <p> tag for delivery address since it's not needed for submission -->
-            <input type="text" name="address" id="address" class="address" placeholder="Address" required>
+            <input type="text" name="address" id="address" class="address" placeholder="Delivery Address" required>
         
             <h2>Payment Option</h2>
             <select id="payment" name="payment">
@@ -30,7 +30,7 @@
             </select>
         
             <h2>Contact Information</h2>
-            <input type="text" name="phone-no" id="phone-no" class="phone-no" placeholder="Phone Number" required>
+            <input type="text" name="phone-no" id="phone-no" class="phone-no" value="Phone Number" required>
         
             <p>Order details will be sent to your email address.</p>
         

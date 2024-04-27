@@ -49,6 +49,7 @@
             $data = $get_user_result->fetch_assoc();
 
             $_SESSION['user-id'] = $data['UserID']; // store their ID as a session variable
+            $_SESSION['user-type'] = $data['UserType']; // store their user type as a session variable
             echo json_encode(['status' => 'success']);
         } else {
             echo json_encode(['status' => 'error', 'message' => "Error: " . $stmt->error]);
