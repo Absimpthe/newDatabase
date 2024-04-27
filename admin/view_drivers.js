@@ -32,8 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>Address: ${driver.Address}</p>
                     <p>Email Address: ${driver.EmailAddress}</p>
                     <p>Phone Number: ${driver.PhoneNumber}</p>
-                    <p>Car Plate: ${driver.Details.CarPlateNo}</p>
-                    <p>Rating: ${driver.Details.DriverRating}</p>
+                    <p>Car Plate: ${driver.Details.CarPlateNo}</p>  
                 </div>
             `;
     
