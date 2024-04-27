@@ -133,3 +133,9 @@ img {
     color: rgb(255, 255, 255);
     background-color:rgb(41, 77, 113);
 }
+
+.divider {
+    border: none;
+    border-top: 1.5px solid #484567;
+    margin-right: 3%;
+}
