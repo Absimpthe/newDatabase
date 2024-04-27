@@ -30,6 +30,7 @@ addItemForm.addEventListener("submit", function(e) {
     }
 });
 
+// Send the data to PHP file
 function sendData(form, file, modal) {
     var formData = new FormData(form);
     var showModal = document.getElementById(modal);

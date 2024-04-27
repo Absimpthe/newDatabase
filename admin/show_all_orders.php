@@ -10,7 +10,7 @@ if (!isset($_SESSION['user-id']) || empty($_SESSION['user-id'])) {
     exit();
 }
 
-$userId = $_SESSION['user-id'];
+$userId = $_SESSION['user-id']; // set variable to the user ID that is currently logged in
 
 // Prepare statement for fetching orders by user ID
 $stmtOrders = $con->prepare("SELECT * FROM orders");
@@ -44,7 +44,7 @@ if ($stmt_resultOrders->num_rows > 0) {
         $orders[] = $order;
     }
 
-    echo json_encode(['status' => 'success', 'data' => $orders]);
+    echo json_encode(['status' => 'success', 'data' => $orders]); // send the orders back to the js file
 } else {
     echo json_encode(['status' => 'error', 'message' => 'No orders found for the user.']);
 }

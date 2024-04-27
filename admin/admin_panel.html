@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <!-- Top navigation bar -->
     <div class="topnav">
         <a class="active">Admin Panel</a>
         <a href="../admin/view_menu.html">View Menu Items</a>
@@ -26,6 +27,7 @@
     </div>
 
     <div class="container">
+      <!-- Left side of the page contains the profile picture and logout button -->
         <div class="left-column">
           <img src="/assets/pumpkin.webp" width=250 class="pfp">
           <h1>My Profile</h1>
@@ -34,6 +36,7 @@
           </div>
         </div>
     
+        <!-- Right side contains the account details -->
         <div class="right-column">
           <h1>Account Details</h1>
     
@@ -42,7 +45,9 @@
           <h2>Username</h2>
           
           <div class="update-container">
-            <span class="text-details" id="username"></span>
+            <span class="text-details" id="username">
+              <!-- Username dynamically displayed here -->
+            </span>
             <button class="update-btn" id="update-username">Change username</button>
           </div>
           
@@ -50,7 +55,9 @@
     
           <h2>Password</h2>
           <div class="update-container">
-            <span id="password"></span>
+            <span id="password">
+              <!-- Password dynamically displayed here -->
+            </span>
             <button class="update-btn" id="update-password">Change password</button>
           </div>
     
@@ -58,7 +65,9 @@
     
           <h2>Email</h2>
           <div class="update-container">
-            <span id="email"></span>
+            <span id="email">
+              <!-- Email dynamically displayed here -->
+            </span>
             <button class="update-btn" id="update-email">Change email</button>
           </div>
           
@@ -67,7 +76,9 @@
     
           <h2>Home Address</h2>
           <div class="update-container">
-            <span id="address"></span>
+            <span id="address">
+              <!-- Address dynamically displayed here -->
+            </span>
             <button class="update-btn" id="update-address">Change address</button>
           </div>
           
@@ -76,7 +87,9 @@
     
           <h2>Phone Number</h2>
           <div class="update-container">
-            <span id="phone-no"></span>
+            <span id="phone-no">
+              <!-- Phone number dynamically displayed here -->
+            </span>
             <button class="update-btn" id="update-phone-no">Change phone number</button>
           </div>
           
@@ -86,8 +99,14 @@
         
       </div>
     
+      <!-- 
+        When the user clicks on one of the update button, a modal will pop up and display
+        the details specific to what the user wants to change.
+      -->
+
       <!-- All modals -->
     
+      <!-- Username modal -->
       <div id="username-modal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -99,9 +118,9 @@
           </form>
           <div class="login-error" id="login-error"></div>
         </div>
-    
       </div>
     
+      <!-- Password modal -->
       <div id="password-modal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -114,9 +133,9 @@
           </form>
           <div class="login-error" id="login-error"></div>
         </div>
-    
       </div>
     
+      <!-- Email modal -->
       <div id="email-modal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -128,9 +147,9 @@
           </form>
           <div class="login-error" id="login-error"></div>
         </div>
-    
       </div>
     
+      <!-- Address modal -->
       <div id="address-modal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -142,9 +161,9 @@
           </form>
           <div class="login-error" id="login-error"></div>
         </div>
-    
       </div>
     
+      <!-- Phone number modal -->
       <div id="phone-no-modal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -156,10 +175,10 @@
           </form>
           <div class="login-error" id="login-error"></div>
         </div>
-    
       </div>
         
       <script>
+        // Display the information dynamically
         fetch('../account_details.php')
                 .then(response => response.json())
                 .then(data => {

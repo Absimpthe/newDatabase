@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <!-- Top navigation bar -->
     <div class="topnav">
         <a href="../admin/admin_panel.html">Admin Panel</a>
         <a href="../admin/view_menu.html">View Menu Items</a>
@@ -21,6 +22,7 @@
         <a class="active">View Drivers</a>
     </div>
 
+      <!-- Header title -->
       <header><h1 class="title">Driver Details</h1></header>
       
       <!-- Button to open modal -->
@@ -31,6 +33,8 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <h1 class="modal-title">Add New Driver Account</h1>
+
+          <!--  Form to input new driver details -->
           <form action="add_driver.php" method="post" class="add-driver-form">
             <input type="text" name="driver-username" class="form-input" id="driver-username" placeholder="Driver Username">
             <input type="number" name="driver-phone-no" class="form-input" id="driver-phone-no" placeholder="Phone Number">

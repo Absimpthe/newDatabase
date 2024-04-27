@@ -13,9 +13,12 @@ if (isset($data['items'])) {
         $availability = $item['availability'];
         $itemCode = $item['itemCode'];
 
+        // Prepare statement to change item details in the database accordingly
         $stmt = $con->prepare("UPDATE items SET ItemName = ?, Price = ?, Availability = ? WHERE ItemCode = ?");
+        // Bind parameters
         $stmt->bind_param('sdis', $itemName, $price, $availability, $itemCode);
         
+        // Execute the statement
         if (!$stmt->execute()) {
             echo json_encode(['status' => 'error', 'message' => 'Failed to update item: ' . $stmt->error]);
             $stmt->close();

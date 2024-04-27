@@ -12,7 +12,9 @@
 </head>
 
 <body>
+    <!-- Container for all navigation bars -->
     <div class="big-container">
+        <!-- Top navigation bar -->
         <div class="topnav">
             <a href="../admin/admin_panel.html">Admin Panel</a>
             <a class="active">View Menu Items</a>
@@ -21,6 +23,7 @@
             <a href="../admin/view_drivers.html">View Drivers</a>
         </div>
 
+        <!-- Left navigation bar -->
         <div class="leftnav">
             <a class="nav" href="#appetizer-title">Appetizers</a><br>
             <a class="nav" href="#main-course-title">Main Course</a><br>
@@ -31,43 +34,56 @@
     </div>
 
     <div class="main" id="main">
+        <!-- Category for appetizers -->
         <h2 id="appetizer-title">Appetizers</h2>
         <section id="appetizers" class="menu-section">
             
-            <div id="appetizers-container" class="menu-container" data-category="1"></div>
+            <div id="appetizers-container" class="menu-container" data-category="1">
+                <!-- Appetizer items dynamically added here -->
+            </div>
             
         </section>
 
         <hr class="divider">
 
+        <!-- Category for main courses -->
         <h2 id="main-course-title">Main Courses</h2>
         <section id="main-courses" class="menu-section">
             
-            <div id="main-courses-container" class="menu-container" data-category="2"></div>
+            <div id="main-courses-container" class="menu-container" data-category="2">
+                <!-- Main courses items dynamically added here -->
+            </div>
             
         </section>
 
         <hr class="divider">
 
+        <!-- Category for desserts -->
         <h2 id="dessert-title">Desserts</h2>
         <section id="desserts" class="menu-section">
             
-            <div id="desserts-container" class="menu-container" data-category="3"></div>
+            <div id="desserts-container" class="menu-container" data-category="3">
+                <!-- Desserts items dynamically added here -->
+            </div>
             
         </section>
 
         <hr class="divider">
         
+        <!-- Category for beverages -->
         <h2 id="beverages-title">Beverages</h2>
         <section id="beverages" class="menu-section">
             
-            <div id="beverages-container" class="menu-container" data-category="4"></div>
+            <div id="beverages-container" class="menu-container" data-category="4">
+                <!-- Beverages items dynamically added here -->
+            </div>
             
         </section>
     </div>
 
     <div>
-        <button id="save-btn" class="save-btn">Save changes</button>
+        <!-- Button to save changes -->
+        <button id="save-btn" class="save-btn">Save changes</button> 
     </div>
 
     <!-- Modal to add new item -->
@@ -101,7 +117,9 @@
             <input type="text" name="new-item-image" class="form-input" id="new-item-image" placeholder="menupics/example_image.jpg">
             <input class="form-input" id="submit-btn" type="submit" value="Add item">
           </form>
-          <div class="login-error" id="login-error"></div>
+          <div class="login-error" id="login-error">
+            <!-- If any errors occur when adding items, it is displayed here -->
+          </div>
     </div>
 
     <script>

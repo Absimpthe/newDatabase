@@ -1,5 +1,5 @@
 /* --- modal --- */
-var addDriverModal = document.getElementById("add-driver-modal");
+var addDriverModal = document.getElementById("add-driver-modal"); // get the modal
 
 var btn = document.getElementById("add-btn"); // button to open modal
 var span = document.getElementsByClassName("close")[0]; // element that closes the modal
@@ -13,10 +13,10 @@ span.onclick = function() { // user clicks on (x), close modal
   addDriverModal.style.display = "none";
 }
 
-var addDriverForm = document.querySelector(".add-driver-form");
+var addDriverForm = document.querySelector(".add-driver-form"); 
 
 // Listen for form submission
-addDriverForm.addEventListener("submit", function(e) {
+addDriverForm.addEventListener("submit", function(e) { 
     // Prevent the default form submission
     e.preventDefault();
 
@@ -24,6 +24,7 @@ addDriverForm.addEventListener("submit", function(e) {
     
 });
 
+// Sends data to PHP 
 function sendData(form, file, modal, number) {
     var formData = new FormData(form);
     var showModal = document.getElementById(modal);

@@ -3,6 +3,7 @@
     session_start();
     require_once '../db_connect.php'; // connect to database
 
+    // Get the driver details from the client side
     $username = $_POST['driver-username'];
     $phone_no = $_POST['driver-phone-no'];
     $email = $_POST['driver-email'];
@@ -35,6 +36,7 @@
         $stmt2->close();
     }
     else {
+        // Prepare statement to add in driver details into database
         $usertype = 'Driver';
         $stmt = $con->prepare("INSERT INTO users (Username, UserPassword, Address, EmailAddress, PhoneNumber, UserType) VALUES (?, ?, ?, ?, ?, ?)");
         
@@ -61,7 +63,5 @@
         $stmt->close();
     }
     exit();
-    
-
     mysqli_close($con);
 ?>

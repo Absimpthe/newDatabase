@@ -2,10 +2,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const saveButton = document.getElementById('save-btn');
 
+    // Function for when user clicks save changes button
     saveButton.addEventListener('click', function() {
         const items = []; 
-        document.querySelectorAll('.menu-container').forEach(container => {
-            container.querySelectorAll('.menu-item').forEach(item => {
+        document.querySelectorAll('.menu-container').forEach(container => { // loops through each container in the page
+            container.querySelectorAll('.menu-item').forEach(item => { // loops through each item in the database
                 var itemCode = item.querySelector('.item-code').value;
                 var itemName = item.querySelector('.item-name').value;
                 var price = item.querySelector('.item-price').value;

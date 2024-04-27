@@ -4,6 +4,7 @@
     require_once '../db_connect.php';
     header('Content-Type: application/json');
 
+    // Get new item details from the client side
     $new_item_id = $_POST['new-item-id'];
     $new_item_name = $_POST['new-item-name'];
     $new_item_price = $_POST['new-item-price'];
@@ -12,6 +13,7 @@
     $new_item_availability = $_POST['new-item-availability'];
     $new_item_image = $_POST['new-item-image'];
 
+    // Prepare statement to check the item code
     $stmt = $con->prepare("select * from items where ItemCode = ?");
     $stmt->bind_param("s", $new_item_id);
     $stmt->execute();
@@ -23,6 +25,7 @@
         exit();
     }
     
+    // Prepare statement to add the new item details into the database
     $stmt = $con->prepare("INSERT INTO items (ItemCode, ItemName, Price, Availability, CategoryID, ItemImage) VALUES (?, ?, ?, ?, ?, ?)");
 
     // Bind parameters

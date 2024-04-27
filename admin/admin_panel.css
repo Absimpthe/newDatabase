@@ -13,6 +13,7 @@ body {
   overflow-y: hidden; 
 }
 
+/* Design for top navigation bar */
 .topnav {
     display:flex;
     flex: 75%;
