@@ -49,3 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     fetchDrivers();
 });
+
+
+// drivers not showing when creating new acc, car plate number not updating in database

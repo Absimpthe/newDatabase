@@ -47,7 +47,7 @@
         if ($stmt->execute()) {
             // if stmt executed, add to drivers table using the ID
             $last_id = $con->insert_id;
-            $stmt_insert = $con->prepare("INSERT INTO drivers (DriverID, CarPlateNo, DriverRating) VALUES (?, ?, 5)");
+            $stmt_insert = $con->prepare("INSERT INTO drivers (DriverID, CarPlateNo) VALUES (?, ?)");
             $stmt_insert->bind_param("ss", $last_id, $car_plate);
             if ($stmt_insert->execute()) {
                 echo json_encode(['status' => 'success']);
