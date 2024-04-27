@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 displayCart(data.data);
             } else {
                 console.error('Failed to fetch cart:', data.message);
+                document.getElementById('order-container').innerText = "No items to checkout.";
             }
         })
         .catch(error => console.error('Error fetching cart:', error));

@@ -85,7 +85,7 @@ tr th, tr td {
 }
 
 th {
-    color: #9b5cb3; /* White text color for headers */
+    color: #9b5cb3;
     font-family: 'Times New Roman', serif;
     font-size: 1.75rem;
     padding: 15px;
@@ -136,4 +136,11 @@ tr:hover {
     table {
         width: 100%; /* Full-width on smaller screens */
     }
+}
+
+p {
+    margin: 20px auto;
+    margin-left: 20px;
+    text-align:center;
+    color: #9b5cb3;
 }

@@ -85,6 +85,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     document.getElementById('checkout').addEventListener('click', function() {
-        window.location.href = "checkout.html"; // Adjust the URL to your site's checkout page
+        fetch('showcart.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                window.location.href = "checkout.html"; 
+            } else {
+                document.getElementById('cart-error').innerText = "No items found in cart. Go add some!";
+            }
+        })
+        .catch(error => console.error('Error:', error));   
     });    
 });
