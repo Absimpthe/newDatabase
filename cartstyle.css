@@ -126,7 +126,6 @@ tr:hover {
     width: 170px;
 }
 
-/* Optional: Add hover effect for buttons */
 .actions button:hover {
     background-color: #d485c6;
 }

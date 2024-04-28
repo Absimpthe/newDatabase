@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch((error) => {
         console.error('Error:', error);
         document.getElementById('error').innerText = "An unexpected error occurred. Please try again.";
-        // Handle errors
       });
     }
 });

@@ -6,7 +6,7 @@
     
     require_once 'db_connect.php'; // Connect to database
     
-    // Query to fetch the UserType along with other necessary details
+    // Query to fetch necessary details
     $stmt = $con->prepare("SELECT UserID, UserPassword, UserType FROM users WHERE Username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();

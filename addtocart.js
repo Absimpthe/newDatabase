@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Attach event listener to the body or a more specific parent that exists on page load
+    // Attach event listener
     document.body.addEventListener('click', function(event) {
         // Check if the clicked element has the 'add-to-cart-btn' class
         if (event.target && event.target.matches('.add-to-cart-btn')) {

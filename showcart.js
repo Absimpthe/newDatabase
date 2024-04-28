@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     var hasCart = fetchCart();
     document.getElementById('back-to-menu').addEventListener('click', function() {
-        window.location.href = "menu.html"; // Adjust the URL to your site's menu page
+        window.location.href = "menu.html"; 
     });
     
     document.getElementById('checkout').addEventListener('click', function() {

@@ -59,7 +59,6 @@ function sendData(form, file, modal) {
     .catch((error) => {
         console.error('Error:', error);
         document.getElementById('login-error').innerText = "An unexpected error occurred. Please try again.";
-        // Handle errors
     });
 }
 

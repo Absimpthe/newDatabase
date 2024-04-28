@@ -93,7 +93,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center; /* This will vertically center the button in the div */
-    align-items: center; /* This will horizontally center the button in the div, if needed */
+    align-items: center; /* This will horizontally center the button in the div */
     width: 40%;
 }
 
