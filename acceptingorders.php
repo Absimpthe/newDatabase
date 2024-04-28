@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 
     // Insert into deliveries table
     $stmtInsert = $con->prepare("INSERT INTO deliveries (OrderID, DriverID) VALUES (?, ?)");
-    $stmtInsert->bind_param("ii", $orderID, $driverId); // Make sure variable names are consistent ($driverId)
+    $stmtInsert->bind_param("ii", $orderID, $driverId);
     $result = $stmtInsert->execute();
 
     if ($result) {
-        echo json_encode(['status' => 'success', 'message' => 'Order has been added to deliveries.']);
+        echo json_encode(['status' => 'success', 'message' => 'Order has been added to deliveries.']); // If data is added to the database, send success message
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Failed to insert delivery.']);
+        echo json_encode(['status' => 'error', 'message' => 'Failed to insert delivery.']); // If there is error, send error message
     }
     exit();
 }

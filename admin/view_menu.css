@@ -43,10 +43,10 @@ h2 {
 
 /* Styles for normal links */
 a:link {
-    color: #484567; /* Change from default blue to green */
+    color: #484567; 
 }
 
-/* Optional: change link color when active/clicked */
+
 a:active {
     color: #928dbd;
 }
@@ -111,10 +111,12 @@ img {
     width: 45%;
 }
 
-.modal-content {
-    position: fixed;
-    z-index: 500;
+.modal {
+    overflow: auto;
+    z-index: 1;
+    position: fixed; 
 }
+
 
 .add-item {
     color: rgb(41, 77, 113);

@@ -126,10 +126,10 @@
         fetch('../menuphp.php')
             .then(response => response.json())
             .then(data => {
-                var itemNo = 0;
                 data.forEach(item => {
                     // Find the container that matches the category ID of the item
                     const container = document.querySelector(`.menu-container[data-category="${item.CategoryID}"]`);
+                    // Create element for each item
                     if(container) {
                         const div = document.createElement('div');
                         div.className = 'menu-item';
@@ -150,11 +150,12 @@
                             </select>
                         </p>`;
                         
+                        // Append the created element onto the container
                         container.appendChild(div);
 
+                        // Get the button for availability and set it accordingly
                         const selectElement = div.querySelector('.stock');
                         selectElement.value = item.Availability; 
-                        itemNo += 1;
                     }
                 });
             })

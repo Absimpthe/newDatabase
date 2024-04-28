@@ -37,9 +37,10 @@ if ($stmt_resultOrders->num_rows > 0) {
         $orders[] = $order;
     }
 
-    echo json_encode(['status' => 'success', 'data' => $orders]);
+    // Echo response accordingly
+    echo json_encode(['status' => 'success', 'data' => $orders]); // If data is retrieved from the database, send data
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'No accepted orders.']);
+    echo json_encode(['status' => 'error', 'message' => 'No accepted orders.']); // If there is error, send error message
 }
 
 exit();
