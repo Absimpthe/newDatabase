@@ -8,11 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const loginInsteadLink = document.getElementById('loginInsteadLink');
     const signupInsteadLink = document.getElementById('signupInsteadLink');
 
+    // display the login section
     loginButton.addEventListener("click", function() {
         if (loginSection.style.display === 'none' || loginSection.style.display === '') {
-            loginSection.style.display = 'block';
-            loginButton.style.display = 'none';
-            signUpButton.style.display = 'none';
+            loginSection.style.display = 'block'; // Show the login section
+            loginButton.style.display = 'none'; // Hide the login button
+            signUpButton.style.display = 'none'; // Hide the sign-up button
         } else {
             loginSection.style.display = 'none';
         }
@@ -64,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 
+    // validation checks
     function validateForm() {
         var username = document.getElementById("signup-username").value;
         var phoneNo = document.getElementById("phone-no").value;
@@ -74,26 +76,32 @@ document.addEventListener("DOMContentLoaded", function() {
         var valid = true;
 
         // Simple validation checks
+
+        // check if username input is empty
         if (username.length === 0) {
             alert("Username cannot be empty");
             valid = false;
         }
 
+        // check if phone number input is empty
         if (phoneNo.length === 0) {
             alert("Phone number cannot be empty");
             valid = false;
         }
 
+        // check if email input is correctly formatted
         if (!validateEmail(email)) {
             alert("Invalid email format");
             valid = false;
         }
 
+        // check if address input is empty
         if (address.length === 0) {
             alert("Address cannot be empty");
             valid = false;
         }
 
+        // check if password input is of the correct length
         if (password.length < 8) {
             alert("Password must be at least 8 characters");
             valid = false;
@@ -102,11 +110,13 @@ document.addEventListener("DOMContentLoaded", function() {
         return valid;
     }
 
+    // checks whether there is an @ and a . in the email input
     function validateEmail(email) {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
     }
 
+    // sends data to the appropriate php file
     function sendData(form, file, sectionShow, sectionHide, number) {
         var formData = new FormData(form);
         
@@ -120,16 +130,17 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(data => {
             console.log(data);
-            if (data.status === "success") {
-                if (data.userType === 'Driver') {
-                    window.location.href = 'dashboard.html'; // HTML file for drivers
-                } else if (data.userType === 'Admin') {
-                    window.location.href = 'admin/admin_panel.html';
-                } else {
-                    window.location.href = 'main.html';
+            if (data.status === "success") { // the data has been successfully received, redirect user
+                if (data.userType === 'Driver') { // checks if user is a driver
+                    window.location.href = 'dashboard.html'; // redirects user to HTML file for drivers
+                } else if (data.userType === 'Admin') { // checks if user is an admin
+                    window.location.href = 'admin/admin_panel.html'; // redirects user to HTML file for admin
+                } else { // user is a customer
+                    window.location.href = 'main.html'; // redirects user to landing page
                 }
             }
             else {
+                // if error in retrieving data, display the error message to the user
                 document.getElementsByClassName('login-error')[number].innerText = data.message;
                 sectionShow.style.display = 'block';
                 sectionHide.style.display = 'none';  
@@ -142,37 +153,5 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementsByClassName('login-error')[number].innerText = "An unexpected error occurred. Please try again.";
             // Handle errors
         });
-    }
-
-    function showErrorPopup(message) {
-        const popup = document.createElement('div');
-        popup.setAttribute('id', 'errorPopup');
-        popup.style.position = 'fixed';
-        popup.style.left = '50%';
-        popup.style.top = '50%';
-        popup.style.transform = 'translate(-50%, -50%)';
-        popup.style.padding = '20px';
-        popup.style.color = 'white';
-        popup.style.background = '#d485c6';
-        popup.style.zIndex = '1000';
-        popup.style.borderRadius = '8px';
-        popup.style.transition = 'opacity 0.5s ease';
-
-        popup.style.opacity = '1'; // Start fully visible
-        const messageText = document.createTextNode(message);
-        popup.appendChild(messageText);
-
-        document.body.appendChild(popup);
-
-        // Fade out after 3 seconds
-        setTimeout(() => {
-            popup.style.opacity = '0';
-            // Remove from DOM after transition
-            setTimeout(() => {
-                if (popup.parentNode) {
-                    popup.parentNode.removeChild(popup);
-                }
-            }, 500); // Matches the transition time
-        }, 3000); 
     }
 });

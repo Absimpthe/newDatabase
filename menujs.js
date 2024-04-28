@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const leftArrow = container.previousElementSibling; // Assuming left arrow is placed just before the container
         const rightArrow = container.nextElementSibling; // Assuming right arrow is placed just after the container
     
+        // checks whether to display the arrows
         const checkArrows = () => {
             leftArrow.style.display = container.scrollLeft > 0 ? 'block' : 'none';
             rightArrow.style.display = container.scrollLeft < container.scrollWidth - container.clientWidth ? 'block' : 'none';
@@ -16,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
         container.addEventListener('scroll', checkArrows);
         checkArrows(); // Initial check
     
+        // event listeners for each mouse action done by the user
         container.addEventListener('mousedown', (e) => {
             isDown = true;
             startX = e.pageX - container.offsetLeft;

@@ -14,6 +14,7 @@
 
 <body>
   
+  <!-- Top navigation bar -->
     <div class="topnav">
         <a id="unfulfilled-tab" href="dashboard.html#unfulfilled-orders">Unfulfilled Orders</a>
         <a id="accepted-tab" href="dashboard.html#accepted-orders">Accepted Orders</a>
@@ -22,14 +23,17 @@
 
   <div class="container">
     <div class="left-column">
+      <!-- Profile picture -->
       <img src="./assets/watermelon.jpg" width=250>
       <h1>My Profile</h1>
+      <!-- Logout button -->
       <div class="logout">
         <button id="logout-btn" onclick="window.location.href='logout.php';">Logout</button>
       </div>
     </div>
 
-    <div class="right-column">
+    <div class="right-column"> 
+      <!-- User details displayed here -->
       <h1>Account Details</h1>
 
       <hr class="divider">
@@ -81,8 +85,9 @@
     
   </div>
 
-  <!-- All modals -->
+  <!-- All modals to update user details -->
 
+  <!-- Username modal -->
   <div id="username-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -97,6 +102,7 @@
 
   </div>
 
+  <!-- Password modal -->
   <div id="password-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -112,6 +118,7 @@
 
   </div>
 
+  <!-- Email address modal -->
   <div id="email-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -126,6 +133,7 @@
 
   </div>
 
+  <!-- Address modal -->
   <div id="address-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -140,6 +148,7 @@
 
   </div>
 
+  <!-- Phone number modal -->
   <div id="phone-no-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -155,6 +164,7 @@
   </div>
     
   <script>
+    // get the account details and display them 
     fetch('account_details.php')
             .then(response => response.json())
             .then(data => {

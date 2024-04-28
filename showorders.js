@@ -1,11 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // function to get orders
     function fetchOrders() {
         fetch('show_orders.php', { method: 'GET' })
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                updateOrderDisplay(data.data);
+                updateOrderDisplay(data.data); // if data successfully retrieved, call function to display orders
             } else {
+                // if no orders found, display message to user
                 const orderWrapper = document.getElementById('orders-wrapper');
                 orderWrapper.innerHTML = '';
                 orderWrapper.style.marginLeft = '20px';
@@ -16,14 +18,17 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching orders:', error));
     }
 
+    // function to display the orders
     function updateOrderDisplay(orders) {
         const ordersWrapper = document.getElementById('orders-wrapper');
         ordersWrapper.innerHTML = '';  // Clear previous contents
     
+        // loops through each order made by user
         orders.forEach(order => {
             const orderContainer = document.createElement('div');
             orderContainer.className = 'order-container'; // This is the container for each order
     
+            // the order details 
             const metadataHTML = `
                 <div class="order-metadata">
                     <h2>Order ID: ${order.OrderID}</h2>
@@ -34,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
     
+            // the order items in the order
             const itemsHTML = order.Items.map(item => `
                 <li>${item.ItemCode} - Quantity: ${item.ItemQuantity}, Subtotal: $${item.SubtotalPrice}</li>
             `).join('');

@@ -3,13 +3,14 @@
     session_start();
     require_once 'db_connect.php'; // connect to database
 
+    // variables to be added to the database
     $username = $_POST['signup-username'];
     $phone_no = $_POST['phone-no'];
     $email = $_POST['email'];
     $address = $_POST['address'];
     $password = $_POST['signup-password'];
 
-    // checks if the username exists in the database
+    // prepare statement to check if the username exists in the database
     $stmt1 = $con->prepare("select * from users where Username = ?");
     $stmt1->bind_param("s", $username);
     $stmt1->execute();
@@ -23,17 +24,21 @@
 
     header('Content-Type: application/json');
 
+    // if there are usernames existing, display error
     if ($stmt1_result->num_rows > 0) {
         $data = $stmt1_result->fetch_assoc();
         echo json_encode(['status' => 'error', 'message' => 'This username is already in use.']);
         $stmt1->close();
     }
+
+    // if there are emails existing, display error
     else if ($stmt2_result->num_rows > 0) {
         $data = $stmt2_result->fetch_assoc();
         echo json_encode(['status' => 'error', 'message' => 'This email is already in use.']);
         $stmt2->close();
     }
     else {
+        // prepare statement to insert user details into the database
         $usertype = 'Customer';
         $stmt = $con->prepare("INSERT INTO users (Username, UserPassword, Address, EmailAddress, PhoneNumber, UserType) VALUES (?, ?, ?, ?, ?, ?)");
 

@@ -11,6 +11,7 @@
 </head>
 <body>
     <header>
+        <!-- Top navigation bar -->
         <div class="topnav">
             <a id="unfulfilled-tab" class="active" href="#unfulfilled-orders">Unfulfilled Orders</a>
             <a id="accepted-tab" href="#accepted-orders">Accepted Orders</a>
@@ -19,11 +20,15 @@
     </header>
     <section id="unfulfilled-orders" class="content active">
         <h1>Unfulfilled Orders</h1>
-        <div id="unfulfilled-ordersContainer"></div>
+        <div id="unfulfilled-ordersContainer">
+            <!-- Orders with the 'Confirmed' order status will be dynamically added here -->
+        </div>
     </section>
     <section id="accepted-orders" class="content">
         <h1>Accepted Orders</h1>
-        <div id="accepted-ordersContainer"></div>
+        <div id="accepted-ordersContainer">
+            <!-- Orders that the driver has accepted will be dynamically added here -->
+        </div>
     </section>
     <script src="dashboard.js"></script>
 </body>

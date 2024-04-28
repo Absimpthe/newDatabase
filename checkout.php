@@ -46,7 +46,7 @@ if ($stmt_result->num_rows > 0) {
                 // Calculate the subtotal for the current item
                 $subtotalPrice = $item['price'] * $item['quantity'];
             
-                // Prepare and execute the insertion of the order item
+                // Prepare statement to insert the order item
                 $add_order_items = $con->prepare("INSERT INTO orderitems (OrderID, ItemCode, ItemQuantity, SubtotalPrice) VALUES (?, ?, ?, ?)");
                 $add_order_items->bind_param("isid", $last_id, $item_code['ItemCode'], $item['quantity'], $subtotalPrice);
                 $add_order_items->execute();

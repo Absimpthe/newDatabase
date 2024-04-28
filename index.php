@@ -3,7 +3,9 @@
 
   require_once 'db_connect.php'; // connect to database
   
+  // checks whether there is already a user logged into the session
   if (!empty($_SESSION['user-id'])) {
+    // redirects user to the correct HTML file
     switch ($_SESSION['user-type']) {
       case 'Admin':
         header("Location: admin/admin_panel.html");
@@ -45,6 +47,8 @@
         <button id="showLogin">Login</button>
         <button id="showSignUp">Sign Up</button>
       </homepage-buttons>
+
+      <!-- Sign up form -->
       <section class="sign-up">
         <form action="signup.php" method="post" class="sign-up-form">
           <div class="form-input">
@@ -74,6 +78,8 @@
             <p class="form-term">Already have an account? <a href="#login" id="loginInsteadLink">Login instead</a></p>
         </form>
       </section>
+
+      <!-- Login form -->
       <section class="login">
         <form action="login.php" method="post" class="login-form">
           <div class="form-input">

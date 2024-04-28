@@ -14,6 +14,7 @@
 
 <body>
   
+  <!-- Top navigation bar -->
   <div class="topnav">
     <a href="main.html">Nottingham Cafe</a>
     <a href="menu.html">Menu</a>
@@ -23,14 +24,17 @@
 
   <div class="container">
     <div class="left-column">
+      <!-- Profile picture -->
       <img src="./assets/watermelon.jpg" width=250>
       <h1>My Profile</h1>
+      <!-- Logout button -->
       <div class="logout">
         <button id="logout-btn" onclick="window.location.href='logout.php';">Logout</button>
       </div>
     </div>
 
     <div class="right-column">
+      <!-- Display account details -->
       <h1>Account Details</h1>
 
       <hr class="divider">
@@ -38,7 +42,9 @@
       <h2>Username</h2>
       
       <div class="update-container">
-        <span class="text-details" id="username"></span>
+        <span class="text-details" id="username">
+          <!-- Username of user dynamically added here -->
+        </span>
         <button class="update-btn" id="update-username">Change username</button>
       </div>
       
@@ -46,7 +52,9 @@
 
       <h2>Password</h2>
       <div class="update-container">
-        <span id="password"></span>
+        <span id="password">
+          <!-- Censored password of user dynamically added here -->
+        </span>
         <button class="update-btn" id="update-password">Change password</button>
       </div>
 
@@ -54,7 +62,9 @@
 
       <h2>Email</h2>
       <div class="update-container">
-        <span id="email"></span>
+        <span id="email">
+          <!-- Censored email address of user dynamically added here -->
+        </span>
         <button class="update-btn" id="update-email">Change email</button>
       </div>
       
@@ -63,7 +73,9 @@
 
       <h2>Home Address</h2>
       <div class="update-container">
-        <span id="address"></span>
+        <span id="address">
+          <!-- Home address of user dynamically added here -->
+        </span>
         <button class="update-btn" id="update-address">Change address</button>
       </div>
       
@@ -72,7 +84,9 @@
 
       <h2>Phone Number</h2>
       <div class="update-container">
-        <span id="phone-no"></span>
+        <span id="phone-no">
+          <!-- Phone number of user dynamically added here -->
+        </span>
         <button class="update-btn" id="update-phone-no">Change phone number</button>
       </div>
       
@@ -82,8 +96,9 @@
     
   </div>
 
-  <!-- All modals -->
+  <!-- All modals to update user details -->
 
+  <!-- Username modal -->
   <div id="username-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -98,6 +113,7 @@
 
   </div>
 
+  <!-- Password modal -->
   <div id="password-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -113,6 +129,7 @@
 
   </div>
 
+  <!-- Email address modal -->
   <div id="email-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -127,6 +144,7 @@
 
   </div>
 
+  <!-- Home address modal -->
   <div id="address-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -141,6 +159,7 @@
 
   </div>
 
+  <!-- Phone number modal -->
   <div id="phone-no-modal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -156,6 +175,7 @@
   </div>
     
   <script>
+    // get the user details of the user logged in
     fetch('account_details.php')
             .then(response => response.json())
             .then(data => {

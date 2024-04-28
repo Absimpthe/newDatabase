@@ -6,18 +6,19 @@ document.getElementById('accepted-tab').addEventListener('click', function() {
     setActiveTab('accepted');
 });
 
+// function to display the correct tab
 function setActiveTab(tab) {
     var unfulfilledContent = document.getElementById('unfulfilled-orders');
     var acceptedContent = document.getElementById('accepted-orders');
     var unfulfilledTab = document.getElementById('unfulfilled-tab');
     var acceptedTab = document.getElementById('accepted-tab');
 
-    if (tab === 'unfulfilled') {
+    if (tab === 'unfulfilled') { // display unfulfilled orders tab
         unfulfilledContent.style.display = 'block';
         acceptedContent.style.display = 'none';
         unfulfilledTab.classList.add('active');
         acceptedTab.classList.remove('active');
-    } else {
+    } else { // display accepted orders tab
         acceptedContent.style.display = 'block';
         unfulfilledContent.style.display = 'none';
         acceptedTab.classList.add('active');
@@ -30,16 +31,18 @@ document.addEventListener('DOMContentLoaded', function() {
     setActiveTab('unfulfilled'); // Automatically fetches the orders too
 });
 
+// function to get orders from the database
 function fetchOrders(status) {
     let url = `${status}_orders.php`;  // Dynamic URL based on order status
     fetch(url)
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {
-                displayOrders(data.data, status);
+                displayOrders(data.data, status); // if successfully retrieved orders, call function to display orders
             } else {
                 let orderContainer = document.getElementById(`${status}-ordersContainer`);
                 orderContainer.innerHTML = '';
+                // if error in retrieving errors, display message to user
                 orderContainer.innerHTML = `<p>No ${status} orders found. Please come back again later.</p>`;
                 return;
             }
@@ -47,16 +50,19 @@ function fetchOrders(status) {
         .catch(error => console.error('Error fetching orders:', error));
 }
 
+// function to display all orders to the user
 function displayOrders(data, status) {
     let ordersContainer = document.getElementById(`${status}-ordersContainer`); // Dynamic container based on status
 
     ordersContainer.innerHTML = '';
 
+    // loops through each order to display them
     data.forEach(order => {
         let itemsHTML = order.Items.map(item => `
             <li>${item.ItemCode} - Quantity: ${item.ItemQuantity}, Subtotal: $${item.SubtotalPrice}</li>
         `).join('');
 
+        // order details are here
         let metadataHTML = `
             <div class="order-metadata">
                 <h3>Order ID: ${order.OrderID}</h3>
@@ -68,6 +74,7 @@ function displayOrders(data, status) {
             </div>
         `;
 
+        // add the order items here
         let itemsContainerHTML = `
             <div class="order-items">
                 <h3>Items:</h3>
@@ -76,6 +83,7 @@ function displayOrders(data, status) {
         `;
 
         let orderHTML = `${metadataHTML}${itemsContainerHTML}`;
+        // dynamically create buttons according to the tab opened
         if (status === "unfulfilled") {
             orderHTML += `<div class="button-container"><button class="accept-btn">Accept Order</button></div>`;
         }
@@ -83,11 +91,13 @@ function displayOrders(data, status) {
             orderHTML += `<div class="button-container"><button class="mark-as-delivered-btn">Mark as Delivered</button></div>`
         }
 
+        // create new element to display the orders
         let orderContainer = document.createElement('div');
         orderContainer.className = 'order-container';
-        orderContainer.innerHTML = orderHTML;
+        orderContainer.innerHTML = orderHTML; // add the order details onto the element
         ordersContainer.appendChild(orderContainer);
 
+        // depending on the tab, add the buttons onto the element and handle them 
         if (status === "unfulfilled") {
             const acceptBtn = orderContainer.querySelector('.accept-btn');
             acceptBtn.addEventListener('click', () => handleAcceptOrder(order.OrderID));
@@ -99,28 +109,30 @@ function displayOrders(data, status) {
     });
 }
 
+// function to handle orders that have been delivered
 function handleDeliveredOrder(orderID) {
     const update_data = {orderID: orderID, newStatus: 'Completed'};
+    // call update_order_status.php
     fetch('update_order_status.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(update_data),
+        body: JSON.stringify(update_data), // send the data needed to update the order
     })
     .then(response => response.json())
     .then(data => {
-        if (data.status === 'success') {
+        if (data.status === 'success') { // order has been successfully updated in the database
             console.log('Order status updated successfully:', orderID);
             // Remove the order from the UI
             window.location.reload();
             fetchOrders();
         } else {
-            console.error('Failed to update order status:', data.message);
+            console.error('Failed to update order status:', data.message); // if error in updating, display error message in server
         }
     })
     .catch(error => {
-        console.error('Error updating order status:', error);
+        console.error('Error updating order status:', error); // if error in updating, display error message in server
     });
 }
 

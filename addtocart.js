@@ -19,8 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// function to add items to the cart
 function addToCart(itemCode, itemName, itemPrice) {
-    fetch('cartphp.php', {
+    // send data to cartphp.php
+    fetch('cartphp.php', { 
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -35,10 +37,10 @@ function addToCart(itemCode, itemName, itemPrice) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            console.log('Item added to cart:', itemCode, itemName, itemPrice);
+            console.log('Item added to cart:', itemCode, itemName, itemPrice); // if item successfully added to cart, inform server
         } else {
-            console.error('Failed to add item:', data.message);
+            console.error('Failed to add item:', data.message); // if error occurred, send error message to server
         }
     })
-    .catch(error => console.error('Error adding item:', error));
+    .catch(error => console.error('Error adding item:', error)); // if error occurred, send error message to server
 }
